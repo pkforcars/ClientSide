@@ -1,0 +1,197 @@
+body {
+    background-color: black;
+}
+
+#Navbar {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 60% 30% 10%;
+    align-items: center;
+    color: white;
+    padding: 1.5rem;
+    background-color: black;
+    border-bottom: 1px solid red;
+}
+#NewNavbar
+{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+    color: white;
+    padding: 1.5rem;
+    background-color: black;
+    border-bottom: 1px solid red;
+}
+
+#Component-1
+{
+    display: flex;
+    align-items: center;
+    margin-left: 10%;
+}
+#Component-1 h3 span
+{
+    color: red;
+}
+.Component-Red
+{
+    color: red;
+}
+ 
+#Component-2
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 1rem;
+}
+#Component-2 h6
+{
+    font-family: 'Nunito';
+    font-weight: 300;
+}
+#Component-2 h3
+{
+    margin-top: -1rem;
+}
+
+  #Cover-Holder {
+    position: relative;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+  }
+
+  #Cover-Holder img {
+    display: block;
+    width: 100%;
+    object-fit:cover;
+  }
+
+
+
+@media (max-width: 768px) 
+{
+    #Navbar
+    {
+        grid-template-columns: 100%;
+    }
+    #Component-1
+    {
+        display: flex;
+        justify-content: center;
+        margin-left: 0%;
+        
+    }
+    #Component-2
+    {
+        display: flex;
+        margin-right: 0%;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+    #Component-2 h6
+    {
+        font-size: 0.8rem;
+        margin-right: 1rem;
+        font-family: 'Nunito';
+        font-weight: 300;
+    }
+
+}
+  
+@media (max-width: 480px) 
+{
+    #Navbar
+    {
+        grid-template-columns: 100%;
+    }
+    #Component-1
+    {
+        display: flex;
+        justify-content: center;
+        margin-left: 0%;
+        
+    }
+    #Component-2
+    {
+        display: flex;
+        margin-right: 0%;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+    #Component-2 h6
+    {
+        font-size: 0.8rem;
+        margin-right: 1rem;
+        font-family: 'Nunito';
+        font-weight: 300;
+    }
+             
+}
+.Request
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -0.5rem;
+    background-color: transparent;
+    color: white;
+    border: 1px solid red;
+    padding: 0.5rem;
+    font-family: 'Nunito';
+    font-size: 0.9rem;
+}
+.Request:hover
+{
+    background-color: red;
+    color: white;
+    border: 1px solid red;
+    transition: 0.5s;
+}
+#NavbarPT
+{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    align-items: center;
+    color: white;
+    background-color: black;
+    border-bottom: 1px solid red;
+    padding: 1.5rem;
+
+}
+
+#NavbarPT1
+{
+    width: 100%;
+    align-items: center;
+    color: white;
+    margin-left: 2rem;
+    background-color: black;
+}
+#NavbarPT2
+{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+    color: white;
+    background-color: black;
+}
+
+@media (max-width: 768px) 
+{
+    #NavbarPT
+    {
+        grid-template-columns: 100%;
+    }
+    #NavbarPT1
+    {
+        display: flex;
+        justify-content: center;
+        margin-left: 0%;
+    }             
+}

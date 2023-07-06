@@ -1,0 +1,168 @@
+#Cart-Holder {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.Order-Display {
+    border-radius: 1rem;
+    background-color: black;
+    color: white;
+    padding: 2rem;
+    border: 1px solid red;
+    border-right: 0;
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
+}
+
+
+.Order-Header {
+    text-align: center;
+    font-family: 'Nunito';
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.Order-Div {
+    display: flex;
+    width: 100%
+}
+
+#Dropdown-C {
+    padding: 0.2rem;
+    font-size: 0.9rem;
+    width: 100%;
+    font-family: 'Nunito';
+    background-color: black;
+    color: white;
+    border: 1px solid red;
+}
+
+.Order-His {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    font-family: 'Nunito';
+    color: white;
+}
+
+.check {
+    font-family: 'Nunito';
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    color: white;
+    margin-bottom: 1rem;
+
+}
+
+.Price-display {
+    margin-top: 1rem;
+    font-family: 'Nunito';
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+}
+
+.custom-stripe-checkout {
+    width: 100%;
+    background-color: red;
+}
+
+.Order-Button {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 1rem;
+    border-top-left-radius: 0%;
+    border-bottom-left-radius: 0%;
+    padding: 2rem;
+}
+
+.Order-Form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.Order-Form2 {
+    display: flex;
+    justify-content: flex-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+#TopBox {
+    width: 100%;
+    border-radius: 0.2rem;
+    display: flex;
+    padding: 0.3rem;
+    border: 1px solid black;
+    margin-bottom: 0.5rem;
+}
+
+#TopBox2 {
+    border-radius: 0.2rem;
+    width: 49%;
+    display: flex;
+    padding: 0.3rem;
+    border: 1px solid black;
+    margin-right: 2%;
+}
+
+#TopBox21 {
+    width: 49%;
+    border-radius: 0.2rem;
+    display: flex;
+    padding: 0.3rem;
+    border: 1px solid black;
+}
+
+.Paynow {
+    width: 150%;
+    margin-top: 1rem;
+    border-radius: 0.2rem;
+    background-color: black;
+    color: white;
+    padding: 0.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    font-family: 'Nunito';
+    font-size: 1rem;
+    border: 1px solid red;
+    transition-duration: 1s;
+}
+
+.Paynow:hover {
+    background-color: white;
+    border: 1px solid red;
+    color: black;
+}
+#Component-2 h6
+{
+    cursor: pointer;  
+    transition-duration: 1s; 
+
+}
+
+#Component-2 h6:hover
+{
+    color:red;
+
+}
+
+@media (max-width: 760px) {
+    #Cart-Holder {
+        grid-template-columns: 100%;
+    }
+
+    .Order-Display {
+        border-radius: 1rem;
+    }
+    .Order-Button {
+        border-radius: 1rem;
+    }
+    
+}

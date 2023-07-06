@@ -1,0 +1,117 @@
+.Order-Details
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    font-size: 1.3rem;
+    font-family: 'Nunito';
+    margin-top: 1.5rem;
+}
+#ViewOrders
+{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    border: 1px solid black;
+}
+.Order-HisA
+{
+    color: black;
+}
+.Order-Details-HolderA
+{
+    padding: 2rem;
+    font-family: 'Nunito';
+}
+.Account-Info
+{
+    border-radius: 0.5rem;
+    padding: 1rem;
+    width: 100%;
+    font-family: 'Nunito';
+    margin-top: 0rem;
+    margin-left: 0.5rem;
+}
+#Plate-Box
+{
+    text-align: center;
+    border: 2px solid red;
+    background-color: black;
+    color: white;
+    width: 100%;
+    font-size: 1rem;
+    font-family: 'Nunito';
+}
+#Plate-Box1
+{
+    background-color: black;
+    display: flex;
+    border-bottom: 1px solid red;
+    padding: 0.5rem;
+    justify-content:space-between;
+    color: white;
+    width: 100%;
+    font-size: 1rem;
+    font-family: 'Nunito';
+}
+#Plate-Box2
+{
+    display: flex;
+    border-bottom: 1px solid red;
+    padding: 0.5rem;
+    justify-content:space-between;
+    color: black;
+    width: 100%;
+    font-size: 1rem;
+    font-family: 'Nunito';
+}
+.PlatesAdmin
+{
+    margin-top:25%;
+}
+.back-btn
+{
+    margin-top: 49%;
+    width: 100%;
+    font-size: 1rem;
+    font-family: 'Nunito';
+    background-color: black;
+    color: white;
+    border: 1px solid red;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    transition-duration: 1s;
+}
+.back-btn:hover
+{
+    background-color: red;
+    color: white;
+    border: 1px solid black;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+}
+@media (max-width: 760px) {
+    #ViewOrders
+    {
+        grid-template-columns: 100%;
+    }
+    .PlatesAdmin
+    {
+        margin-top:0%;
+    }
+.back-btn
+{
+    margin-top: 0%;
+    width: 100%;
+    font-size: 1rem;
+    font-family: 'Nunito';
+    background-color: black;
+    color: white;
+    border: 1px solid red;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    transition-duration: 1s;
+}
+}
+

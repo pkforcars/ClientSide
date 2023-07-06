@@ -1,0 +1,345 @@
+.Logout-Btn {
+    --color: red;
+    --color2: rgb(10, 25, 30);
+    padding: 0.3em 1.75em;
+    background-color: transparent;
+    border: .3px solid var(--color);
+    transition: .5s;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+    font-weight: 300;
+    font-size: 17px;
+    font-family: 'Nunito';
+    text-transform: uppercase;
+    color: white;
+}
+
+.Logout-Btn::after,
+.Logout-Btn::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform: skew(90deg) translate(-50%, -50%);
+    position: absolute;
+    inset: 50%;
+    left: 25%;
+    z-index: -1;
+    transition: .5s ease-out;
+    background-color: var(--color);
+}
+
+.Logout-Btn::before {
+    top: -50%;
+    left: -25%;
+    transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
+}
+
+.Logout-Btn:hover::before {
+    transform: skew(45deg) rotate(180deg) translate(-50%, -50%);
+}
+
+.Logout-Btn:hover::after {
+    transform: skew(45deg) translate(-50%, -50%);
+}
+
+.Logout-Btn:hover {
+    color: white;
+
+}
+
+.Logout-Btn:active {
+    filter: brightness(.7);
+    transform: scale(.98);
+}
+
+.Username-Holder {
+    padding: 0.3em 1.75em;
+    background-color: red;
+    border: .3px solid red;
+    transition: .5s;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+    font-weight: 300;
+    font-size: 17px;
+    font-family: 'Nunito';
+    text-transform: uppercase;
+    color: white;
+}
+
+.Dashboard-Body {
+    display: grid;
+    grid-template-columns: 17% 83%;
+}
+
+.Dashboard-Sidebar {
+    border-right: 1px solid red;
+    width: 100%;
+    max-height: fit-content;
+}
+
+.Dashboard-Content {
+    background-color: black;
+    width: 100%;
+    height: 1rem
+}
+
+.Sidebar-Item {
+    text-align: center;
+    padding: 1rem;
+    background-color: red;
+    color: white;
+    font-size: 1rem;
+    font-family: 'Nunito';
+    border-bottom: 1px solid black;
+}
+
+.NotSelectedSidebar-Item {
+    text-align: center;
+    padding: 1rem;
+    background-color: black;
+    color: white;
+    font-size: 1rem;
+    font-family: 'Nunito';
+    border-bottom: 1px solid red;
+}
+
+.Dashboard-Title {
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    font-family: 'Nunito';
+    margin-top: 1rem;
+}
+
+.Upper-Div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom:  2rem;
+}
+
+.Orders-Holder {
+    margin-top: 1.5rem;
+    width: 90%;
+    color: white !important;
+    font-family: 'Nunito';
+
+}
+
+#Cell {
+    color: white !important;
+    font-family: 'Nunito';
+}
+
+#Table-Head {
+    background-color: red;
+}
+
+.Feedback {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+#Feedback-area {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    color: black;
+    padding: 1rem;
+    font-family: 'Nunito';
+    border-radius: 0.2rem;
+
+}
+.slider-container
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+.slider-input {
+    width: 50%;
+    height: 5px;
+    outline: none;
+    background-color: red;
+    appearance: none;
+}
+
+.slider-input::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background-color: red;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.slider-input::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.d-stars
+{
+    margin-bottom: 1rem;
+}
+.slider-value
+{
+    color: black;
+    font-family: 'Nunito';
+    font-size: 1rem;
+}
+
+.FooterContainer1 {
+    margin-top: 1rem;
+    background-color: black;
+    border-top: 2px solid red;
+    color: white;
+    font-family: 'Nunito';
+    padding: 15px;
+    flex-shrink: 0;
+    margin-top: auto;
+  }
+  
+  .Content1 {
+    text-align: center;
+  }
+#Navbar2
+{
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid red;
+    color: white;
+    font-family: 'Nunito';
+    padding: 10px;
+    width: 100%;
+    background-color: black;
+}
+#Componentx
+{
+    margin-right: 1rem;
+    transition-duration: 1;
+    cursor: pointer;
+}
+#Componentx:hover {
+    color: red;
+}
+
+#Componenty
+{
+    margin-right: 1rem;
+    transition-duration: 1;
+}
+#Componenty:hover
+{
+    color: red;
+}
+.Feedback-Box
+{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    background-color: black;
+    color: white;
+    border-top: 1px solid red;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+}
+
+.Feedback-Pt2
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Delete-Btn
+{
+    background-color: red;
+    border: none;
+    color: white;
+    font-family: 'Nunito';
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.2rem;
+    border: 1px solid red;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+.Delete-Btn:hover
+{
+    background-color: black;
+    border: 1px solid red;
+    color: red;
+    font-family: 'Nunito';
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.2rem;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+.Feedback-Area
+{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+@media (max-width: 760px) {
+    #Navbar2
+    {
+        font-size: 0.9rem;
+    }
+    .Username-Holder {
+        font-weight: 300;
+        font-size: 1rem;
+        padding: 0.35rem;
+        text-align: center;
+    }    
+}
+@media (max-width: 420px) {
+    #Navbar2
+    {
+        font-size: 0.65rem;
+    }
+    .Username-Holder {
+        padding: 0.5em 1.75em;
+        font-weight: 300;
+        font-size: 14px;
+    }    
+}
+@media (max-width: 380px) {
+    #Navbar2
+    {
+        font-size: 0.6rem;
+    }
+}
+@media (max-width: 360px) {
+    #Navbar2
+    {
+        font-size: 0.55rem;
+    }
+    
+    .Username-Holder {
+        padding: 0.65em 1.75em;
+        font-weight: 300;
+        font-size: 13px;
+    }    
+
+}

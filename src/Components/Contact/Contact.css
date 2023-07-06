@@ -1,0 +1,43 @@
+#Contact-Body
+{
+    background-color: black;
+    color: white;
+    font-family: 'Nunito';
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-top: 2rem;
+    border: 1px solid red;
+    border-radius: 0.8rem;
+}
+.Map
+{
+    width: 100%;
+    height: 500px;
+}
+
+@media (max-width: 760px) {
+    #Contact-Body
+    {
+        grid-template-columns: 100%;
+    }
+}
+.Contact
+{
+    text-align: center;
+}
+.Contact1
+{
+    text-align: center;
+    color: red;
+}
+.Contact-Holder
+{
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+}
+.Contact-Holder2
+{
+    padding: 2rem;
+}

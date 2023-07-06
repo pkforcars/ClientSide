@@ -1,0 +1,237 @@
+.ADashboard-Body {
+  background-color: white;
+  min-height: 50rem;
+  color: black;
+}
+
+.radio-inputs-admin {
+  margin-top: 1rem;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 0.5rem;
+  background-color: black;
+  color: white;
+  box-sizing: border-box;
+  box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+  border: 1px solid red;
+  padding: 0.4rem;
+  width: 40%;
+  font-size: 14px;
+}
+
+@media (max-width: 760px) {
+  .ADashboard-Body {
+    min-height: 60rem;
+  }
+
+  .radio-inputs-admin {
+    width: 90%;
+    font-size: 12px;
+  }
+
+  #Cell {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .radio-inputs-admin {
+    width: 90%;
+    font-size: 10px;
+  }
+}
+
+.radio-inputs-admin .radio-admin {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.radio-inputs-admin .radio-admin input {
+  display: none;
+}
+
+.radio-inputs-admin .radio-admin .name {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  border: none;
+  padding: .5rem 0;
+  color: white;
+  transition: all .15s ease-in-out;
+}
+
+.radio-inputs-admin .radio-admin input:checked+.name {
+  background-color: red;
+  color: white;
+  font-weight: 600;
+}
+
+.Radio-Holder {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.OrderContainer {
+  padding: 2rem;
+  padding-top: 1rem;
+  width: 100%;
+  font-size: 0.8rem;
+  font-family: 'Nunito';
+}
+
+.OrderTable {
+  width: 100%;
+}
+
+.Dashboard-TitleA {
+  text-align: center;
+  font-family: 'Nunito';
+  font-size: 1.2rem;
+}
+
+.OrderHead {
+  background-color: black;
+  color: white;
+}
+
+
+.View-Button {
+  background-color: black;
+  color: white;
+  border: none;
+  width: 100%;
+  border-radius: 0.2rem;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  font-family: 'Nunito';
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.FooterContainer0 {
+  z-index: 999;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 1.5rem;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  background-color: black;
+  position: absolute;
+  left: 0;
+}
+
+.stars {
+  display: flex;
+  color: rgb(255, 174, 0)
+}
+
+.sidebar1A {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  border-left: 0;
+  font-family: 'Nunito';
+  padding: 2rem;
+  border-radius: 1rem;
+  color: black;
+  height: 110%;
+  background-color: white;
+  border-top-left-radius: 0%;
+  border-bottom-left-radius: 0%;
+
+}
+
+#admincreate {
+  display: flex;
+  justify-content: center;
+  margin-top: -2rem;
+}
+#Dropdown-A
+{
+  width: 100%;
+  font-size: 0.7rem;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  border: 1px solid black;
+  font-family: 'Nunito';
+  color: black;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+#QuotesDiv
+{
+  display: grid !important;
+  grid-template-columns: 50% 50% !important;
+  border: 1px solid gray;
+
+}
+
+.QuotesCard {
+  padding: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.QuotesCard h5 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.QuotesCard-Title {
+  margin-bottom: 0.5rem;
+}
+.Quote-D
+{
+  height: 7rem;
+  text-align: justify;
+}
+.QuoteBtn
+{
+  display: flex;
+  float:right;
+}
+
+@media (min-width: 768px) {
+  .OrderContainer {
+    padding: 4rem;
+    padding-top: 2rem;
+    font-size: 1rem;
+  }
+
+  .OrderTable {
+    width: 60%;
+  }
+
+  .Dashboard-TitleA {
+    font-size: 1rem;
+  }
+  .sidebar1A {
+    width: 50%;
+  }
+  .Dashboard-TitleA {
+    font-size: 1rem;
+  }
+  #abox
+  {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  #QuotesDiv
+  {
+    grid-template-columns: 100% !important;
+  
+  }
+  
+}
