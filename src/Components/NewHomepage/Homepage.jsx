@@ -19,7 +19,7 @@ export default function HomePage() {
     const [FrontSize, SetFrontSize] = useState("Option1");
     const [RearSize, SetRearSize] = useState("Option1");
     const [Badge, SetBadge] = useState("")
-    const [BadgeCity, SetBadgeCity] = useState("")
+    const [BadgeCity, SetBadgeCity] = useState("Union")
     const [BadgeFlag, SetBadgeFlag] = useState("")
     const [BadgeBackground, SetBadgeBackground] = useState("#366CB7")
     const [Border, SetBorder] = useState("transparent")
@@ -73,9 +73,10 @@ export default function HomePage() {
 
     }
 
-    const baseUrl = process.env.REACT_APP_BASE_URL;
-    console.log(baseUrl);
+    console.log(BadgeCity)
 
+    const baseUrl = process.env.REACT_APP_BASE_URL;
+   
     const DisplayBought = () => {
         return (
             <>
