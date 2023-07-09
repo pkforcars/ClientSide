@@ -320,7 +320,10 @@ export default function HomePage() {
                 setShortHand(false)
             }
             SetBadgeCity(city);
-            SetBadgeFlag(flag.replace("P", ""));
+
+            var updatedFlag = flag.replace("P", "");
+            updatedFlag = updatedFlag.charAt(0).toUpperCase() + updatedFlag.slice(1);
+            SetBadgeFlag(updatedFlag);
         }
         if (e.target.value === "") {
             SetBadge("")
@@ -372,6 +375,7 @@ export default function HomePage() {
         setSpare(false)
     }
 
+    console.log(BadgeFlag)
     return (
         <>
             <Navigation />
@@ -566,7 +570,7 @@ export default function HomePage() {
                         <div className="Centeralize">
                             <div className="Option1B" style={{ backgroundColor: "#E7E7E7" }}>
                                 <div className="Option1B_Container" style={{ backgroundColor: BadgeBackground }}>
-                                    <img src={`/UNION.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
+                                    <img src={`/Union.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
                                     <div id={ShortHand ? "Option1B_Text1" : "Option1B_Text2"}>{BadgeCity}</div>
                                 </div>
                                 <div className='Option1B_Container1'>
@@ -617,7 +621,7 @@ export default function HomePage() {
                         <div className="Centeralize">
                             <div className="Option3NEW_Plate1" style={{ backgroundColor: "#E7E7E7" }}>
                                 <div className="BG_Container1" style={{ backgroundColor: BadgeBackground }}>
-                                    <img src={`/UNION.png`} className={Vertical ? "Option3_Image2" : "Option3_Image1"} alt='Badge'></img>
+                                    <img src={`/Union.png`} className={Vertical ? "Option3_Image2" : "Option3_Image1"} alt='Badge'></img>
                                     <div id={ShortHand ? "Option3_Text" : "Option3_Text1"}>{BadgeCity}</div>
                                 </div>
                                 <div className='BG_Container2'>
@@ -670,7 +674,7 @@ export default function HomePage() {
                         <div className="Centeralize">
                             <div className="Option10NEW_Plate1" style={{ backgroundColor: "#E7E7E7" }}>
                                 <div className="BG_Container1" style={{ backgroundColor: BadgeBackground }}>
-                                    <img src={`/UNION.png`} className={Vertical ? "Option3_Image2" : "Option3_Image1"} alt='Badge'></img>
+                                    <img src={`/Union.png`} className={Vertical ? "Option3_Image2" : "Option3_Image1"} alt='Badge'></img>
                                     <div id={ShortHand ? "Option3_Text" : "Option3_Text1"}>{BadgeCity}</div>
                                 </div>
                                 <div className='BG_Container2'>
@@ -722,7 +726,7 @@ export default function HomePage() {
                                     </div>
                                     <div className='Option2B_Bottom'>
                                         <div className='Option2B_Container2' style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/UNION.png`} className={Vertical ? "BG_Image2" : "BG_Image1"} alt='Badge'></img>
+                                            <img src={`/Union.png`} className={Vertical ? "BG_Image2" : "BG_Image1"} alt='Badge'></img>
                                             <div id={ShortHand ? "BG_Text" : "BG_Text1"}>{BadgeCity}</div>
                                         </div>
                                         <div className='Option2B_Plate'>
@@ -769,7 +773,7 @@ export default function HomePage() {
                         <div className="Centeralize">
                             <div className="Option1B" style={{ backgroundColor: "#E7E7E7" }}>
                                 <div className="Option1B_Container" style={{ backgroundColor: BadgeBackground }}>
-                                    <img src={`/UNION.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
+                                    <img src={`/Union.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
                                     <div id={ShortHand ? "Option1B_Text1" : "Option1B_Text2"}>{BadgeCity}</div>
                                 </div>
                                 <div className='Option1B_Container1'>
@@ -828,7 +832,7 @@ export default function HomePage() {
                         <div className="Centeralize">
                             <div className="Option1B" style={{ backgroundColor: "#F1B317" }}>
                                 <div className="Option1B_Container" style={{ backgroundColor: BadgeBackground }}>
-                                    <img src={`/UNION.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
+                                    <img src={`/Union.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
                                     <div id={ShortHand ? "Option1B_Text1" : "Option1B_Text2"}>{BadgeCity}</div>
                                 </div>
                                 <div className='Option1B_Container1'>
@@ -879,7 +883,7 @@ export default function HomePage() {
                         <div className="Centeralize">
                             <div className="Option3NEW_Plate1" style={{ backgroundColor: "#F1B317" }}>
                                 <div className="BG_Container1" style={{ backgroundColor: BadgeBackground }}>
-                                    <img src={`/UNION.png`} className={Vertical ? "Option3_Image2" : "Option3_Image1"} alt='Badge'></img>
+                                    <img src={`/Union.png`} className={Vertical ? "Option3_Image2" : "Option3_Image1"} alt='Badge'></img>
                                     <div id={ShortHand ? "Option3_Text" : "Option3_Text1"}>{BadgeCity}</div>
                                 </div>
                                 <div className='BG_Container2'>
@@ -932,7 +936,7 @@ export default function HomePage() {
                         <div className="Centeralize">
                             <div className="Option10NEW_Plate1" style={{ backgroundColor: "#F1B317" }}>
                                 <div className="BG_Container1" style={{ backgroundColor: BadgeBackground }}>
-                                    <img src={`/UNION.png`} className={Vertical ? "Option3_Image2" : "Option3_Image1"} alt='Badge'></img>
+                                    <img src={`/Union.png`} className={Vertical ? "Option3_Image2" : "Option3_Image1"} alt='Badge'></img>
                                     <div id={ShortHand ? "Option3_Text" : "Option3_Text1"}>{BadgeCity}</div>
                                 </div>
                                 <div className='BG_Container2'>
@@ -984,7 +988,7 @@ export default function HomePage() {
                                     </div>
                                     <div className='Option2B_Bottom'>
                                         <div className='Option2B_Container2' style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/UNION.png`} className={Vertical ? "BG_Image2" : "BG_Image1"} alt='Badge'></img>
+                                            <img src={`/Union.png`} className={Vertical ? "BG_Image2" : "BG_Image1"} alt='Badge'></img>
                                             <div id={ShortHand ? "BG_Text" : "BG_Text1"}>{BadgeCity}</div>
                                         </div>
                                         <div className='Option2B_Plate'>
@@ -1031,7 +1035,7 @@ export default function HomePage() {
                         <div className="Centeralize">
                             <div className="Option1B" style={{ backgroundColor: "#F1B317" }}>
                                 <div className="Option1B_Container" style={{ backgroundColor: BadgeBackground }}>
-                                    <img src={`/UNION.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
+                                    <img src={`/Union.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
                                     <div id={ShortHand ? "Option1B_Text1" : "Option1B_Text2"}>{BadgeCity}</div>
                                 </div>
                                 <div className='Option1B_Container1'>
@@ -1082,7 +1086,7 @@ export default function HomePage() {
                         <div className="Centeralize">
                             <div className="Option1BNEW" style={{ backgroundColor: "#F1B317" }}>
                                 <div className="Option1B_Container" style={{ backgroundColor: BadgeBackground }}>
-                                    <img src={`/UNION.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
+                                    <img src={`/Union.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
                                     <div id={ShortHand ? "Option1B_Text1" : "Option1B_Text2"}>{BadgeCity}</div>
                                 </div>
                                 <div className='Option1B_Container1'>
