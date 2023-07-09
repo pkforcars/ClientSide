@@ -105,11 +105,11 @@ export default function Orders() {
     return (
         <>
             <div className="ADashboard-Body">
-                <div id="Navbar">
-                    <div id="Component-1">
+                <div id="NavbarPT">
+                    <div id="NavbarPT1">
                         <h3><span>Bancroft Auto </span>Locksmiths</h3>
                     </div>
-                    <div id="Component-2">
+                    <div id="NavbarPT2">
                         <div className='Username-Holder'>{Username}</div>
                         <button className='Logout-Btn' onClick={() => {
                             localStorage.removeItem('Token')
@@ -279,13 +279,13 @@ export default function Orders() {
                                     <div><b>Front Plate Size:</b> {ReturnSize(Global.Order.FrontSize)}</div>
                                     <div><b>Rear Plate Size:</b> {ReturnSize(Global.Order.RearSize)}</div>
                                     {(Global.Order.Border !== "transparent") &&
-                                    <div><b>Border:</b> {Global.Order.Border}</div>
-                                }
-                                {(Global.Order.Border === "transparent") &&
-                                    <div><b>Border:</b> None</div>
-                                }
+                                        <div><b>Border:</b> {Global.Order.Border}</div>
+                                    }
+                                    {(Global.Order.Border === "transparent") &&
+                                        <div><b>Border:</b> None</div>
+                                    }
 
-                                <div><b>Material:</b> Standard ABS</div>
+                                    <div><b>Material:</b> Standard ABS</div>
 
                                 </div>
                             }
@@ -337,7 +337,7 @@ export default function Orders() {
                                 <div className="Centeralize">
                                     <div className="Option1B" style={{ backgroundColor: "#E7E7E7" }}>
                                         <div className="Option1B_Container" style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/${BadgeFlag}.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
+                                            <img src={`/Union.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
                                             <div id={ShortHand ? "Option1B_Text1" : "Option1B_Text2"}>{BadgeCity}</div>
                                         </div>
                                         <div className='Option1B_Container1'>
@@ -388,7 +388,7 @@ export default function Orders() {
                                 <div className="Centeralize">
                                     <div className="Option3NEW_Plate1" style={{ backgroundColor: "#E7E7E7" }}>
                                         <div className="BG_Container1" style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/${BadgeFlag}.png`} className={Vertical ? "Option3_Image2" : "Option3_Image1"} alt='Badge'></img>
+                                            <img src={`/Union.png`} className={Vertical ? "Option3_Image2" : "Option3_Image1"} alt='Badge'></img>
                                             <div id={ShortHand ? "Option3_Text" : "Option3_Text1"}>{BadgeCity}</div>
                                         </div>
                                         <div className='BG_Container2'>
@@ -441,7 +441,7 @@ export default function Orders() {
                                 <div className="Centeralize">
                                     <div className="Option10NEW_Plate1" style={{ backgroundColor: "#E7E7E7" }}>
                                         <div className="BG_Container1" style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/${BadgeFlag}.png`} className={Vertical ? "Option3_Image2" : "Option3_Image1"} alt='Badge'></img>
+                                            <img src={`/Union.png`} className={Vertical ? "Option3_Image2" : "Option3_Image1"} alt='Badge'></img>
                                             <div id={ShortHand ? "Option3_Text" : "Option3_Text1"}>{BadgeCity}</div>
                                         </div>
                                         <div className='BG_Container2'>
@@ -493,7 +493,7 @@ export default function Orders() {
                                             </div>
                                             <div className='Option2B_Bottom'>
                                                 <div className='Option2B_Container2' style={{ backgroundColor: BadgeBackground }}>
-                                                    <img src={`/${BadgeFlag}.png`} className={Vertical ? "BG_Image2" : "BG_Image1"} alt='Badge'></img>
+                                                    <img src={`/Union.png`} className={Vertical ? "BG_Image2" : "BG_Image1"} alt='Badge'></img>
                                                     <div id={ShortHand ? "BG_Text" : "BG_Text1"}>{BadgeCity}</div>
                                                 </div>
                                                 <div className='Option2B_Plate'>
@@ -540,7 +540,7 @@ export default function Orders() {
                                 <div className="Centeralize">
                                     <div className="Option1B" style={{ backgroundColor: "#E7E7E7" }}>
                                         <div className="Option1B_Container" style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/${BadgeFlag}.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
+                                            <img src={`/Union.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
                                             <div id={ShortHand ? "Option1B_Text1" : "Option1B_Text2"}>{BadgeCity}</div>
                                         </div>
                                         <div className='Option1B_Container1'>
@@ -599,7 +599,7 @@ export default function Orders() {
                                 <div className="Centeralize">
                                     <div className="Option1B" style={{ backgroundColor: "#F1B317" }}>
                                         <div className="Option1B_Container" style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/${BadgeFlag}.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
+                                            <img src={`/Union.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
                                             <div id={ShortHand ? "Option1B_Text1" : "Option1B_Text2"}>{BadgeCity}</div>
                                         </div>
                                         <div className='Option1B_Container1'>
@@ -650,7 +650,7 @@ export default function Orders() {
                                 <div className="Centeralize">
                                     <div className="Option3NEW_Plate1" style={{ backgroundColor: "#F1B317" }}>
                                         <div className="BG_Container1" style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/${BadgeFlag}.png`} className={Vertical ? "Option3_Image2" : "Option3_Image1"} alt='Badge'></img>
+                                            <img src={`/Union.png`} className={Vertical ? "Option3_Image2" : "Option3_Image1"} alt='Badge'></img>
                                             <div id={ShortHand ? "Option3_Text" : "Option3_Text1"}>{BadgeCity}</div>
                                         </div>
                                         <div className='BG_Container2'>
@@ -703,7 +703,7 @@ export default function Orders() {
                                 <div className="Centeralize">
                                     <div className="Option10NEW_Plate1" style={{ backgroundColor: "#F1B317" }}>
                                         <div className="BG_Container1" style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/${BadgeFlag}.png`} className={Vertical ? "Option3_Image2" : "Option3_Image1"} alt='Badge'></img>
+                                            <img src={`/Union.png`} className={Vertical ? "Option3_Image2" : "Option3_Image1"} alt='Badge'></img>
                                             <div id={ShortHand ? "Option3_Text" : "Option3_Text1"}>{BadgeCity}</div>
                                         </div>
                                         <div className='BG_Container2'>
@@ -755,7 +755,7 @@ export default function Orders() {
                                             </div>
                                             <div className='Option2B_Bottom'>
                                                 <div className='Option2B_Container2' style={{ backgroundColor: BadgeBackground }}>
-                                                    <img src={`/${BadgeFlag}.png`} className={Vertical ? "BG_Image2" : "BG_Image1"} alt='Badge'></img>
+                                                    <img src={`/Union.png`} className={Vertical ? "BG_Image2" : "BG_Image1"} alt='Badge'></img>
                                                     <div id={ShortHand ? "BG_Text" : "BG_Text1"}>{BadgeCity}</div>
                                                 </div>
                                                 <div className='Option2B_Plate'>
@@ -802,7 +802,7 @@ export default function Orders() {
                                 <div className="Centeralize">
                                     <div className="Option1B" style={{ backgroundColor: "#F1B317" }}>
                                         <div className="Option1B_Container" style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/${BadgeFlag}.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
+                                            <img src={`/Union.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
                                             <div id={ShortHand ? "Option1B_Text1" : "Option1B_Text2"}>{BadgeCity}</div>
                                         </div>
                                         <div className='Option1B_Container1'>
@@ -853,7 +853,7 @@ export default function Orders() {
                                 <div className="Centeralize">
                                     <div className="Option1BNEW" style={{ backgroundColor: "#F1B317" }}>
                                         <div className="Option1B_Container" style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/${BadgeFlag}.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
+                                            <img src={`/Union.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
                                             <div id={ShortHand ? "Option1B_Text1" : "Option1B_Text2"}>{BadgeCity}</div>
                                         </div>
                                         <div className='Option1B_Container1'>
