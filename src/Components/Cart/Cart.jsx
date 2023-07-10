@@ -5,8 +5,11 @@ import './Cart.css'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
 import Stripe from './Stripe'
+
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_API_KEY);
+
+
 export default function Cart2() {
-    const [stripePromise, setStripePromise] = useState(null)
     const [orderData, setOrderData] = useState({
         email: '',
         address1: '',
@@ -25,6 +28,8 @@ export default function Cart2() {
     const HandlePhone = (event) => {  setOrderData({ ...orderData, phone: event.target.value });};
     const Global = useContext(Context)
     const [clientSecret, setClientSecret] = useState()
+   
+    /*
     useEffect(() => {
         const stripeApiKey = process.env.REACT_APP_STRIPE_API_KEY;
         const stripePromise = loadStripe(stripeApiKey);
@@ -44,7 +49,27 @@ export default function Cart2() {
         }
         CreatePaymentIntent()
     }, [])
+    */
 
+    const GetPaymentIntent = async () =>{
+            const Response = await fetch(`${process.env.REACT_APP_BASE_URL}/PaymentIntent`,
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({Price: Global.Order.Total}),
+            });          
+            const ResponseToJson = await Response.json();
+            setClientSecret(ResponseToJson.ClientSecret)
+            console.log(clientSecret)
+            console.log(ResponseToJson)
+            console.log("Pk",process.env.REACT_APP_STRIPE_API_KEY)
+            console.log("Sk",ResponseToJson.SK)
+    }
+
+
+    useEffect(()=>{
+        GetPaymentIntent()
+    },[])
 
     return (
         <>
@@ -226,7 +251,7 @@ export default function Cart2() {
                         <input placeholder="Phone Number" id="TopBox21" required onChange={HandlePhone}></input>
                     </div>
 
-                {stripePromise && clientSecret &&
+                {clientSecret &&
                 (
                     <Elements stripe={stripePromise} options={{clientSecret}}>
                         <Stripe  orderData={orderData} />
