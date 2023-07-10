@@ -60,10 +60,6 @@ export default function Cart2() {
             });          
             const ResponseToJson = await Response.json();
             setClientSecret(ResponseToJson.ClientSecret)
-            console.log(clientSecret)
-            console.log(ResponseToJson)
-            console.log("Pk",process.env.REACT_APP_STRIPE_API_KEY)
-            console.log("Sk",ResponseToJson.SK)
     }
 
 
