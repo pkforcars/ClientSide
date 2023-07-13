@@ -259,7 +259,7 @@ export default function Cart2() {
 
         <div className="FooterContainer1">
         <div className="Content1">
-          &copy; Copyright 2005-2023 Bancroft Auto Locksmiths. All rights Reserved.
+          &copy; Copyright 2005-2023 Plate and Kays For Cars. All rights Reserved.
         </div>
       </div>
 

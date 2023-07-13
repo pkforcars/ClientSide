@@ -6,6 +6,8 @@ import Context from "../../Context/Context"
 import { useNavigate } from "react-router-dom"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Button } from 'bootstrap';
+import {Link} from 'react-router-dom'
 
 export default function HomePage() {
     const Global = useContext(Context)
@@ -1471,25 +1473,7 @@ const GetPrices4D = (FrontOption, RearOption) => {
 const Badges = [
     "UNION-ENG",
     "UNION-ENGLAND",
-    "UNION-GB",
-    "UNION-GREAT BRITAIN",
-    "UNION-UK",
-    "UNION-UNITED KINGDOM",
     "UNIONP-ENG",
     "UNIONP-ENGLAND",
-    "UNIONP-GB",
-    "UNIONP-GREAT BRITAIN",
-    "UNIONP-UK",
-    "UNIONP-UNITED KINGDOM",
-    "UNION-CYM",
-    "UNION-CYMRU",
-    "UNION-UNION",
-    "UNIONP-CYM",
-    "UNIONP-CYMRU",
-    "UNIONP-WALES",
-    "UNION-SCOTLAND",
-    "UNION-SCO",
-    "UNIONP-SCOTLAND",
-    "UNIONP-SCO"
 ];
 

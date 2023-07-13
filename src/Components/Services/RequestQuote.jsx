@@ -126,6 +126,7 @@ export default function Services() {
                                 <option value="Immobiliser Problems">Immobiliser Problems</option>
                                 <option value="Car Key Repairs">Car Key Repairs</option>
                                 <option value="Van Locks">Van Locks</option>
+                                <option value="Car Stickers">Stickers for cars</option>
                             </select>
                         </div>
 

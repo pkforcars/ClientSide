@@ -29,7 +29,7 @@ export default function Dashboard() {
         <div className="ADashboard-Body">
             <div id="NavbarPT">
                 <div id="NavbarPT1">
-                    <h3><span>Bancroft Auto </span>Locksmiths</h3>
+                    <h3><span>Plates And Keys </span>For Cars</h3>
                 </div>
                 <div id="NavbarPT2">
                     <div className='Username-Holder'>{Username}</div>

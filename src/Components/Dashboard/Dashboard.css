@@ -316,7 +316,7 @@
 @media (max-width: 420px) {
     #Navbar2
     {
-        font-size: 0.65rem;
+        font-size: 0.8rem;
     }
     .Username-Holder {
         padding: 0.5em 1.75em;
@@ -327,13 +327,13 @@
 @media (max-width: 380px) {
     #Navbar2
     {
-        font-size: 0.6rem;
+        font-size: 0.8rem;
     }
 }
 @media (max-width: 360px) {
     #Navbar2
     {
-        font-size: 0.55rem;
+        font-size: 0.7rem;
     }
     
     .Username-Holder {
@@ -342,4 +342,10 @@
         font-size: 13px;
     }    
 
+}
+@media (max-width: 310px) {
+    #Navbar2
+    {
+        font-size: 0.6rem;
+    }
 }

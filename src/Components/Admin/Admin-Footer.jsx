@@ -5,7 +5,7 @@ export default function Footer() {
     <>
       <div id="Footer_MainA">
         <div id="Footer-Component-1">
-          <h3><span>Bancroft Auto </span>Locksmiths</h3>
+          <h3><span>Plate and Keys </span>For Cars</h3>
 
           <div className='Divider-Text5'>Looking for the best Plates on the market then you have come to the right place.
             Bancroft Auto, a leading plate maker offering you the style and flexibility you want, at the right price.
@@ -35,7 +35,7 @@ export default function Footer() {
 
       <div className="FooterContainer">
         <div className="Content">
-          &copy; Copyright 2005-2023 Bancroft Auto Locksmiths. All rights Reserved.
+          &copy; Copyright 2005-2023 Plate and Kays For Cars. All rights Reserved.
         </div>
       </div>
 
