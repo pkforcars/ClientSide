@@ -6,10 +6,16 @@ import Context from "../../Context/Context"
 import { useNavigate } from "react-router-dom"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import KeyIcon from '@mui/icons-material/Key';
 
 export default function HomePage() {
     const Global = useContext(Context)
     const Navigate = useNavigate()
+
+    const RenderPage = ()=>
+    {
+        Navigate('/requestquote')
+    }
 
     const [selectedState, setSelectedState] = useState("standard");
     const [PlateChoice, SetPlateChoice] = useState("Front and Rear");
@@ -30,7 +36,7 @@ export default function HomePage() {
     const [Delivery, SetDelivery] = useState("")
     const [Spare, setSpare] = useState(false)
     const [Material, SetMaterial] = useState("Standard-ABS")
-    const [FittingKit , SetFittingKit ] = useState(false)
+    const [FittingKit, SetFittingKit] = useState(false)
 
     const OrderPlacement = () => {
         if (PlateText === "") {
@@ -59,8 +65,8 @@ export default function HomePage() {
             "ShortHand": ShortHand,
             "Delivery": Delivery,
             "Spare": Spare,
-            "FittingKit" : FittingKit,     
-            "Material": Material,       
+            "FittingKit": FittingKit,
+            "Material": Material,
             "Total": CalculatePrice()
         });
         if (Global.isLoggedIn) {
@@ -74,7 +80,7 @@ export default function HomePage() {
     }
 
     const baseUrl = process.env.REACT_APP_BASE_URL;
-   
+
     const DisplayBought = () => {
         return (
             <>
@@ -161,16 +167,13 @@ export default function HomePage() {
             if (Badge !== "") {
                 CPrice = CPrice + 29.99
             }
-            if (Delivery === "DHL")
-            {
+            if (Delivery === "DHL") {
                 CPrice = CPrice + 6.99
             }
-            if (Spare)
-            {
+            if (Spare) {
                 CPrice = CPrice + 15.00
             }
-            if (FittingKit)
-            {
+            if (FittingKit) {
                 CPrice = CPrice + 3.99
             }
         }
@@ -182,16 +185,13 @@ export default function HomePage() {
             if (Badge !== "") {
                 CPrice = CPrice + 14.99
             }
-            if (Delivery === "DHL")
-            {
+            if (Delivery === "DHL") {
                 CPrice = CPrice + 6.99
             }
-            if (Spare)
-            {
+            if (Spare) {
                 CPrice = CPrice + 15.00
             }
-            if (FittingKit)
-            {
+            if (FittingKit) {
                 CPrice = CPrice + 3.99
             }
         }
@@ -203,16 +203,13 @@ export default function HomePage() {
             if (Badge !== "") {
                 CPrice = CPrice + 14.99
             }
-            if (Delivery === "DHL")
-            {
+            if (Delivery === "DHL") {
                 CPrice = CPrice + 6.99
             }
-            if (Spare)
-            {
+            if (Spare) {
                 CPrice = CPrice + 15.00
             }
-            if (FittingKit)
-            {
+            if (FittingKit) {
                 CPrice = CPrice + 3.99
             }
         }
@@ -221,16 +218,13 @@ export default function HomePage() {
             if (Border !== "transparent") {
                 CPrice = CPrice + 21.99
             }
-            if (Delivery === "DHL")
-            {
+            if (Delivery === "DHL") {
                 CPrice = CPrice + 6.99
             }
-            if (Spare)
-            {
+            if (Spare) {
                 CPrice = CPrice + 35.00
             }
-            if (FittingKit)
-            {
+            if (FittingKit) {
                 CPrice = CPrice + 3.99
             }
         }
@@ -375,14 +369,16 @@ export default function HomePage() {
         setSpare(false)
     }
 
-    console.log(BadgeFlag)
     return (
         <>
             <Navigation />
             <Cover />
 
-            <div className="Banner"> 
-                <div>Need Replacement Keys? </div>
+            <div className="Banner">
+                <div onClick={RenderPage}>
+                    <p>Need Replacement Keys? </p>
+                    <KeyIcon className="key"/>
+                 </div>
                 <div>Please feel free to reach out to us at 01908 222555 or simply request a quote.</div>
             </div>
 
@@ -1294,15 +1290,16 @@ export default function HomePage() {
                                 <DisplayBought />
                                 <div className="Price">£{CalculatePrice()}</div>
                             </div>
-                            <div className='Order-Div'>
-                                <select id='Dropdown-C' required onChange={HandleDelivery}>
+                            <div className='Order-Div' >
+                                <select id='Dropdown-C' required onChange={HandleDelivery} style={{ backgroundColor: "white", color: "black", border: "1px solid #6AD3FE", borderRadius: "5px" }}>
                                     <option value="N/A">-- Select Delivery Option--</option>
                                     <option value="DHL">DHL</option>
                                 </select>
                             </div>
 
                             <div className='check'>
-                                <label>
+                                <label style={{ backgroundColor: "white", color: "black" }}
+                                >
                                     <input
                                         type="checkbox"
                                         checked={Spare}
@@ -1312,7 +1309,8 @@ export default function HomePage() {
                                 </label>
                             </div>
                             <div className='check'>
-                                <label>
+                                <label style={{ backgroundColor: "white", color: "black" }}
+                                >
                                     <input
                                         type="checkbox"
                                         checked={FittingKit}

@@ -5,7 +5,7 @@ export default function Footer() {
     <>
       <div id="Footer_MainA">
         <div id="Footer-Component-1">
-          <h3><span>Plate and Keys </span>For Cars</h3>
+          <h3>PLATES N KEYS<span> FOR CARS</span></h3>
 
           <div className='Divider-Text5'>Looking for the best Plates on the market then you have come to the right place.
             Bancroft Auto, a leading plate maker offering you the style and flexibility you want, at the right price.

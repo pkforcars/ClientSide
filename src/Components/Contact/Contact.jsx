@@ -17,7 +17,7 @@ export default function Contact() {
                             Visit us at:
                         </h6 >
                         <h6 className='Contact'>
-                            21 Radcliffe Street Wolverton Milton Keynes mk125dq 01908222555
+                            21 Radcliffe Street Wolverton Milton Keynes mk125dq
                         </h6>
                     </div>
                     <div>
@@ -25,26 +25,23 @@ export default function Contact() {
                             Or call us at:
                         </h6 >
                         <h6 className='Contact'>
-                            Phone: 07572448224
+                            Office: 01908 222555
                         </h6>
                         <h6 className='Contact'>
-                            Office: 01908 222555
+                            Phone: 07572448224
                         </h6>
                     </div>
 
                 </div>
                 <div className='Contact-Holder2'>
-                    <Iframe
-                        url="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9813.707126822095!2d-0.7884601!3d52.0537522!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4877006436cdf543%3A0x89da46a1b548beb3!2sBancroft%20Auto%20Locksmiths!5e0!3m2!1sen!2s!4v1686868263232!5m2!1sen!2s"
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2453.3214123808266!2d-0.8021525260753841!3d52.055670991911754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTLCsDAzJzIwLjQiTiAwwrA0OCcwMi44Ilc!5e0!3m2!1sen!2s!4v1689532374681!5m2!1sen!2s"
                         className='Map'
                         frameBorder="0"
                         allowFullScreen
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
                     />
-
                 </div>
-
             </div>
 
 

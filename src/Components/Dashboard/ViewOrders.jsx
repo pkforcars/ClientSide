@@ -27,7 +27,7 @@ export default function ViewOrders() {
 
     return (
         <>
-            <div className='Dashboard-TitleA' >Your Orders</div>
+            <h4 className='Dashboard-TitleA' >Your Orders</h4>
 
             {Orders && (
                 <div className='Upper-Div'>

@@ -1,8 +1,8 @@
 .Logout-Btn {
-    --color: red;
-    --color2: rgb(10, 25, 30);
+    --color: #6AD3FE;
+    --color2: white;
     padding: 0.3em 1.75em;
-    background-color: transparent;
+    background-color: white;
     border: .3px solid var(--color);
     transition: .5s;
     position: relative;
@@ -13,7 +13,7 @@
     font-size: 17px;
     font-family: 'Nunito';
     text-transform: uppercase;
-    color: white;
+    color: black;
 }
 
 .Logout-Btn::after,
@@ -46,7 +46,7 @@
 }
 
 .Logout-Btn:hover {
-    color: white;
+    color: black;
 
 }
 
@@ -57,8 +57,8 @@
 
 .Username-Holder {
     padding: 0.3em 1.75em;
-    background-color: red;
-    border: .3px solid red;
+    background-color: #6AD3FE;
+    border: .3px solid #6AD3FE;
     transition: .5s;
     text-align: center;
     position: relative;
@@ -69,7 +69,7 @@
     font-size: 17px;
     font-family: 'Nunito';
     text-transform: uppercase;
-    color: white;
+    color: black;
 }
 
 .Dashboard-Body {
@@ -78,7 +78,7 @@
 }
 
 .Dashboard-Sidebar {
-    border-right: 1px solid red;
+    border-right: 1px solid #6AD3FE;
     width: 100%;
     max-height: fit-content;
 }
@@ -92,7 +92,7 @@
 .Sidebar-Item {
     text-align: center;
     padding: 1rem;
-    background-color: red;
+    background-color: #6AD3FE;
     color: white;
     font-size: 1rem;
     font-family: 'Nunito';
@@ -106,7 +106,7 @@
     color: white;
     font-size: 1rem;
     font-family: 'Nunito';
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid #6AD3FE;
 }
 
 .Dashboard-Title {
@@ -133,12 +133,13 @@
 }
 
 #Cell {
-    color: white !important;
+    color: black !important;
     font-family: 'Nunito';
+    font-weight: bold;
 }
 
 #Table-Head {
-    background-color: red;
+    background-color: #6AD3FE;
 }
 
 .Feedback {
@@ -170,7 +171,7 @@
     width: 50%;
     height: 5px;
     outline: none;
-    background-color: red;
+    background-color: #6AD3FE;
     appearance: none;
 }
 
@@ -178,7 +179,7 @@
     appearance: none;
     width: 16px;
     height: 16px;
-    background-color: red;
+    background-color: #6AD3FE;
     cursor: pointer;
     border-radius: 50%;
 }
@@ -204,9 +205,9 @@
 
 .FooterContainer1 {
     margin-top: 1rem;
-    background-color: black;
-    border-top: 2px solid red;
-    color: white;
+    background-color: whitesmoke;
+    border-top: 2px solid #6AD3FE;
+    color: black;
     font-family: 'Nunito';
     padding: 15px;
     flex-shrink: 0;
@@ -220,12 +221,12 @@
 {
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid red;
-    color: white;
+    border-bottom: 1px solid #6AD3FE;
+    color: black;
     font-family: 'Nunito';
     padding: 10px;
     width: 100%;
-    background-color: black;
+    background-color:white;
 }
 #Componentx
 {
@@ -234,7 +235,7 @@
     cursor: pointer;
 }
 #Componentx:hover {
-    color: red;
+    color: #6AD3FE;
 }
 
 #Componenty
@@ -244,7 +245,7 @@
 }
 #Componenty:hover
 {
-    color: red;
+    color: #6AD3FE;
 }
 .Feedback-Box
 {
@@ -255,7 +256,7 @@
     padding-bottom: 3rem;
     background-color: black;
     color: white;
-    border-top: 1px solid red;
+    border-top: 1px solid #6AD3FE;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -272,22 +273,22 @@
 
 .Delete-Btn
 {
-    background-color: red;
+    background-color: #6AD3FE;
     border: none;
-    color: white;
+    color: black;
     font-family: 'Nunito';
     font-size: 1rem;
     padding: 0.5rem 1rem;
     border-radius: 0.2rem;
-    border: 1px solid red;
+    border: 1px solid #6AD3FE;
     cursor: pointer;
     transition-duration: 0.5s;
 }
 .Delete-Btn:hover
 {
-    background-color: black;
-    border: 1px solid red;
-    color: red;
+    background-color: transparent;
+    border: 1px solid #6AD3FE;
+    color: black;
     font-family: 'Nunito';
     font-size: 1rem;
     padding: 0.5rem 1rem;
@@ -348,4 +349,11 @@
     {
         font-size: 0.6rem;
     }
+}
+.Dashboard-TitleA
+{
+    font-family: 'Nunito';
+    font-size: 4rem;
+    font-weight:bold;
+    margin-bottom: -1rem;
 }

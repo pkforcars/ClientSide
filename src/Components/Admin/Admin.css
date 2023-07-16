@@ -5,18 +5,17 @@
     padding-top: 1rem;
     padding-bottom: 1rem;
     color: black;
-    border-top: 1px solid black !important;
+    background-color: whitesmoke;
 }
 
 .admin-login {
     margin-left: 25%;
     width: 45%;
     padding: 3rem;
-    border: 1px solid black;
     border-radius: 10px;
-    background-color: black;
-    color: white;
-    box-shadow: 2px -2px 11px 0px rgba(0, 0, 0, 0.75);
+    background-color: white;
+    color: black;
+    box-shadow: 2px -2px 11px 0px rgba(102, 102, 102, 0.75);
     -webkit-box-shadow: 2px -2px 11px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 2px -2px 11px 0px rgba(0, 0, 0, 0.75);
 }

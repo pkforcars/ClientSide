@@ -6,7 +6,7 @@ export default function Footer() {
     <>
       <div id="Footer_Main">
         <div id="Footer-Component-1">
-          <h3><span>Plates and Keys</span> For Cars</h3>
+          <h3>PLATES N KEYS<span> FOR CARS</span></h3>
 
           <div className='Divider-Text5'>Looking for the best Plates on the market then you have come to the right place.
             Bancroft Auto, a leading plate maker offering you the style and flexibility you want, at the right price.
@@ -14,7 +14,7 @@ export default function Footer() {
 
           <div className='Divider-Text6'>
             Secure and Online Payments Via</div>
-            <div className='Cards'>
+          <div className='Cards'>
             <img src='/Mastercard.png' alt="Mastercard" width={60} height={35}></img>
             <img src='/Visa.png' alt="Visa" width={60} height={35}></img>
           </div>
@@ -22,21 +22,20 @@ export default function Footer() {
 
         </div>
         <div id="Footer-Component-3">
-          <Iframe
-            url="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9813.707126822095!2d-0.7884601!3d52.0537522!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4877006436cdf543%3A0x89da46a1b548beb3!2sBancroft%20Auto%20Locksmiths!5e0!3m2!1sen!2s!4v1686868263232!5m2!1sen!2s"
+          <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2453.3214123808266!2d-0.8021525260753841!3d52.055670991911754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTLCsDAzJzIwLjQiTiAwwrA0OCcwMi44Ilc!5e0!3m2!1sen!2s!4v1689532374681!5m2!1sen!2s" 
             width="400"
             height="200"
             frameBorder="0"
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-          />
+            />
         </div>
       </div>
 
       <div className="FooterContainer">
         <div className="Content">
-          &copy; Copyright 2005-2023 Plate and Kays For Cars. All rights Reserved.
+          &copy; Copyright 2005-2023 Plate N Keys For Cars. All rights Reserved.
         </div>
       </div>
 

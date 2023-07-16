@@ -4,7 +4,9 @@
     padding: 2rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    color: white;
+    color: black;
+    background-color: whitesmoke;
+    margin-top: 1rem;
 }
 
 #Footer-Component-1 {
@@ -19,19 +21,19 @@
 
 .Divider-Text6 {
     margin-top: 2.5rem;
-    color: white;
+    color: black;
     font-size: 1rem;
     font-weight: 600;
     bottom: 0;
 }
 
 #Footer-Component-1 h3 span {
-    color: red;
+    color: #6AD3FE;
 }
 
 .FooterContainer {
-    background-color: red;
-    color: white;
+    background-color: #6AD3FE;
+    color: black;
     font-family: 'Nunito';
     padding: 15px;
     flex-shrink: 0;

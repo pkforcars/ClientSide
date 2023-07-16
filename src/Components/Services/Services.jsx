@@ -82,7 +82,7 @@ export default function Services() {
                     <h5>
                         Car Key Cutting <span>And Programming</span>
                     </h5>
-                    <p>At Plate and Kays, we take pride in being your trusted local car key specialist, providing comprehensive services
+                    <p>At "Plates N Keys For Cars", we take pride in being your trusted local car key specialist, providing comprehensive services
                         for car key cutting and programming across a wide range of vehicles. Our skilled team operates state-of-the-art
                         auto locksmith vans equipped with advanced computerized technology for precise vehicle key cutting. This enables
                         us to offer on-the-spot car key cutting services for nearly all makes and models. When you choose us for spare
@@ -105,7 +105,7 @@ export default function Services() {
                     <h5>
                         <span>Car Replacement</span> Services
                     </h5>
-                    <p>At Plate and Kays, we understand the urgency of car key replacement and strive to provide a seamless and
+                    <p>At "Plates N Keys For Cars", we understand the urgency of car key replacement and strive to provide a seamless and
                         stress-free experience. Our dedicated car key locksmith service ensures that you can quickly get
                         back on the road without any hassle. Don't let a lost car key disrupt your day when you have us as
                         your trusted car key specialist.
@@ -113,11 +113,11 @@ export default function Services() {
                     <p>When it comes to car key replacement, we've got you covered. Our expertise in car key cutting and
                         programming enables us to assist you in any situation. Whether you've lost your keys or need a spare,
                         we have the solutions you need. Count on our reliable service to deliver efficient car key replacement
-                        services tailored to your requirements. With Plate and Kays, restoring access to your vehicle is simple and hassle-free.
+                        services tailored to your requirements. With "Plates N Keys For Cars", restoring access to your vehicle is simple and hassle-free.
                     </p>
                     <p>
 
-                        Don't let a lost car key disrupt your day any longer. Trust Plate and Kays as your dedicated car key specialist to handle the complexities of car key cutting and programming. With our expertise, personalized solutions, and commitment to quality service, we ensure that your car key replacement experience is efficient, stress-free, and tailored to your specific situation. Get in touch with us today to regain access to your vehicle with ease.
+                        Don't let a lost car key disrupt your day any longer. Trust "Plates N Keys For Cars" as your dedicated car key specialist to handle the complexities of car key cutting and programming. With our expertise, personalized solutions, and commitment to quality service, we ensure that your car key replacement experience is efficient, stress-free, and tailored to your specific situation. Get in touch with us today to regain access to your vehicle with ease.
                     </p>
                     <button className="Touch" onClick={scrollToSection}>Get in Touch</button>
                 </div>
@@ -138,7 +138,7 @@ export default function Services() {
                     <h5>
                         Secure Car <span>Opening</span>
                     </h5>
-                    <p>At "Plate and Kays", we have extensive experience in performing non-destructive
+                    <p>At "Plates N Keys For Cars", we have extensive experience in performing non-destructive
                         vehicle entry to help you when you have locked your keys in the car. Our skilled team is proficient
                         in various techniques, including lock picking, which allows us to gain access to most commercial and
                         private vehicles. With our fine-tuned methods, we can retrieve locked keys from the boot or car without
@@ -164,13 +164,13 @@ export default function Services() {
                     <h5>
                         <span>Instrument Cluster</span> Repair Services
                     </h5>
-                    <p>If you are in need of instrument cluster repair near me, look no further than "Plate and Kays".
+                    <p>If you are in need of instrument cluster repair near me, look no further than "Plates N Keys For Cars".
                         As specialists in dashboard repair, we are equipped to handle a wide range of issues and faults that may arise
                         with your vehicle's dashboard.
                     </p>
                     <p>The dashboard of a vehicle is a complex system consisting of odometer counters, gears, indicators,
                         plastic housing, and windows. While electronic failures can occur within the dashboard, non-electronic
-                        components can also contribute to problems. At Plate and Kays we have the expertise to address various issues
+                        components can also contribute to problems. At "Plates N Keys For Cars" we have the expertise to address various issues
                         that may affect your instrument cluster.
                     </p>
                     <p>
@@ -248,7 +248,7 @@ export default function Services() {
                     <h5>
                         Van <span>Locks</span>
                     </h5>
-                    <p>When it comes to van security, "Plate and Kays" offers professional van lock services to keep your vehicle safe and protected. Our experienced team specializes in installing, repairing, and replacing:</p>
+                    <p>When it comes to van security, "Plates N Keys For Cars" offers professional van lock services to keep your vehicle safe and protected. Our experienced team specializes in installing, repairing, and replacing:</p>
                     <ul>
                         <li>Slam Locks Repairs</li>
                         <li>Slam Handles</li>

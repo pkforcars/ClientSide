@@ -107,7 +107,7 @@ export default function Orders() {
             <div className="ADashboard-Body">
                 <div id="NavbarPT">
                     <div id="NavbarPT1">
-                        <h3><span>Bancroft Auto </span>Locksmiths</h3>
+                        <h3><span>PLATES N KEYS </span>FOR CARS</h3>
                     </div>
                     <div id="NavbarPT2">
                         <div className='Username-Holder'>{Username}</div>
@@ -305,7 +305,7 @@ export default function Orders() {
                         {!Global.Order.FittingKit &&
                             <div id="Plate-Box1"><b>FittingKit Plate: </b>Not Included</div>
                         }
-                        <div id="Plate-Box2"><b>Order Value: </b>£{Global.Order.OrderValue}</div>
+                        <div id="Plate-Box2"><b>Order Value:</b> <b>£{Global.Order.OrderValue}</b></div>
                     </div>
                     <div className='PlatesAdmin'>
                         <div className="GridItem2">
@@ -1062,7 +1062,7 @@ export default function Orders() {
 
             <div className="FooterContainer1">
                 <div className="Content1">
-                    &copy; Copyright 2005-2023 Bancroft Auto Locksmiths. All rights Reserved.
+                    &copy; Copyright 2005-2023 Plate N Keys For Cars. All rights Reserved.
                 </div>
             </div>
 

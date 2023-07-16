@@ -10,11 +10,11 @@
   display: flex;
   flex-wrap: wrap;
   border-radius: 0.5rem;
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
   box-sizing: border-box;
   box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
-  border: 1px solid red;
+  border: 1px solid #6AD3FE;
   padding: 0.4rem;
   width: 40%;
   font-size: 14px;
@@ -59,13 +59,13 @@
   border-radius: 0.5rem;
   border: none;
   padding: .5rem 0;
-  color: white;
+  color: black;
   transition: all .15s ease-in-out;
 }
 
 .radio-inputs-admin .radio-admin input:checked+.name {
-  background-color: red;
-  color: white;
+  background-color: #6AD3FE;
+  color: black;
   font-weight: 600;
 }
 
@@ -96,8 +96,8 @@
 }
 
 .OrderHead {
-  background-color: black;
-  color: white;
+  background-color:#6AD3FE ;
+  color: black;
 }
 
 
@@ -146,8 +146,9 @@
   color: black;
   height: 110%;
   background-color: white;
-  border-top-left-radius: 0%;
-  border-bottom-left-radius: 0%;
+  border: 1px solid #6AD3FE;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 
 }
 

@@ -52,7 +52,7 @@ export default function Navigation() {
       <>
         <div id="NavbarPT">
           <div id="NavbarPT1">
-            <h3><span>Plate And </span>Keys For Cars</h3>
+            <h3><span>PLATES N KEYS </span>FOR CARS</h3>
           </div>
           <div id="NavbarPT2">
             <div className='Username-Holder'>{Username}</div>
@@ -88,7 +88,7 @@ export default function Navigation() {
       <>
         <div id="Navbar">
           <div id="Component-1">
-            <h3><span>Plate And </span>Keys For Cars</h3>
+            <img src="/Logo.png"/>
           </div>
           <div id="Component-2">
             {isMobile &&
