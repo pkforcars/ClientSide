@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <>
       <div id="Footer_Main">
-        <div id="Footer-Component-1">
+        <div className="container" id="Footer-Component-1">
           <h3>PLATES N KEYS<span> FOR CARS</span></h3>
 
           <div className='Divider-Text5'>Looking for the best Plates on the market then you have come to the right place.
