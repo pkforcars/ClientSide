@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NewHomePage from "./Components/NewHomepage/Homepage"
+import HomePage from "./Components/Homepage/HomePage"
 import Cart from "./Components/Cart/Cart.jsx"
 import Login from "./Components/Login/Login.jsx"
 import Signup from "./Components/Signup/Signup.jsx"
@@ -20,7 +20,7 @@ function App() {
         <States>
           <BrowserRouter >
             <Routes>                
-              <Route exact path="/"  element={<NewHomePage/>} />
+              <Route exact path="/"  element={<HomePage/>} />
               <Route exact path="/login" element={<Login/>}/>
               <Route exact path="/createaccount" element={<Signup/>}/>
               <Route exact path="/checkout" element={

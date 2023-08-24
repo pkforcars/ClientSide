@@ -1,0 +1,228 @@
+.homepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    background-image: url("/public/CoverImage.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    background-attachment: fixed;
+}
+.cover-div
+{
+    text-align: left;
+    font-family: 'Nunito';
+    color: F6C506;
+    padding: 20px;
+}
+.cover-div h1
+{
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 0;
+    color: #F6C506;
+    margin-bottom: 3rem;
+
+}
+.cover-inner-div
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+}
+.cover-inner-div p
+{
+    font-size: 20px;
+    font-weight: 200;
+    margin-bottom: 0;
+    color: white;
+}
+.cover-inner-div h2
+{
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 0;
+    color: white;
+}
+.cover-inner-div-left
+{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    border-right: 1px solid #F6C506;
+}
+
+.cover-inner-div-right
+{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+}
+.cover-btn
+{
+    background-color: #F6C506;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    width: 30%;
+}
+.extras
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F6C506;
+    color: black;
+}
+.extras-inner
+{
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    padding: 10px;
+    font-family: 'Nunito';
+    font-weight: bold;
+}
+.extras-box
+{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+.extras-box h5
+{
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+}
+.about-us
+{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: black;
+}
+.about-us p{
+    font-size: 15px;
+    font-weight: 200;
+    margin-bottom: 0;
+    color: black;
+    text-align: center;
+}
+.products
+{
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 30px;
+    justify-items: center;
+}
+.product
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-between;
+    border: 2px solid #F6C506;
+    background-image: url("/public/ProductBox.png");
+    color: white;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+    font-family: 'Nunito';
+}
+.product:hover
+{
+    transform: scale(1.1);
+}
+.product img{
+    width: 100%;
+    object-fit: contain;
+    border-radius: 0.3rem;
+    border: 1px solid black;
+    margin-bottom: 1rem;
+}
+.product h5
+{
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 0;
+    color: white;
+    margin-top: 1rem;
+}
+.product2
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-between;
+    border: 2px solid #F6C506;
+    background-image: url("/public/ProductBox.png");
+    color: white;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+    font-family: 'Nunito';
+
+}
+.product2:hover
+{
+    transform: scale(1.1);
+}
+.product2 h5
+{
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 0;
+    color: white;
+    margin-top: 1rem;
+}
+
+.product2 img{
+    margin-top: 1rem;
+    width: 50%;
+    object-fit: contain;
+    border-radius: 0.3rem;
+    border: 1px solid black;
+    margin-bottom: 1rem;
+}
+.Divider
+{
+    display: grid;
+    margin-top: 1rem;
+}
+#Divider-Holder
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    grid-gap: 30px;
+    justify-items: center;
+}
+#Divider-Holder img{
+    width: 100%;
+    object-fit: contain;
+    border-radius: 0.3rem;
+    margin-bottom: 1rem;
+    margin-top: -1rem;
+}
+
+.Divider-Text1
+{
+    font-family: 'Nunito';
+    font-weight: 700;
+    font-size: 20px;
+    color: #F6C506;
+    margin-bottom: 0;
+}
+#Divider-Holder
+{
+    margin-top: 2rem;
+}
