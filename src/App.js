@@ -12,6 +12,7 @@ import Contact from './Components/Contact/Contact'
 import Orders from "./Components/Orders/Orders";
 import Services from "./Components/Services/Services";
 import RequestQuote from './Components/Services/RequestQuote'
+import StandardPlates from './Components/StandardPlates/StandardPlates'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
               <Route exact path="/"  element={<HomePage/>} />
               <Route exact path="/login" element={<Login/>}/>
               <Route exact path="/createaccount" element={<Signup/>}/>
+              <Route exact path="/standardplates" element={<StandardPlates/>}/>
               <Route exact path="/checkout" element={
                   <ProtectedRoute>
                   <Cart/>

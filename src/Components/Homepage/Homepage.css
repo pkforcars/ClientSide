@@ -199,14 +199,14 @@
     display: grid;
     margin-top: 1rem;
 }
-#Divider-Holder
+#Divider-Holder1
 {
     display: grid;
     grid-template-columns: 1fr 1fr ;
     grid-gap: 30px;
     justify-items: center;
 }
-#Divider-Holder img{
+#Divider-Holder1 img{
     width: 100%;
     object-fit: contain;
     border-radius: 0.3rem;
@@ -222,7 +222,7 @@
     color: #F6C506;
     margin-bottom: 0;
 }
-#Divider-Holder
+#Divider-Holder1
 {
     margin-top: 2rem;
 }

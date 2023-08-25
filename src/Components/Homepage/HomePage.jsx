@@ -91,16 +91,16 @@ export default function HomePage() {
         </p>
       </div>
 
-      <div className="container Divider">
-        <div id="Divider-Holder">
+      <div className="container Divider1">
+        <div id="Divider-Holder1">
           <img className="DividerImage" src="/Plates.png" alt="Cover2"></img>
-          <div className="Divider-Box">
+          <div className="Divider-Box1">
             <div className="Divider-Text1">Customised Legal Number Plate Replacement</div>
             <div className="Divider-Text2">Upgrade your vehicle with our Customised Legal Number Plate Replacement services. Express your style with Standard Plates or add a touch of sophistication with our 4D Plates. Our expert team ensures compliance with all legal regulations while giving you the freedom to personalize your plates. Stand out on the road with a unique plate that reflects your personality. Whether you're looking for a sleek design or a bold statement, we've got you covered. Enhance your vehicle's aesthetics while staying within the legal framework. At [Your Company Name], we prioritize quality, creativity, and adherence to standards. Join countless satisfied customers who have already transformed their vehicles. Drive with confidence, knowing you're road legal and turning heads. Elevate your driving experience today with our exceptional number plate solutions. Contact us to discuss your customization options!</div>
           </div>
           </div>
-          <div id="Divider-Holder">
-          <div className="Divider-Box">
+          <div id="Divider-Holder1">
+          <div className="Divider-Box1">
             <div className="Divider-Text1">Customised Legal Number Plate Replacement</div>
             <div className="Divider-Text2">Experience seamless key replacement with us. Whether you've lost your keys or need spares, our expert service has you covered. We understand the urgency of regaining access, which is why we offer swift and reliable solutions tailored to your needs.
 
