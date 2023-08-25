@@ -13,6 +13,9 @@ import Orders from "./Components/Orders/Orders";
 import Services from "./Components/Services/Services";
 import RequestQuote from './Components/Services/RequestQuote'
 import StandardPlates from './Components/StandardPlates/StandardPlates'
+import MotorPlates from './Components/MotorPlates/MotorPlates'
+import DPlates from './Components/4DPlates/4D'
+
 
 function App() {
 
@@ -25,6 +28,10 @@ function App() {
               <Route exact path="/login" element={<Login/>}/>
               <Route exact path="/createaccount" element={<Signup/>}/>
               <Route exact path="/standardplates" element={<StandardPlates/>}/>
+              <Route exact path="/motorplates" element={<MotorPlates/>}/>
+              <Route exact path="/4dplates" element={<DPlates/>}/>
+              <Route exact path="/customized" element={<MotorPlates/>}/>
+
               <Route exact path="/checkout" element={
                   <ProtectedRoute>
                   <Cart/>

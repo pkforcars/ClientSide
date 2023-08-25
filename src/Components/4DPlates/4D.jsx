@@ -19,7 +19,7 @@ export default function HomePage() {
         Navigate('/requestquote')
     }
 
-    const [selectedState, setSelectedState] = useState("standard");
+    const [selectedState, setSelectedState] = useState("4D");
     const [PlateChoice, SetPlateChoice] = useState("Front and Rear");
     const [PlateText, SetPlateText] = useState("");
     const [Layout, SetLayout] = useState("Legal Plates");
@@ -1334,7 +1334,7 @@ export default function HomePage() {
                                         }}
 
                                     />
-                                    A spare pair of plates is always handy. Do you want to add a spare pair? £15.00 Each
+                                    A spare pair of plates is always handy. Do you want to add a spare pair? £35.00
                                 </label>
                                 <label style={{color: "black" }}
                                 >
@@ -1369,7 +1369,7 @@ const Cover = () => {
         <>
             <div className="homepage2">
                 <div className='container'>
-                    <h1>Standard Plates</h1>
+                    <h1>4D Plates</h1>
                 </div>
             </div>
 

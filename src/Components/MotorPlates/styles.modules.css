@@ -4868,7 +4868,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    max-width: 350px;
+    max-width: 500px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -4980,4 +4980,292 @@ body {
     position: absolute;
     white-space: nowrap;
     width: 1px;
+}
+
+
+.Upper {
+    width: 100%;
+}
+
+.MotorPlate1 {
+    width: 100%;
+    height: 10rem;
+    display: grid;
+    grid-template-columns: 35% 65%;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.MotorPlate1B {
+    width: 100%;
+    height: 10rem;
+    padding: 0.5rem;
+    padding-top: 0rem;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    text-align: center,
+
+}
+
+.MotorPlate-Badges {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.MotorPlate-Container {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.MotorPlate-Number {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.MotorPlate-NumberB {
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+.Motor_VImage {
+    width: 2rem;
+    height: 3rem;
+    object-fit: fill;
+}
+
+.Motor_Image {
+    width: 3rem;
+    height: 1.5rem;
+    object-fit: fill;
+}
+
+#Motor_SText {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: white;
+}
+
+#Motor_Text {
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.Jaguar {
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.Jaguar img {
+    width: 80%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+}
+
+.Jaguar-InnerDiv {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.JaguarPlate {
+    font-size: 3.5rem;
+    font-weight: bolder;
+}
+
+.JaguarPlate2 {
+    font-size: 3.5rem;
+    font-weight: bolder;
+}
+
+.Jaguar-InnerDiv2 {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    justify-content: center;
+    align-items: center;
+    margin-left: 3rem;
+}
+
+.MotorPlate2-Badges {
+    width: 4rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 5px;
+    margin-right: 5rem;
+    margin-left: 1rem;
+}
+
+.Oversizes {
+    width: 100%;
+    height: 9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
+.Oversizes-Number {
+    font-size: 4rem;
+    font-weight: bolder;
+}
+
+.Oversize-Out {
+    width: 60%;
+    border-radius: 0.3rem;
+    padding: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+.Oversize-Badge {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 25% 75%;
+    border-radius: 5px;
+    gap: 1.5rem;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.Oversizes-NumberB {
+    font-size: 2.5rem;
+    font-weight: bolder;
+    margin-left: 0.5rem;
+}
+
+@media (max-width: 820px) {
+    .JaguarPlate {
+        font-size: 3rem;
+    }
+
+    .Oversizes-Number {
+        font-size: 3rem;
+    }
+
+    .Oversizes-NumberB {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .JaguarPlate {
+        font-size: 2.5rem;
+    }
+
+    .Oversizes-Number {
+        font-size: 2.5rem;
+    }
+
+    .Oversizes-NumberB {
+        font-size: 1.5rem;
+
+    }
+
+    .MotorPlate2-Badges {
+        width: 3.5rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 0.5rem;
+        border-radius: 5px;
+        margin-right: 5rem;
+        margin-left: 1rem;
+    }
+
+    .extras-inner {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .Oversize-Badge 
+    {
+        grid-template-columns: 30% 70%;
+        gap:1rem;
+        padding: 1rem;
+    }
+
+}
+
+@media (max-width: 400px) {
+    .JaguarPlate {
+        font-size: 2rem;
+        margin-left: 0.5rem;
+    }
+
+    .Oversizes-Number {
+        font-size: 2rem;
+
+    }
+
+    .Oversizes-NumberB {
+        font-size: 1.5rem;
+    }
+
+    .Motor_Text {
+        font-size: 0.7rem !important;
+    }
+    .Oversize-Badge 
+    {
+        grid-template-columns: 40% 60%;
+        gap:1rem;
+    }
+    .Oversizes {
+        height: 6rem;
+    }
+    .Oversizes-NumberB {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .JaguarPlate {
+        font-size: 1.5rem;
+        margin-left: 1.5rem;
+    }
+    .Oversize-Badge 
+    {
+        grid-template-columns: 40% 60%;
+        gap:1rem;
+    }
+    .Oversizes-NumberB {
+        font-size: 1rem;
+    }
+
+}
+.Price
+{
+    color: black;
 }
