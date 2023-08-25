@@ -29,7 +29,10 @@ export default function Orders() {
     const [Attribute2, setAttribute2] = useState("PlateFront4DR");
     const [FooterText, SetFooterText] = useState("Enter Footer Text")
     const [FooterColor, SetFooterColor] = useState("black")
+    const [FrontText, SetFrontText] = useState("Standard Size (20.5x4.4in)")
+    const [RearText, SetRearText] = useState("Standard Size (20.5x4.4in)")
 
+    
 
     useEffect(() => {
 
@@ -69,6 +72,9 @@ export default function Orders() {
             SetBorder(Global.Order.Border)
             SetVertical(Global.Order.Vertical)
             setShortHand(Global.Order.ShortHand)
+            SetFooterText(Global.Order.FooterText)
+            SetFrontText(Global.Order.FrontText)
+            SetRearText(Global.Order.RearText)
             if (selectedState !== 'standard') {
                 const styleOptions = {
                     Option1: "PlateFront4D",
@@ -148,8 +154,8 @@ export default function Orders() {
                             {(Global.Order.Type === 'standard' && Global.Order.PlateChoice === 'Front and Rear') &&
                                 <div className="Order-HisA">
                                     <div><b>Plate Type:</b> Standard [Front and Rear]</div>
-                                    <div><b>Front Plate Size:</b>{ReturnSize(Global.Order.FrontSize)}</div>
-                                    <div><b>Rear Plate Size:</b> {ReturnSize(Global.Order.RearSize)}</div>
+                                    <div><b>Front Plate Size: </b>{Global.Order.FrontText}</div>
+                                    <div><b>Rear Plate Size: </b>{Global.Order.RearText}</div>
                                     {(Global.Order.Border !== "transparent") &&
                                         <div><b>Border:</b> {Global.Order.Border}</div>
                                     }
@@ -189,7 +195,7 @@ export default function Orders() {
                                 <div className="Order-HisA">
                                     <div><b>Plate Type:</b> Standard [Front Only]</div>
                                     <div><b>Plate Number:</b> {Global.Order.PlateText}</div>
-                                    <div><b>Front Plate Size:</b> {ReturnSize(Global.Order.FrontSize)}</div>
+                                    <div><b>Front Plate Size:</b> {Global.Order.FrontText}</div>
                                     {(Global.Order.Border !== "transparent") &&
                                         <div><b>Border:</b> {Global.Order.Border}</div>
                                     }
@@ -235,7 +241,7 @@ export default function Orders() {
                                 <div className="Order-HisA">
                                     <div><b>Plate Type:</b> Standard [Rear Only]</div>
                                     <div><b>Plate Number:</b> {Global.Order.PlateText}</div>
-                                    <div><b>Rear Plate Size:</b> {ReturnSize(Global.Order.RearSize)}</div>
+                                    <div><b>Rear Plate Size:</b> {Global.Order.RearText}</div>
                                     {(Global.Order.Border !== "transparent") &&
                                         <div><b>Border:</b> {Global.Order.Border}</div>
                                     }
@@ -276,8 +282,8 @@ export default function Orders() {
                                 <div className="Order-HisA">
                                     <div><b>Plate Type:</b> 4D [Front and Rear]</div>
                                     <div><b>Plate Number:</b> {Global.Order.PlateText}</div>
-                                    <div><b>Front Plate Size:</b> {ReturnSize(Global.Order.FrontSize)}</div>
-                                    <div><b>Rear Plate Size:</b> {ReturnSize(Global.Order.RearSize)}</div>
+                                    <div><b>Front Plate Size:</b> {Global.Order.FrontText}</div>
+                                    <div><b>Rear Plate Size:</b> {Global.Order.RearText}</div>
                                     {(Global.Order.Border !== "transparent") &&
                                         <div><b>Border:</b> {Global.Order.Border}</div>
                                     }
@@ -1052,6 +1058,281 @@ export default function Orders() {
                             }
 
                         </div>
+                        {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only") && selectedState === 'standard' && FrontSize === "Option20" && (
+                        <div className="Centeralize">
+                            <div style={{ backgroundColor: "#E7E7E7", width: "15rem", padding: "0.3rem", marginBottom: "1rem", borderRadius: "5px" }}>
+                                <div style={{ backgroundColor: "#E7E7E7", borderRadius: "5px", border: `3px solid ${Border}` }}>
+                                    <div className={Badge ? "MotorPlate1" : "MotorPlate1B"}>
+                                        {Badge && (
+                                            <div className='MotorPlate-Badges' style={{ backgroundColor: BadgeBackground }}>
+                                                <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                                <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
+                                            </div>
+                                        )}
+                                        <div className='MotorPlate-Container' style={Badge ? {} : { height: "10rem" }}>
+                                            {PlateText ? (
+                                                <>
+                                                    <div className={Badge ? "MotorPlate-Number" : "MotorPlate-NumberB"} style={{ fontFamily: Font }}>{PlateText.substring(0, 4)}</div>
+                                                    <div className={Badge ? "MotorPlate-Number" : "MotorPlate-NumberB"} style={{ fontFamily: Font }}>{PlateText.substring(4)}</div>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <div className={Badge ? "MotorPlate-Number" : "MotorPlate-NumberB"} style={{ fontFamily: Font }}>REG</div>
+                                                    <div className={Badge ? "MotorPlate-Number" : "MotorPlate-NumberB"} style={{ fontFamily: Font }}>No</div>
+                                                </>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div style={{ textAlign: "center", display: "flex", justifyContent: "center" }}>
+                                        {Layout === "Legal Plates" && <p className="SIZE6_Footer" style={{ backgroundColor: "#E7E7E7" }}>CPD JE2 4UE</p>}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    
+                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && selectedState === 'standard' && RearSize === "Option20" && (
+                        <div className="Centeralize">
+                            <div style={{ backgroundColor: "#F1B317", width: "15rem", padding: "0.3rem", marginBottom: "1rem", borderRadius: "5px" }}>
+                                <div style={{ backgroundColor: "#F1B317", borderRadius: "5px", border: `3px solid ${Border}` }}>
+                                    <div className={Badge ? "MotorPlate1" : "MotorPlate1B"}>
+                                        {Badge && (
+                                            <div className='MotorPlate-Badges' style={{ backgroundColor: BadgeBackground }}>
+                                                <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                                <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
+                                            </div>
+                                        )}
+                                        <div className='MotorPlate-Container' style={Badge ? {} : { height: "10rem" }}>
+                                            {PlateText ? (
+                                                <>
+                                                    <div className={Badge ? "MotorPlate-Number" : "MotorPlate-NumberB"} style={{ fontFamily: Font }}>{PlateText.substring(0, 4)}</div>
+                                                    <div className={Badge ? "MotorPlate-Number" : "MotorPlate-NumberB"} style={{ fontFamily: Font }}>{PlateText.substring(4)}</div>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <div className={Badge ? "MotorPlate-Number" : "MotorPlate-NumberB"} style={{ fontFamily: Font }}>REG</div>
+                                                    <div className={Badge ? "MotorPlate-Number" : "MotorPlate-NumberB"} style={{ fontFamily: Font }}>No</div>
+                                                </>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div style={{ textAlign: "center", display: "flex", justifyContent: "center" }}>
+                                        {Layout === "Legal Plates" && <p className="SIZE6_Footer" style={{ backgroundColor: "#F1B317" }}>CPD JE2 4UE</p>}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && selectedState === 'standard' && RearSize === "Option21" && (
+                        <div className="Centeralize">
+                            <div className='Jaguar'>
+                                <img src="/Custom/JaquarV1.png" alt="Jagaur" />
+                                <div className={Badge ? 'Jaguar-InnerDiv2' : 'Jaguar-InnerDiv'}>
+                                    {Badge && (
+                                        <div className='MotorPlate2-Badges' style={{ backgroundColor: BadgeBackground }}>
+                                            <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                            <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
+                                        </div>
+                                    )}
+                                    {PlateText ? (
+                                        <div className="JaguarPlate" style={{ fontFamily: Font }}>{PlateText}</div>
+                                    ) : (
+                                        <div className="JaguarPlate" style={{ fontFamily: Font }}>PREVIEW</div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && selectedState === 'standard' && RearSize === "Option22" && (
+                        <div className="Centeralize">
+                            <div className='Jaguar'>
+                                <img src="/Custom/JaquarV2.png" alt="Jagaur" />
+                                <div className={Badge ? 'Jaguar-InnerDiv2' : 'Jaguar-InnerDiv'}>
+                                    {Badge && (
+                                        <div className='MotorPlate2-Badges' style={{ backgroundColor: BadgeBackground }}>
+                                            <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                            <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
+                                        </div>
+                                    )}
+                                    {PlateText ? (
+                                        <div className="JaguarPlate" style={{ fontFamily: Font }}>{PlateText}</div>
+                                    ) : (
+                                        <div className="JaguarPlate" style={{ fontFamily: Font }}>PREVIEW</div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && selectedState === 'standard' && RearSize === "Option23" && (
+                        <div className="Centeralize">
+                            <div className='Jaguar'>
+                                <img src="/Custom/JaquarXV1.png" alt="Jagaur" />
+                                <div className={Badge ? 'Jaguar-InnerDiv2' : 'Jaguar-InnerDiv'}>
+                                    {Badge && (
+                                        <div className='MotorPlate2-Badges' style={{ backgroundColor: BadgeBackground }}>
+                                            <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                            <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
+                                        </div>
+                                    )}
+                                    {PlateText ? (
+                                        <div className="JaguarPlate" style={{ fontFamily: Font }}>{PlateText}</div>
+                                    ) : (
+                                        <div className="JaguarPlate" style={{ fontFamily: Font }}>PREVIEW</div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && selectedState === 'standard' && RearSize === "Option24" && (
+                        <div className="Centeralize">
+                            <div className='Jaguar'>
+                                <img src="/Custom/AstonMartin.png" alt="Jagaur" />
+                                <div className={Badge ? 'Jaguar-InnerDiv2' : 'Jaguar-InnerDiv'}>
+                                    {Badge && (
+                                        <div className='MotorPlate2-Badges' style={{ backgroundColor: BadgeBackground }}>
+                                            <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                            <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
+                                        </div>
+                                    )}
+                                    {PlateText ? (
+                                        <div className="JaguarPlate" style={{ fontFamily: Font }}>{PlateText}</div>
+                                    ) : (
+                                        <div className="JaguarPlate" style={{ fontFamily: Font }}>PREVIEW</div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && selectedState === 'standard' && RearSize === "Option25" && (
+                        <div className="Centeralize">
+                            <div className='Jaguar'>
+                                <img src="/Custom/Jaquar1.png" alt="Jagaur" />
+                                <div className={Badge ? 'Jaguar-InnerDiv2' : 'Jaguar-InnerDiv'}>
+                                    {Badge && (
+                                        <div className='MotorPlate2-Badges' style={{ backgroundColor: BadgeBackground }}>
+                                            <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                            <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
+                                        </div>
+                                    )}
+                                    {PlateText ? (
+                                        <div className="JaguarPlate" style={{ fontFamily: Font }}>{PlateText}</div>
+                                    ) : (
+                                        <div className="JaguarPlate" style={{ fontFamily: Font }}>PREVIEW</div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && selectedState === 'standard' && RearSize === "Option26" && (
+                        <div className="Centeralize">
+                            <div className='Jaguar'>
+                                <img src="/Custom/Jaquar2.png" alt="Jagaur" />
+                                <div className={Badge ? 'Jaguar-InnerDiv2' : 'Jaguar-InnerDiv'}>
+                                    {Badge && (
+                                        <div className='MotorPlate2-Badges' style={{ backgroundColor: BadgeBackground }}>
+                                            <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                            <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
+                                        </div>
+                                    )}
+                                    {PlateText ? (
+                                        <div className="JaguarPlate" style={{ fontFamily: Font }}>{PlateText}</div>
+                                    ) : (
+                                        <div className="JaguarPlate" style={{ fontFamily: Font }}>PREVIEW</div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && !Badge && selectedState === 'standard' && RearSize === "Option27" &&
+                        <div className="Centeralize">
+                            <div className='Oversize-Out' style={{ backgroundColor: "#F1B317" }}>
+                                <div className="Oversizes" style={{ backgroundColor: "#F1B317", border: `3px solid ${Border}` }}>
+                                    <div className='Oversizes-Container'>
+                                        {PlateText && <div className="Oversizes-Number" style={{ fontFamily: Font }}>{PlateText}</div>}
+                                        {!PlateText && <div className="Oversizes-Number" style={{ fontFamily: Font }}>PREVIEW</div>}
+                                    </div>
+                                </div>
+                                <div className="centered-container">
+                                    {Layout === "Legal Plates" && <p className="Option1_Footer" style={{ backgroundColor: "#F1B317" }}>CPD JE2 4UE</p>}
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+
+                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && Badge && selectedState === 'standard' && RearSize === "Option27" &&
+                        <div className="Centeralize">
+                            <div className='Oversize-Out' style={{ backgroundColor: "#F1B317" }}>
+                                <div className="Oversizes" style={{ backgroundColor: "#F1B317", border: `3px solid ${Border}` }}>
+                                    <div className='Oversize-Badge'>
+                                        <div className='MotorPlate-Badges' style={{ backgroundColor: BadgeBackground }}>
+                                            <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                            <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
+                                        </div>
+                                        <div className='Oversizes-Container'>
+                                            {PlateText && <div className="Oversizes-NumberB" style={{ fontFamily: Font }}>{PlateText}</div>}
+                                            {!PlateText && <div className="Oversizes-NumberB" style={{ fontFamily: Font }}>PREVIEW</div>}
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div className="centered-container">
+                                    {Layout === "Legal Plates" && <p className="Option1_Footer" style={{ backgroundColor: "#F1B317" }}>CPD JE2 4UE</p>}
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+
+                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && selectedState === 'standard' && RearSize === "Option28" && (
+                        <div className="Centeralize">
+                            <div className='Jaguar'>
+                                <img src="/Custom/RangeV1.png" alt="Jagaur" />
+                                <div className={Badge ? 'Jaguar-InnerDiv2' : 'Jaguar-InnerDiv'}>
+                                    {Badge && (
+                                        <div className='MotorPlate2-Badges' style={{ backgroundColor: BadgeBackground }}>
+                                            <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                            <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
+                                        </div>
+                                    )}
+                                    {PlateText ? (
+                                        <div className="JaguarPlate" style={{ fontFamily: Font }}>{PlateText}</div>
+                                    ) : (
+                                        <div className="JaguarPlate" style={{ fontFamily: Font }}>PREVIEW</div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && selectedState === 'standard' && RearSize === "Option29" && (
+                        <div className="Centeralize">
+                            <div className='Jaguar'>
+                                <img src="/Custom/Range75.png" alt="Jagaur" />
+                                <div className={Badge ? 'Jaguar-InnerDiv2' : 'Jaguar-InnerDiv'}>
+                                    {Badge && (
+                                        <div className='MotorPlate2-Badges' style={{ backgroundColor: BadgeBackground }}>
+                                            <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                            <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
+                                        </div>
+                                    )}
+                                    {PlateText ? (
+                                        <div className="JaguarPlate" style={{ fontFamily: Font }}>{PlateText}</div>
+                                    ) : (
+                                        <div className="JaguarPlate" style={{ fontFamily: Font }}>PREVIEW</div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    )}
 
 
 

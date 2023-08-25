@@ -6,7 +6,7 @@
     display: grid;
     grid-template-columns: 50% 50%;
     margin-top: 2rem;
-    border: 2px solid #6AD3FE;
+    border: 2px solid #F6C506;
     border-radius: 0.8rem;
 }
 .Map
@@ -28,7 +28,7 @@
 .Contact1
 {
     text-align: center;
-    color: #6AD3FE;
+    color: #F6C506;
 }
 .Contact-Holder
 {

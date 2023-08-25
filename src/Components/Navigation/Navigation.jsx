@@ -118,11 +118,16 @@ export default function Navigation() {
                   <MenuItem onClick={() => handleOptionSelect('/services')}>
                     <ListItemText primary="Services" />
                   </MenuItem>
+                  <MenuItem onClick={() => handleOptionSelect('/login')}>
+                    <ListItemText primary="Login" />
+                  </MenuItem>
+                  <MenuItem onClick={() => handleOptionSelect('/createaccount')}>
+                    <ListItemText primary="Register" />
+                  </MenuItem>
                 </Menu>
-                <h6 onClick={() => Navigate('/login')}>Login</h6>
-                <h6 onClick={() => Navigate('/createaccount')}>Register</h6>
-
+                <button onClick={() => { Navigate('/requestquote') }} className='RequestB'>Request a Quote</button>
               </div>
+
             }
             {!isMobile &&
               <div id="Component-2">
@@ -135,7 +140,8 @@ export default function Navigation() {
               </div>
             }
           </div>
-          <button onClick={() => { Navigate('/requestquote') }} className='Request'>Request a Quote</button>
+          {!isMobile &&
+          <button onClick={() => { Navigate('/requestquote') }} className='Request'>Request a Quote</button>}
         </div>
       </>
     )

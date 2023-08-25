@@ -198,10 +198,13 @@ body {
 }
 .mobile-menu
 {
-    display:flex;
-    justify-content:space-between;
+    margin-top: 1rem;
+    width: 100%;
+    display:grid;
+    grid-template-columns: 20% 80%;
     align-items: center;
-    color: black
+    color: black;
+    margin-bottom: -2rem;
 }
 .mobile-dropdown
 {
@@ -209,10 +212,23 @@ body {
 }
 .menu-icon
 {
-    font-size: 2rem;
+    font-size: 3rem !important;
     cursor: pointer;
     color: black;
     margin-top: -0.5rem;
+}
+.RequestB
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -0.5rem;
+    color: black;
+    border: 1px solid #F6C506;
+    background-color: #F6C506;
+    padding: 0.5rem;
+    font-family: 'Nunito';
+    font-size: 0.9rem;
 }
 #Component-1 img {
     width: 30%;
