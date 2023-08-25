@@ -66,7 +66,9 @@ export default function HomePage() {
             "Spare": Spare,
             "FittingKit": FittingKit,
             "Material": Material,
-            "Total": CalculatePrice()
+            "Total": CalculatePrice(),
+            "FrontText" : FrontText,
+            "RearText" : RearText
         });
         if (Global.isLoggedIn) {
             Navigate('/checkout')

@@ -276,14 +276,17 @@ export default function Services() {
                         <h5>Wellingborough</h5>
                     </div>
                     <div>
-                        <h6 className='Contact1'>
+                        <h6 className='Contact1' style={{
+                                color: "#F6C506",
+                                fontWeight: "bold",
+                            }}>
                             Or call us at:
                         </h6 >
                         <h6 className='Contact'>
-                            Phone: 07572448224
+                            Office: 01908 222555
                         </h6>
                         <h6 className='Contact'>
-                            Office: 01908 222555
+                            Phone: 07572448224
                         </h6>
                     </div>
 

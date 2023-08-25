@@ -26,7 +26,7 @@
 }
 
 .S-Container-2 h5 span {
-    color: #6AD3FE
+    color: #F6C506
 }
 
 .S-Container-2 p {
@@ -54,10 +54,10 @@
 .Touch {
     display: flex;
     justify-content: center;
-    background-color: #6AD3FE;
+    background-color: #F6C506;
     color: black;
     font-family: 'Nunito';
-    border: 1px solid #6AD3FE;
+    border: 1px solid #F6C506;
     padding: 0.5rem;
     padding-left: 1rem;
     padding-right: 1rem;
@@ -67,13 +67,13 @@
 .Touch:hover {
     background-color: transparent;
     color: black;
-    border: 1px solid #6AD3FE;
+    border: 1px solid #F6C506;
 }
 
 .Service-Divider {
     width: 200%;
-    color: #6AD3FE;
-    border: 1px solid #6AD3FE;
+    color: #F6C506;
+    border: 1px solid #F6C506;
 }
 
 @keyframes fadeInLeft {
@@ -146,7 +146,7 @@
 .VanLock-Inner h6 {
     margin-top: -1rem;
     padding: 0.5rem;
-    border: 1px solid #6AD3FE;
+    border: 1px solid #F6C506;
     border-top: 0rem;
 }
 
@@ -164,7 +164,7 @@
     padding: 1rem;
     text-align: center;
     font-family: 'Nunito';
-    border: 2px solid #6AD3FE;
+    border: 2px solid #F6C506;
     margin: 1.5rem;
 }
 
@@ -182,13 +182,13 @@
 }
 
 .FCont1 h4 span {
-    color: #6AD3FE;
+    color: #F6C506;
 }
 
 .Request-Input {
     width: 100%;
     padding: 0.5rem;
-    border: 1px solid #6AD3FE;
+    border: 1px solid #F6C506;
     margin-top: 0.5rem;
     background-color: transparent;
     color: black;
@@ -203,7 +203,7 @@
 #Dropdown-Request {
     width: 100%;
     padding: 0.5rem;
-    border: 1px solid #6AD3FE;
+    border: 1px solid #F6C506;
     margin-top: 0.5rem;
     background-color: white;
     color: black;
@@ -213,7 +213,7 @@
 #Request-area {
     width: 100%;
     padding: 0.5rem;
-    border: 1px solid #6AD3FE;
+    border: 1px solid #F6C506;
     margin-top: 0.5rem;
     background-color: transparent;
     color: black;
@@ -228,9 +228,9 @@
 .Request-Button {
     width: 100%;
     padding: 0.5rem;
-    border: 1px solid #6AD3FE;
+    border: 1px solid #F6C506;
     margin-top: 0.5rem;
-    background-color: #6AD3FE;
+    background-color: #F6C506;
     color: black;
     font-family: 'Nunito';
     transition-duration: 1s;
@@ -239,7 +239,7 @@
 .Request-Button:hover {
     background-color: transparent;
     color: black;
-    border: 1px solid #6AD3FE;
+    border: 1px solid #F6C506;
 }
 
 

@@ -61,9 +61,6 @@ export default function Login() {
             
 
         <div className='container my-5' id="Div-Holder">
-            <div className='sidebar2'>
-                <img src="/Sidebar.png" alt="Sidebar"></img>
-            </div>
             <div className='sidebar1'>
                     <h4 className='sidebar1-Title'>Create Account</h4>
                     <h5 className='sidebar1-Title2'>Enter Personal Information</h5>

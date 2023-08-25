@@ -81,8 +81,8 @@ export default function Cart2() {
                             <div className="Order-His">
                                 <div><b>Plate Type:</b> Standard [Front and Rear]</div>
                                 <div><b>Plate Number:</b> {Global.Order.PlateText}</div>
-                                <div><b>Front Plate Size:</b> {ReturnSize(Global.Order.FrontSize)}</div>
-                                <div><b>Rear Plate Size:</b> {ReturnSize(Global.Order.RearSize)}</div>
+                                <div><b>Front Plate Size:</b> {Global.Order.FrontText}</div>
+                                <div><b>Rear Plate Size:</b> {Global.Order.RearText}</div>
                                 {(Global.Order.Border !== "transparent") &&
                                     <div><b>Border:</b> {Global.Order.Border}</div>
                                 }
@@ -120,7 +120,7 @@ export default function Cart2() {
                             <div className="Order-His">
                                 <div><b>Plate Type:</b> Standard [Front Only]</div>
                                 <div><b>Plate Number:</b> {Global.Order.PlateText}</div>
-                                <div><b>Front Plate Size:</b> {ReturnSize(Global.Order.FrontSize)}</div>
+                                <div><b>Front Plate Size:</b> {Global.Order.FrontText}</div>
                                 {(Global.Order.Border !== "transparent") &&
                                     <div><b>Border:</b> {Global.Order.Border}</div>
                                 }
@@ -158,7 +158,7 @@ export default function Cart2() {
                             <div className="Order-His">
                                 <div><b>Plate Type:</b> Standard [Rear Only]</div>
                                 <div><b>Plate Number:</b> {Global.Order.PlateText}</div>
-                                <div><b>Rear Plate Size:</b> {ReturnSize(Global.Order.RearSize)}</div>
+                                <div><b>Rear Plate Size:</b> {Global.Order.RearText}</div>
                                 {(Global.Order.Border !== "transparent") &&
                                     <div><b>Border:</b> {Global.Order.Border}</div>
                                 }
@@ -195,8 +195,8 @@ export default function Cart2() {
                             <div className="Order-His">
                                 <div><b>Plate Type:</b> 4D [Front and Rear]</div>
                                 <div><b>Plate Number:</b> {Global.Order.PlateText}</div>
-                                <div><b>Front Plate Size:</b> {ReturnSize(Global.Order.FrontSize)}</div>
-                                <div><b>Rear Plate Size:</b> {ReturnSize(Global.Order.RearSize)}</div>
+                                <div><b>Front Plate Size:</b> {Global.Order.FrontText}</div>
+                                <div><b>Rear Plate Size:</b> {Global.Order.RearText}</div>
                                 {(Global.Order.Border !== "transparent") &&
                                     <div><b>Border:</b> {Global.Order.Border}</div>
                                 }

@@ -6,11 +6,19 @@ import 'react-toastify/dist/ReactToastify.css';
 import Context from "../../Context/Context"
 import { useNavigate } from 'react-router-dom';
 import './Cart.css'
+import { useRef , useEffect , useState} from "react";
+import emailjs from "@emailjs/browser";
+
 export default function Page2(props) {
     const Global = useContext(Context)
     const Navigate = useNavigate()
     const stripe = useStripe()
     const elements = useElements()
+    const nameRef = useRef(props.orderData.email);
+    const emailRef = useRef(props.orderData.email);
+
+    const [loading, setLoading] = useState(false);
+    useEffect(() => emailjs.init("4UXhp1ho-2XzxocHz"), []);
 
     const AddOrder = async () => {
         try {
@@ -44,13 +52,37 @@ export default function Page2(props) {
               Spare: Global.Order.Spare,
               OrderValue: Global.Order.Total,
               FittingKit :  Global.Order.FittingKit ,     
-              Material :  Global.Order.Material      
+              Material :  Global.Order.Material,
+              FrontText :  Global.Order.FrontText,
+              RearText :  Global.Order.RearText,   
             }),
+            
           });
           const ResponseToJson = await response.json()
-      
+        
           if (ResponseToJson.success) {
             Navigate('/dashboard')
+            const serviceId = "service_x8viupa";
+            const templateId = "template_89adesx";
+            setLoading(true);
+            await emailjs.send(serviceId, templateId, 
+              {
+                to_name : props.orderData.email,
+                plate_number:  Global.Order.PlateText,
+                plate_type: Global.Order.Type,
+                plate_front: Global.Order.FrontText,
+                plate_rear: Global.Order.RearText,
+                plate_material: Global.Order.Material,
+                plate_badge: Global.Order.Badge,
+                plate_badge_background: Global.Order.BadgeBackground,
+                plate_border: Global.Order.Border,
+                plate_delivery: Global.Order.Delivery,
+                plate_spare: Global.Order.Spare,
+                plate_fitting_kit: Global.Order.FittingKit,
+                plate_total: Global.Order.Total,
+              });
+            setLoading(false);
+            toast.success("Order Placed Successfully")
           } else {
             toast.error("Request Failed")
             throw new Error("Request failed with status " + response.status);
@@ -64,6 +96,8 @@ export default function Page2(props) {
     
     const MakePayment = async (e) => {
             e.preventDefault()
+            toast.success('Please Wait.....')
+
             if (!stripe || !elements) {
                 return
             }
