@@ -2,9 +2,10 @@ import React, { useState, useContext, useEffect } from 'react'
 import './Navigation.css'
 import { useNavigate } from 'react-router-dom'
 import Context from "../../Context/Context"
-import { MenuItem, IconButton, Menu, ListItemIcon, ListItemText } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MenuIcon from '@mui/icons-material/Menu';
+import { Button, Drawer } from 'antd';
+import { MenuOutlined } from '@ant-design/icons';
+import { CloseOutlined } from '@ant-design/icons';
+
 
 export default function Navigation() {
   const Global = useContext(Context)
@@ -14,21 +15,8 @@ export default function Navigation() {
   }
   const [isMobile, setIsMobile] = useState(false);
 
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedOption, setSelectedOption] = useState('');
-
-  const handleOpenMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleCloseMenu = () => {
-    setAnchorEl(null);
-  };
-
   const handleOptionSelect = (value) => {
-    setSelectedOption(value);
     Navigate(value)
-    handleCloseMenu();
   };
 
   const handleResize = () => {
@@ -44,6 +32,11 @@ export default function Navigation() {
     };
   }, []);
 
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const handleToggleDrawer = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
 
   const Navigate = useNavigate()
 
@@ -87,47 +80,40 @@ export default function Navigation() {
     return (
       <>
         <div id="Navbar">
-          <div id="Component-1">
-            <img src="/Logo.png"/>
-          </div>
+          {!isMobile &&
+            <div id="Component-1">
+              <img src="/Logo.png" />
+            </div>
+          }
           <div id="Component-2">
             {isMobile &&
               <div className="mobile-menu">
-                <IconButton onClick={handleOpenMenu}>
-                  <MenuIcon className="menu-icon" />
-                </IconButton>
-                <Menu
-                  anchorEl={anchorEl}
-                  open={Boolean(anchorEl)}
-                  onClose={handleCloseMenu}
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}
+                <img src="/Logo.png" />
+                <MenuOutlined className="menu-icon" onClick={handleToggleDrawer} />
+                <Drawer
+                  placement="left"
+                  closable={false}
+                  onClose={handleToggleDrawer}
+                  visible={isDrawerOpen}
+                  className='drawer'
                 >
-                  <MenuItem onClick={() => handleOptionSelect('/')}>
-                    <ListItemText primary="Home" />
-                  </MenuItem>
-                  <MenuItem onClick={() => handleOptionSelect('/contact')}>
-                    <ListItemText primary="Contact" />
-                  </MenuItem>
-                  <MenuItem onClick={() => handleOptionSelect('/services')}>
-                    <ListItemText primary="Services" />
-                  </MenuItem>
-                  <MenuItem onClick={() => handleOptionSelect('/login')}>
-                    <ListItemText primary="Login" />
-                  </MenuItem>
-                  <MenuItem onClick={() => handleOptionSelect('/createaccount')}>
-                    <ListItemText primary="Register" />
-                  </MenuItem>
-                </Menu>
-                <button onClick={() => { Navigate('/requestquote') }} className='RequestB'>Request a Quote</button>
+                  <div className='Drawer-Top'>
+                    <h5>PLATES N KEYS FOR CARS</h5>
+                    <CloseOutlined className='close-icon'
+                      onClick={handleToggleDrawer}
+                     />
+                  </div>
+                  <div className='Drawer-Inner'>
+                    <div onClick={() => handleOptionSelect('/')}>Home</div>
+                    <div onClick={() => handleOptionSelect('/contact')}>Contact</div>
+                    <div onClick={() => handleOptionSelect('/services')}>Services</div>
+                    <div onClick={() => handleOptionSelect('/login')}>Login</div>
+                    <div onClick={() => handleOptionSelect('/createaccount')}>Register</div>
+                  </div>
+                  <button onClick={() => { Navigate('/requestquote') }} className='RequestB'>Request a Quote</button>
+                 
+                </Drawer>
               </div>
-
             }
             {!isMobile &&
               <div id="Component-2">
@@ -141,7 +127,7 @@ export default function Navigation() {
             }
           </div>
           {!isMobile &&
-          <button onClick={() => { Navigate('/requestquote') }} className='Request'>Request a Quote</button>}
+            <button onClick={() => { Navigate('/requestquote') }} className='Request'>Request a Quote</button>}
         </div>
       </>
     )
