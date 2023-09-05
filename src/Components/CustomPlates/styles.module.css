@@ -1,0 +1,182 @@
+.PopupContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .Popup {
+    background-color: white;
+    width: 35%;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  
+  .PopupNavbar
+  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .PopupTitle {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+    font-family: 'Rubik';
+    color: #EC5863;
+  }
+  .PopupTitleIn {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+    font-family: 'Rubik';
+    color: #90BAFF;
+  }
+  .PopupContent
+  {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-family: 'Rubik';
+    font-size: 1rem;
+  }
+  .PopupContent h6
+  {
+    font-weight: 600;
+    color: black;
+    font-size: 0.9rem;
+    line-height: 1.2;
+  }
+  .PopupTextArea
+  {
+    width: 100%;
+    height: 10rem;
+    border-radius: 0.5rem;
+    border: 1px solid #EC5863;
+    padding: 0.5rem;
+    font-family: 'Rubik';
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .PopupContentD
+  {
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+    font-family: 'Rubik';
+    font-size: 1rem;
+  }
+  .PopupContentD h6
+  {
+    font-weight: 300;
+    color: #776E6E;
+    font-size: 0.8rem;
+    line-height: 1.2;
+    text-align: justify;
+  }
+  .PopupButtons
+  {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  .PopupButton2
+  {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #90BAFF;
+    color: white;
+    padding: -0.2rem;
+    border-radius: 0.4rem;
+    font-size: 0.6rem;
+    font-weight: bold;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  .PopupButton2:hover
+  {
+    background-color: #1f66ff;
+  }
+  .PopupButton2 h6
+  {
+    margin-left: 0.5rem;
+    margin-top: 0.7rem;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+  .PopupButton {
+    width: 100%;
+    background-color: white;
+    color: black;
+    padding: 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid gray;
+  }
+  
+  .PopupButton:hover {
+    background-color: #F9F9F9;
+    color: rgb(27, 26, 26);
+  }
+  
+  .PopupButton2R
+  {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #90BAFF;
+    color: white;
+    padding: -0.2rem;
+    border-radius: 0.4rem;
+    font-size: 0.6rem;
+    font-weight: bold;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  .PopupButton2R:hover
+  {
+    background-color: #1f66ff;
+  }
+  .PopupButton2R h6
+  {
+    margin-left: 0.5rem;
+    margin-top: 0.7rem;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+  .ImageContainer
+  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .ImageContainer img
+  {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 0.5rem;
+  }

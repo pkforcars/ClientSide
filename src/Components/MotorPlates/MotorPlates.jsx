@@ -67,8 +67,8 @@ export default function HomePage() {
             "FittingKit": FittingKit,
             "Material": Material,
             "Total": CalculatePrice(),
-            "FrontText" : FrontText,
-            "RearText" : RearText
+            "FrontText": FrontText,
+            "RearText": RearText
         });
         if (Global.isLoggedIn) {
             Navigate('/checkout')
@@ -98,7 +98,7 @@ export default function HomePage() {
                             <div><b>Badge Type:</b> Normal</div>
                         }
                         {Badge !== "" && BadgeBackground !== '#366CB7' &&
-                            <div><b>Badge Type:</b> Gel</div>
+                            <div><b>Badge Type:</b> Electric</div>
                         }
                         <div><b>Material:</b> Standard ABS</div>
                     </div>
@@ -243,7 +243,7 @@ export default function HomePage() {
         SetRearText(selectedText)
     };
     const HandleBadgeBg = (e) => {
-        if (e.target.value === 'Gel') {
+        if (e.target.value === 'Electric') {
             SetBadgeBackground("#428E3A")
         }
         else {
@@ -251,14 +251,7 @@ export default function HomePage() {
         }
     };
     const HandleBorder = (e) => {
-        if (e.target.value === 'No') {
-            SetBorder("transparent")
-        }
-        else {
-            SetBorder("#000000")
-        }
-
-
+        SetBorder(e.target.value)
     };
     const HandleBadge = (e) => {
         SetBadge(e.target.value);
@@ -283,6 +276,8 @@ export default function HomePage() {
             var updatedFlag = flag.replace("P", "");
             updatedFlag = updatedFlag.charAt(0).toUpperCase() + updatedFlag.slice(1);
             SetBadgeFlag(updatedFlag);
+            console.log("SALISISISSI", updatedFlag)
+
         }
         if (e.target.value === "") {
             SetBadge("")
@@ -348,64 +343,75 @@ export default function HomePage() {
             </div>
             <div className='container my-2' id="Grid">
                 <div className="GridItem1">
-                    <div className='Plate-Builder'>
-                        <>
-                            <div className="type-inputs">
-                                <label >
-                                    <input className="type-input" type="radio" name="engine"
-                                        onChange={HandlePlates} value="Front and Rear" checked={PlateChoice === 'Front and Rear'} />
-                                    <span className="type-tile">
-                                        <span className="type-icon">
-                                            <img src="/FRONTPLATE.png" alt="Front Plate" width={100} height={25} />
-                                            <img src="/REAR.png" alt="Rear" width={100} height={25} />
-                                        </span>
-                                        <span className="type-label">Front and Rear</span>
+                    <div className='MotorBoxTop'>
+                        <h6>Select Plates:</h6>
+                        <div className='MotorBox'>
+                            <label>
+                                <input className="type-input" type="radio" name="platechoice"
+                                    onChange={HandlePlates} value="Front and Rear" checked={PlateChoice === 'Front and Rear'} />
+                                <span className="type-tile">
+                                    <span className="type-icon">
+                                        <img src="/FRONTPLATE.png" alt="Front Plate" width={100} height={25} />
+                                        <img src="/REAR.png" alt="Rear" width={100} height={25} />
                                     </span>
-                                </label>
-                                <label>
-                                    <input className="type-input" type="radio" name="engine" onChange={HandlePlates} value="Front Only" checked={PlateChoice === 'Front Only'} />
-                                    <span className="type-tile">
-                                        <span className="type-icon">
-                                            <img src="/FRONTPLATE.png" alt="Front Plate" width={90} height={25} />
-                                        </span>
-                                        <span className="type-label">Front Only</span>
+                                    <span className="type-label">Front and Rear</span>
+                                </span>
+                            </label>
+                            <label>
+                                <input className="type-input" type="radio" name="platechoice" onChange={HandlePlates} value="Front Only" checked={PlateChoice === 'Front Only'} />
+                                <span className="type-tile">
+                                    <span className="type-icon">
+                                        <img src="/FRONTPLATE.png" alt="Front Plate" width={100} height={25} />
                                     </span>
-                                </label>
-                                <label>
-                                    <input className="type-input" type="radio" name="engine" onChange={HandlePlates} value="Rear Only" checked={PlateChoice === 'Rear Only'} />
-                                    <span className="type-tile">
-                                        <span className="type-icon">
-                                            <img src="/REAR.png" alt="Rear" width={90} height={25} />
-                                        </span>
-                                        <span className="type-label">Rear Only</span>
+                                    <span className="type-label">Front Only</span>
+                                </span>
+                            </label>
+                            <label>
+                                <input className="type-input" type="radio" name="platechoice" onChange={HandlePlates} value="Rear Only" checked={PlateChoice === 'Rear Only'} />
+                                <span className="type-tile">
+                                    <span className="type-icon">
+                                        <img src="/REAR.png" alt="Rear" width={100} height={25} />
                                     </span>
-                                </label>
-                            </div>
+                                    <span className="type-label">Rear Only</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div className='MotorBoxTop'>
+                        <h6>Select Material:</h6>
+                        <div className='MotorBox'>
+                            <label>
+                                <input className="type-input" type="radio" name="platematerial" onChange={HandleMaterial} value="Standard-ABS" checked={Material === 'Standard-ABS'} />
+                                <span className="type-tile2">
+                                    <span className="type-label">Standard ABS</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only") &&
+                        <div className='MotorBoxTop'>
+                            <h6>Select Front Size:</h6>
                             <div className="container my-2" id='Selection-Options'>
-                                <select id='Dropdown' required onChange={HandleMaterial}>
-                                    <option value="">-- Select Material--</option>
-                                    <option value="Standard-ABS">Standard ABS</option>
+                                <select id='Dropdown-Large' required onChange={HandleFrontSize}>
+                                    <option value="">-- Select Front Plate Size--</option>
+                                    <option value="Option1">Standard Size (20.5x4.4in)</option>
+                                    <option value="Option20">Standard Square (297mm x 203mm)</option>
+                                    <option value="Option20">American Import (305mm x 152mm) </option>
+                                    <option value="Option20">Euro Square (310mm x 210mm)</option>
+                                    <option value="Option20">Small Japenese Import Square (330mm x 165mm)</option>
+                                    <option value="Option20">Large Japenese Import Square (330mm x 178mm)</option>
+                                    <option value="Option20">Oversize Square (345mm x 200mm)</option>
+                                    <option value="Option20">Import (346mm x 178mm)</option>
                                 </select>
                             </div>
-
-                            {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only") &&
-                                <div className="container my-2" id='Selection-Options'>
-                                    <select id='Dropdown-Large' required onChange={HandleFrontSize}>
-                                        <option value="">-- Select Front Plate Size--</option>
-                                        <option value="Option1">Standard Size (20.5x4.4in)</option>
-                                        <option value="Option20">Standard Square (297mm x 203mm)</option>
-                                        <option value="Option20">American Import (305mm x 152mm) </option>
-                                        <option value="Option20">Euro Square (310mm x 210mm)</option>
-                                        <option value="Option20">Small Japenese Import Square (330mm x 165mm)</option>
-                                        <option value="Option20">Large Japenese Import Square (330mm x 178mm)</option>
-                                        <option value="Option20">Oversize Square (345mm x 200mm)</option>
-                                        <option value="Option20">Import (346mm x 178mm)</option>
-                                    </select>
-                                </div>
-                            }
-
-                            {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") &&
-                                <div className="container my-2" id='Selection-Options'>
+                            <h6
+                                style={{
+                                    marginTop: "1rem"
+                                }}
+                            >Select Rear Size:</h6>
+                            <div className="container my-2" id='Selection-Options'>
                                     <select id='Dropdown-Large' required onChange={HandleRearSize}>
                                         <option value="">-- Select Rear Plate Size--</option>
                                         <option value="Option1">Standard Size (20.5x4.4in)</option>
@@ -432,38 +438,92 @@ export default function HomePage() {
                                         <option value="Option20">Import (346mm x 178mm)</option>
                                     </select>
                                 </div>
-                            }
-                            <div className="container my-2" id='Selection-Options2'>
-                                <select id='Dropdown-Large' required onChange={HandleBadge}>
-                                    <option value="">-- Select Badge --</option>
-                                    <option value="None">-- None --</option>
-                                    {Badges.map((badge, index) => (
-                                        <option key={index} value={badge}>{badge}</option>
-                                    ))}
-                                </select>
-                            </div>
+                        </div>
+                    }
 
+                    <div className='MotorBoxTop'>
+                        <h6>Select Badge:</h6>
+                        <div className='MotorBox1'>
+                            <label>
+                                <input className="type-input" type="radio" name="badge" onChange={HandleBadge} value="None" checked={Badge === 'None'} />
+                                <span className="type-tile2">
+                                    <span className="type-label">None</span>
+                                </span>
+                            </label>
+                            {Badges.map((badge, index) => (
+                                <label key={index}
+                                >
+                                    <input className="type-input" type="radio" name="badge" onChange={HandleBadge} value={badge.ShortHand} checked={Badge === badge.ShortHand} />
+                                    <span className="type-tile2">
+                                        <span className="type-label">{badge.Name}</span>
+                                    </span>
+                                </label>
+                            ))}
+                        </div>
+                    </div>
 
-                            <div className="container my-2" id='Selection-Options'>
-                                <select id='Dropdown' required onChange={HandleBadgeBg}>
-                                    <option value="">-- Select Badge Type --</option>
-                                    <option value="Normal">Normal</option>
-                                    <option value="Gel">Gel</option>
-                                </select>
-                                <select id='Dropdown' required onChange={HandleBorder}>
-                                    <option value="">-- Select Border --</option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                </select>
-                            </div>
+                    <div className='MotorBoxTop'>
+                        <h6>Select Badge Type:</h6>
+                        <div className='MotorBox'>
+                            <label>
+                                <input className="type-input" type="radio" name="badgetype" onChange={HandleBadgeBg} value="Normal" checked={BadgeBackground === '#366CB7'} />
+                                <span className="type-tile2">
+                                    <span className="type-label">Normal</span>
+                                </span>
+                            </label>
+                            <label>
+                                <input className="type-input" type="radio" name="badgetype" onChange={HandleBadgeBg} value="Electric" checked={BadgeBackground === '#428E3A'} />
+                                <span className="type-tile2">
+                                    <span className="type-label">Electric</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
 
-
-                            <div className="Centeralize1" onClick={ResetAll}>
+                    <div className='MotorBoxTop'>
+                        <h6>Select Border:</h6>
+                        <div className='MotorBox1'>
+                            <label>
+                                <input className="type-input" type="radio" name="border" onChange={HandleBorder} value="transparent" checked={Border === 'transparent'} />
+                                <span className="type-tile2">
+                                    <span className="type-label">None</span>
+                                </span>
+                            </label>
+                            <label>
+                                <input className="type-input" type="radio" name="border" onChange={HandleBorder} value="Black" checked={Border === 'Black'} />
+                                <span className="type-tile2"
+                                    style={{
+                                        border: "2px solid black",
+                                    }}
+                                >
+                                    <span className="type-label">Black</span>
+                                </span>
+                            </label>
+                            <label>
+                                <input className="type-input" type="radio" name="border" onChange={HandleBorder} value="Blue" checked={Border === 'Blue'} />
+                                <span className="type-tile2"
+                                    style={{
+                                        border: "2px solid blue",
+                                    }}
+                                >
+                                    <span className="type-label">Blue</span>
+                                </span>
+                            </label>
+                            <label>
+                                <input className="type-input" type="radio" name="border" onChange={HandleBorder} value="Red" checked={Border === 'Red'} />
+                                <span className="type-tile2"
+                                    style={{
+                                        border: "2px solid red",
+                                    }}
+                                >
+                                    <span className="type-label">Red</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>                                
+                    <div className="Centeralize1" onClick={ResetAll}>
                                 <button className="Cart-Button1">Reset</button>
                             </div>
-
-                        </>
-                    </div>
                 </div>
 
                 <div className="GridItem2">
@@ -495,7 +555,7 @@ export default function HomePage() {
                         <div className="Centeralize">
                             <div className="Option1B" style={{ backgroundColor: "#E7E7E7" }}>
                                 <div className="Option1B_Container" style={{ backgroundColor: BadgeBackground }}>
-                                    <img src={`/Union.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
+                                    <img src={`${BadgeFlag}.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
                                     <div id={ShortHand ? "Option1B_Text1" : "Option1B_Text2"}>{BadgeCity}</div>
                                 </div>
                                 <div className='Option1B_Container1'>
@@ -526,7 +586,7 @@ export default function HomePage() {
                                     <div className={Badge ? "MotorPlate1" : "MotorPlate1B"}>
                                         {Badge && (
                                             <div className='MotorPlate-Badges' style={{ backgroundColor: BadgeBackground }}>
-                                                <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                                <img src={`${BadgeFlag}.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
                                                 <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
                                             </div>
                                         )}
@@ -580,7 +640,7 @@ export default function HomePage() {
                         <div className="Centeralize">
                             <div className="Option1B" style={{ backgroundColor: "#F1B317" }}>
                                 <div className="Option1B_Container" style={{ backgroundColor: BadgeBackground }}>
-                                    <img src={`/Union.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
+                                    <img src={`${BadgeFlag}.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
                                     <div id={ShortHand ? "Option1B_Text1" : "Option1B_Text2"}>{BadgeCity}</div>
                                 </div>
                                 <div className='Option1B_Container1'>
@@ -603,7 +663,7 @@ export default function HomePage() {
                             </div>
                         </div>
                     }
-                    
+
                     {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && selectedState === 'standard' && RearSize === "Option20" && (
                         <div className="Centeralize">
                             <div style={{ backgroundColor: "#F1B317", width: "15rem", padding: "0.3rem", marginBottom: "1rem", borderRadius: "5px" }}>
@@ -611,7 +671,7 @@ export default function HomePage() {
                                     <div className={Badge ? "MotorPlate1" : "MotorPlate1B"}>
                                         {Badge && (
                                             <div className='MotorPlate-Badges' style={{ backgroundColor: BadgeBackground }}>
-                                                <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                                <img src={`${BadgeFlag}.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
                                                 <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
                                             </div>
                                         )}
@@ -644,7 +704,7 @@ export default function HomePage() {
                                 <div className={Badge ? 'Jaguar-InnerDiv2' : 'Jaguar-InnerDiv'}>
                                     {Badge && (
                                         <div className='MotorPlate2-Badges' style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                            <img src={`${BadgeFlag}.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
                                             <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
                                         </div>
                                     )}
@@ -665,7 +725,7 @@ export default function HomePage() {
                                 <div className={Badge ? 'Jaguar-InnerDiv2' : 'Jaguar-InnerDiv'}>
                                     {Badge && (
                                         <div className='MotorPlate2-Badges' style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                            <img src={`${BadgeFlag}.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
                                             <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
                                         </div>
                                     )}
@@ -686,7 +746,7 @@ export default function HomePage() {
                                 <div className={Badge ? 'Jaguar-InnerDiv2' : 'Jaguar-InnerDiv'}>
                                     {Badge && (
                                         <div className='MotorPlate2-Badges' style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                            <img src={`${BadgeFlag}.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
                                             <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
                                         </div>
                                     )}
@@ -707,7 +767,7 @@ export default function HomePage() {
                                 <div className={Badge ? 'Jaguar-InnerDiv2' : 'Jaguar-InnerDiv'}>
                                     {Badge && (
                                         <div className='MotorPlate2-Badges' style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                            <img src={`${BadgeFlag}.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
                                             <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
                                         </div>
                                     )}
@@ -728,7 +788,7 @@ export default function HomePage() {
                                 <div className={Badge ? 'Jaguar-InnerDiv2' : 'Jaguar-InnerDiv'}>
                                     {Badge && (
                                         <div className='MotorPlate2-Badges' style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                            <img src={`${BadgeFlag}.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
                                             <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
                                         </div>
                                     )}
@@ -749,7 +809,7 @@ export default function HomePage() {
                                 <div className={Badge ? 'Jaguar-InnerDiv2' : 'Jaguar-InnerDiv'}>
                                     {Badge && (
                                         <div className='MotorPlate2-Badges' style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                            <img src={`${BadgeFlag}.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
                                             <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
                                         </div>
                                     )}
@@ -786,7 +846,7 @@ export default function HomePage() {
                                 <div className="Oversizes" style={{ backgroundColor: "#F1B317", border: `3px solid ${Border}` }}>
                                     <div className='Oversize-Badge'>
                                         <div className='MotorPlate-Badges' style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                            <img src={`${BadgeFlag}.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
                                             <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
                                         </div>
                                         <div className='Oversizes-Container'>
@@ -811,7 +871,7 @@ export default function HomePage() {
                                 <div className={Badge ? 'Jaguar-InnerDiv2' : 'Jaguar-InnerDiv'}>
                                     {Badge && (
                                         <div className='MotorPlate2-Badges' style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                            <img src={`${BadgeFlag}.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
                                             <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
                                         </div>
                                     )}
@@ -832,7 +892,7 @@ export default function HomePage() {
                                 <div className={Badge ? 'Jaguar-InnerDiv2' : 'Jaguar-InnerDiv'}>
                                     {Badge && (
                                         <div className='MotorPlate2-Badges' style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/Union.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
+                                            <img src={`${BadgeFlag}.png`} className={Vertical ? "Motor_VImage" : "Motor_Image"} alt='Badge'></img>
                                             <div id={ShortHand ? "Motor_SText" : "Motor_Text"}>{BadgeCity}</div>
                                         </div>
                                     )}
@@ -900,7 +960,7 @@ export default function HomePage() {
                     </div>
                 </div>
             </div >
-            <ToastContainer theme="colored"/>
+            <ToastContainer theme="colored" />
 
             <Footer />
         </>
@@ -933,9 +993,25 @@ const Cover = () => {
 
 
 const Badges = [
-    "UNION-ENG",
-    "UNION-ENGLAND",
-    "UNIONP-ENG",
-    "UNIONP-ENGLAND",
-];
+    {
+        Name: "Wales",
+        ShortHand: "WALES-CYM",
+        Flag: "WALES.png"
+    },
+    {
+        Name: "United Kingdom",
+        ShortHand: "UK-UK",
+        Flag: "UK.png"
+    },
+    {
+        Name: "Scotland",
+        ShortHand: "SCOTLAND-SCO",
+        Flag: "SCOTLAND.png"
+    },
+    {
+        Name: "England",
+        ShortHand: "ENGLAND-ENG",
+        Flag: "ENGLAND.png"
+    }
+]
 

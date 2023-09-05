@@ -1096,7 +1096,6 @@ export default function HomePage() {
                                             </p>
                                         )}
                                     </div>
-
                                 </div>
                             </div>
                         </div>
