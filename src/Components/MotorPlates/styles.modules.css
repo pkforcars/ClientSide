@@ -5443,7 +5443,7 @@ body {
     margin-left: 0.5rem;
     margin-top: 0.5rem;
     font-family: 'Rubik';
-    color: #90BAFF;
+    color: #FFCC00;
   }
   .PopupContent
   {
@@ -5498,7 +5498,7 @@ body {
   .PopupButton2
   {
     width: 100%;
-    background-color: #F1B317;
+    background-color: #F6C506;
     color: black;
     padding: 0.6rem;
     border-radius: 4px;
@@ -5507,7 +5507,7 @@ body {
   }
   .PopupButton2:hover
   {
-    background-color: #1f66ff;
+    background-color:#FFCC00;
   }
   .PopupButton2 h6
   {
@@ -5583,7 +5583,29 @@ body {
     max-width: 100%; 
     margin-top: 1rem;
   }
-  
+  .MotorBox2
+  {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+  }
+  .MotorBox2 button{
+    width: 100%;
+    width: 100%;
+    background-color: #F6C506;
+    color: white;
+    cursor: pointer;
+    border: 1px solid gray;
+    font-family: "Rubik";
+    font-size: 0.8rem;
+    font-weight: 600;
+   
+  }
+  .MotorBox2 label{
+    width: 100%    
+  }
+
 
   @media (max-width: 720px) {
     .Popup {
@@ -5591,3 +5613,123 @@ body {
     }
     
   }
+.Custom{
+    width: 90%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 20% 75%;
+    justify-content: center;
+    align-items: center;
+    gap:0.5rem;
+    border-radius: 0.2rem;
+    margin-bottom: 1rem;
+    padding: 0.2rem;
+}
+.CustomR{
+    width: 90%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 75% 20%;
+    justify-content: center;
+    align-items: center;
+    gap:0.5rem;
+    border-radius: 0.2rem;
+    margin-bottom: 1rem;
+    padding: 0.2rem;
+}
+.CustomM{
+    width: 90%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 20% 50% 20%;
+    justify-content: center;
+    align-items: center;
+    gap:0.5rem;
+    border-radius: 0.2rem;
+    margin-bottom: 1rem;
+    padding: 0.2rem;
+}
+
+.CustomImageContainer
+{
+    min-width: 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 7rem;
+    align-items: center;
+    border: 1px solid rgba(128, 128, 128, 0.59);
+    padding: 0.3rem;
+    border-radius: 0.3rem;
+}
+.CustomImageContainer h5{
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Rubik';
+    text-align: center;
+}
+
+
+.Option1B_Custom
+{
+    font-size: 4.5rem;
+    font-weight: bolder;
+    text-align: center;
+    height: max-content;
+}
+.Option1B_CustomM{
+    font-size: 3.5rem;
+    font-weight: bolder;
+    text-align: center;
+}
+@media (max-width: 780px) {
+    .Option1B_Custom
+    {
+        font-size: 3.5rem;
+    }
+    .CustomImageContainer
+    {
+        min-height: fit-content;
+    }
+    .Option1B_CustomM{
+        font-size: 2.5rem;
+    }
+    
+}
+
+@media (max-width: 480px) {
+    .Custom{
+        grid-template-columns: 30% 60%;        
+    }
+    .CustomR{
+        grid-template-columns: 60% 30%;        
+    }
+    .Option1B_Custom
+    {
+        font-size: 2.5rem;
+    }
+    .Option1B_CustomM{
+        font-size: 2rem;
+    }
+}
+@media (max-width: 410px) {
+    .Option1B_Custom
+    {
+        font-size: 2rem;
+    }
+    .Option1B_CustomM{
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .Option1B_Custom
+    {
+        font-size: 2rem;
+    }
+    .Option1B_CustomM{
+        font-size: 1.5rem;
+    }
+}

@@ -21,16 +21,16 @@ export default function HomePage() {
     const [PlateType, SetPlateType] = useState("Normal")
     const [Layout, SetLayout] = useState("Legal Plates");
     const [Font, SetFont] = useState("black");
-    const [FrontSize, SetFrontSize] = useState("Option1");
-    const [RearSize, SetRearSize] = useState("Option1");
+    const [FrontSize, SetFrontSize] = useState("Option30");
+    const [RearSize, SetRearSize] = useState("Option30");
     const [Badge, SetBadge] = useState("")
     const [BadgeCity, SetBadgeCity] = useState("")
     const [BadgeFlag, SetBadgeFlag] = useState("")
     const [BadgeBackground, SetBadgeBackground] = useState("#366CB7")
     const [Border, SetBorder] = useState("transparent")
-    const [FooterText, SetFooterText] = useState("Enter Footer Text")
     const [Vertical, SetVertical] = useState(false)
     const [ShortHand, setShortHand] = useState(false);
+    const [FooterText, SetFooterText] = useState("")
     const [FooterColor, SetFooterColor] = useState("black")
     const [Delivery, SetDelivery] = useState("")
     const [Spare, setSpare] = useState(false)
@@ -39,7 +39,13 @@ export default function HomePage() {
     const [FrontText, SetFrontText] = useState("Standard Size (20.5x4.4in)")
     const [RearText, SetRearText] = useState("Standard Size (20.5x4.4in)")
     const [LeftBadgesPopup, SetLeftBadgesPopUp] = useState(false)
-    const [LeftBadge , SetLeftBadge] = useState({})
+    const [LeftBadge, SetLeftBadge] = useState({})
+    const [LeftBadgeBackground, SetLeftBadgeBackground] = useState("white")
+    const [RightBadgesPopup, SetRightBadgesPopUp] = useState(false)
+    const [RightBadge, SetRightBadge] = useState({})
+    const [RightBadgeBackground, SetRightBadgeBackground] = useState("white")
+
+
 
     const OrderPlacement = () => {
         if (PlateText === "") {
@@ -103,6 +109,13 @@ export default function HomePage() {
                         {Badge !== "" && BadgeBackground !== '#366CB7' &&
                             <div><b>Badge Type:</b> Electric</div>
                         }
+                        {LeftBadge &&
+                            <div><b>Left Badge :</b> {LeftBadge.Image} [{LeftBadgeBackground}] </div>
+                        }
+                        {RightBadge &&
+                            <div><b>Right Badge:</b> {RightBadge.Image} [{RightBadgeBackground}] </div>
+                        }
+
                         <div><b>Material:</b> Standard ABS</div>
                     </div>
                 }
@@ -298,7 +311,7 @@ export default function HomePage() {
         SetBadge("");
         SetBadgeCity("");
         SetBadgeFlag("");
-        SetFooterText("Enter Footer Text");
+        SetFooterText("");
         SetLayout("Legal Plates");
         SetFont("black")
         SetDelivery("")
@@ -313,6 +326,13 @@ export default function HomePage() {
         SetFont(e.target.value)
 
     }
+    const HandleLeftBackgroundColor = (e) => {
+        SetLeftBadgeBackground(e.target.value)
+    }
+
+    const HandleRightBackgroundColor = (e) => {
+        SetRightBadgeBackground(e.target.value)
+    }
 
     const OpenPopUp = () => {
         SetLeftBadgesPopUp(true)
@@ -322,6 +342,21 @@ export default function HomePage() {
         SetLeftBadgesPopUp(false)
     }
 
+    const OpenPopUp2 = () => {
+        SetRightBadgesPopUp(true)
+    }
+
+    const ClosePopUp2 = () => {
+        SetRightBadgesPopUp(false)
+    }
+
+    const HandleFooterTextChange = (e) => {
+        SetFooterText(e.target.value)
+    }
+
+    const HandleFooterColor = (e) => {
+        SetFooterColor(e.target.value)
+    }
 
     return (
         <>
@@ -339,16 +374,22 @@ export default function HomePage() {
                         <div className="PopupImages">
                             {Badges.map((badge) => (
                                 <div className="PopupImageContainer" onClick={
-                                    ()=>{
-                                        SetLeftBadge(badge)
+                                    () => {
+                                        if (badge.BadgeText !== "None"
+
+                                        ) {
+                                            SetLeftBadge(badge)
+                                        } else {
+                                            SetLeftBadge({})
+                                        }
                                     }
                                 }
-                                style={{
-                                    backgroundColor: (LeftBadge.BadgeText===badge.BadgeText && LeftBadge.Index === badge.Index) ?
-                                    "black" : "",
-                                    color: (LeftBadge.BadgeText===badge.BadgeText && LeftBadge.Index === badge.Index) ?
-                                    "white" : ""
-                                }}
+                                    style={{
+                                        backgroundColor: (LeftBadge.BadgeText === badge.BadgeText && LeftBadge.Index === badge.Index) ?
+                                            "gray" : "",
+                                        color: (LeftBadge.BadgeText === badge.BadgeText && LeftBadge.Index === badge.Index) ?
+                                            "white" : ""
+                                    }}
                                 >
                                     <img
                                         src={`/Custom/${badge.Image}`}
@@ -363,7 +404,7 @@ export default function HomePage() {
                         </div>
 
                         <div className="PopupButtons">
-                            <button className="PopupButton" onClick={()=>{
+                            <button className="PopupButton" onClick={() => {
                                 ClosePopUp()
                                 SetLeftBadge({})
                             }}>Close</button>
@@ -372,6 +413,56 @@ export default function HomePage() {
                     </div>
                 </div>
             )}
+            {RightBadgesPopup && (
+                <div className="PopupContainer">
+                    <div className="Popup">
+                        <div className="PopupNavbar">
+                            <h3 className="PopupTitle">Right</h3>
+                            <h3 className="PopupTitleIn">Badges</h3>
+                        </div>
+                        <div className="PopupImages">
+                            {Badges.map((badge) => (
+                                <div className="PopupImageContainer" onClick={
+                                    () => {
+                                        if (badge.BadgeText !== "None"
+
+                                        ) {
+                                            SetRightBadge(badge)
+                                        } else {
+                                            SetRightBadge({})
+                                        }
+                                    }
+                                }
+                                    style={{
+                                        backgroundColor: (RightBadge.BadgeText === badge.BadgeText && RightBadge.Index === badge.Index) ?
+                                            "gray" : "",
+                                        color: (RightBadge.BadgeText === badge.BadgeText && RightBadge.Index === badge.Index) ?
+                                            "white" : ""
+                                    }}
+                                >
+                                    <img
+                                        src={`/Custom/${badge.Image}`}
+                                        alt="Aberdeen"
+                                        width={badge.width}
+                                        height={badge.height}
+                                    />
+                                    <h5>{badge.BadgeText}</h5>
+                                </div>
+                            ))}                       </div>
+                        <div className="ImageContainer">
+                        </div>
+
+                        <div className="PopupButtons">
+                            <button className="PopupButton" onClick={() => {
+                                ClosePopUp2()
+                                SetRightBadge({})
+                            }}>Close</button>
+                            <button className="PopupButton2" onClick={ClosePopUp2}>Done</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
 
 
             <div className='extras'>
@@ -461,6 +552,26 @@ export default function HomePage() {
                                     <select id='Dropdown-Large' required onChange={HandleFrontSize}>
                                         <option value="">-- Select Front Plate Size--</option>
                                         <option value="Option30">Standard Size (20.5x4.4in)</option>
+                                        <option value="Option30">Standard Car Plate 520mm x 111mm (20.5in x 4.4in)</option>
+                                        <option value="Option30">520mm x 111mm (20.5in x 4.4in)</option>
+                                        <option value="Option30">Standard Bike Plate 229mm x 178mm (9in x 7in)</option>
+                                        <option value="Option30">520mm x 90mm (20.5in x 3.54in)</option>
+                                        <option value="Option30">464mm x 95mm (18.3in x 3.74in)</option>
+                                        <option value="Option30">260mm x 110mm (10.2in x 4.3in)</option>
+                                        <option value="Option30">330mm x 111mm (13in x 4.4in)</option>
+                                        <option value="Option30">406mm x 111mm (16in x 4.4in)</option>
+                                        <option value="Option30">420mm x 111mm (16.53in x 4.4in)</option>
+                                        <option value="Option30">457mm x 111mm (18in x 4.4in)</option>
+                                        <option value="Option30">305mm x 76 (12in x 3in)</option>
+                                        <option value="Option30">170mm x 80mm (6.69in x 3.14in)</option>
+                                        <option value="Option30">152mmx 102mm (6in x 4in)</option>
+                                        <option value="Option30">178mm x 127mm (7in x 5in)</option>
+                                        <option value="Option30">178mm x 140mm (7in x 5.5in)</option>
+                                        <option value="Option30">178mm x 152mm (7in x 6in)</option>
+                                        <option value="Option30">190mm x 152mm (7.5in x 6in)</option>
+                                        <option value="Option30">190mm x 165mm (7.5in x 6.5in)</option>
+                                        <option value="Option30">203mm x 152mm (8in x 6in)</option>
+                                        <option value="Option30">305mm x 152mm (12in x 6in)</option>
                                     </select>
                                 </div>
                             </>
@@ -476,6 +587,26 @@ export default function HomePage() {
                                     <select id='Dropdown-Large' required onChange={HandleRearSize}>
                                         <option value="">-- Select Rear Plate Size--</option>
                                         <option value="Option30">Standard Size (20.5x4.4in)</option>
+                                        <option value="Option30">Standard Car Plate 520mm x 111mm (20.5in x 4.4in)</option>
+                                        <option value="Option30">520mm x 111mm (20.5in x 4.4in)</option>
+                                        <option value="Option30">Standard Bike Plate 229mm x 178mm (9in x 7in)</option>
+                                        <option value="Option30">520mm x 90mm (20.5in x 3.54in)</option>
+                                        <option value="Option30">464mm x 95mm (18.3in x 3.74in)</option>
+                                        <option value="Option30">260mm x 110mm (10.2in x 4.3in)</option>
+                                        <option value="Option30">330mm x 111mm (13in x 4.4in)</option>
+                                        <option value="Option30">406mm x 111mm (16in x 4.4in)</option>
+                                        <option value="Option30">420mm x 111mm (16.53in x 4.4in)</option>
+                                        <option value="Option30">457mm x 111mm (18in x 4.4in)</option>
+                                        <option value="Option30">305mm x 76 (12in x 3in)</option>
+                                        <option value="Option30">170mm x 80mm (6.69in x 3.14in)</option>
+                                        <option value="Option30">152mmx 102mm (6in x 4in)</option>
+                                        <option value="Option30">178mm x 127mm (7in x 5in)</option>
+                                        <option value="Option30">178mm x 140mm (7in x 5.5in)</option>
+                                        <option value="Option30">178mm x 152mm (7in x 6in)</option>
+                                        <option value="Option30">190mm x 152mm (7.5in x 6in)</option>
+                                        <option value="Option30">190mm x 165mm (7.5in x 6.5in)</option>
+                                        <option value="Option30">203mm x 152mm (8in x 6in)</option>
+                                        <option value="Option30">305mm x 152mm (12in x 6in)</option>
                                     </select>
                                 </div>
                             </>
@@ -534,7 +665,6 @@ export default function HomePage() {
                                         border: "2px solid black",
                                         color: "black",
                                         fontWeight: "700",
-                                        background: "black",
                                     }}
                                 >
                                     <span className="type-label">Black</span>
@@ -547,7 +677,6 @@ export default function HomePage() {
                                         border: "1px solid black",
                                         color: "white",
                                         fontWeight: "700",
-                                        background: "white",
                                     }}
                                 >
                                     <span className="type-label">White</span>
@@ -560,7 +689,6 @@ export default function HomePage() {
                                         border: "2px solid red",
                                         color: "red",
                                         fontWeight: "700",
-                                        background: "red",
                                     }}
                                 >
                                     <span className="type-label">Red</span>
@@ -573,7 +701,6 @@ export default function HomePage() {
                                         border: "2px solid blue",
                                         color: "blue",
                                         fontWeight: "700",
-                                        background: "blue",
                                     }}
                                 >
                                     <span className="type-label">Blue</span>
@@ -613,53 +740,96 @@ export default function HomePage() {
 
                     <div className='MotorBoxTop'>
                         <h6>Select Left Badge:</h6>
-                        <div className='MotorBox1'>
+                        <div className='MotorBox2'>
                             <button onClick={OpenPopUp}>
-                                View Badges
+                                Choose Badge
                             </button>
-                        </div>
-                    </div>
-
-
-
-                    <div className='MotorBoxTop'>
-                        <h6>Select Badge:</h6>
-                        <div className='MotorBox1'>
                             <label>
-                                <input className="type-input" type="radio" name="badge" onChange={HandleBadge} value="None" checked={Badge === 'None'} />
-                                <span className="type-tile2">
-                                    <span className="type-label">None</span>
-                                </span>
-                            </label>
-                            {Badges.map((badge, index) => (
-                                <label key={index}
+                                <input
+                                    className="type-input"
+                                    type="color"
+                                    value={LeftBadgeBackground}
+                                    onChange={HandleLeftBackgroundColor}
+                                />
+                                <span className="type-tile2"
+                                    style={{
+                                        border: (LeftBadgeBackground === "white") ? "2px solid black" : `2px solid ${LeftBadgeBackground}`,
+                                        color: `${LeftBadgeBackground}`,
+                                        fontWeight: "700",
+                                        background: `${LeftBadgeBackground}`,
+                                    }}
                                 >
-                                    <input className="type-input" type="radio" name="badge" onChange={HandleBadge} value={badge.ShortHand} checked={Badge === badge.ShortHand} />
-                                    <span className="type-tile2">
-                                        <span className="type-label">{badge.Name}</span>
-                                    </span>
-                                </label>
-                            ))}
+                                    <span className="type-label">Choose Backgound Color</span>
+                                </span>
+                            </label>
+
                         </div>
                     </div>
 
                     <div className='MotorBoxTop'>
-                        <h6>Select Badge Type:</h6>
-                        <div className='MotorBox'>
+                        <h6>Select Right Badge:</h6>
+                        <div className='MotorBox2'>
+                            <button onClick={OpenPopUp2}>
+                                Choose Badge
+                            </button>
                             <label>
-                                <input className="type-input" type="radio" name="badgetype" onChange={HandleBadgeBg} value="Normal" checked={BadgeBackground === '#366CB7'} />
-                                <span className="type-tile2">
-                                    <span className="type-label">Normal</span>
+                                <input
+                                    className="type-input"
+                                    type="color"
+                                    value={RightBadgeBackground}
+                                    onChange={HandleRightBackgroundColor}
+                                />
+                                <span className="type-tile2"
+                                    style={{
+                                        border: (RightBadgeBackground === "white") ? "2px solid black" : `2px solid ${RightBadgeBackground}`,
+                                        color: `${RightBadgeBackground}`,
+                                        fontWeight: "700",
+                                        background: `${RightBadgeBackground}`,
+                                    }}
+                                >
+                                    <span className="type-label">Choose Backgound Color</span>
                                 </span>
                             </label>
-                            <label>
-                                <input className="type-input" type="radio" name="badgetype" onChange={HandleBadgeBg} value="Electric" checked={BadgeBackground === '#428E3A'} />
-                                <span className="type-tile2">
-                                    <span className="type-label">Electric</span>
-                                </span>
-                            </label>
+
                         </div>
                     </div>
+
+                    <div className='MotorBoxTop'>
+                        <h6>Select Footer Text:</h6>
+                        <div className='MotorBox2'>
+                            <input
+                                style={{
+                                    border: `1px solid gray`,
+                                    color: `${FooterColor}`,
+                                    fontWeight: "300",
+                                    fontSize: "0.8rem",
+                                    width: "100%",
+                                    paddingLeft: "1rem"
+
+                                }}
+                                type="text"
+                                onChange={HandleFooterTextChange}
+                            />
+                            <label>
+                                <input
+                                    className="type-input"
+                                    type="color"
+                                    value={FooterColor}
+                                    onChange={HandleFooterColor}
+                                />
+                                <span className="type-tile2"
+                                    style={{
+                                        border: `2px solid ${FooterColor}`,
+                                        fontWeight: "700",
+                                    }}
+                                >
+                                    <span className="type-label">Choose Footer Color</span>
+                                </span>
+                            </label>
+
+                        </div>
+                    </div>
+
 
                     <div className='MotorBoxTop'>
                         <h6>Select Border:</h6>
@@ -709,68 +879,419 @@ export default function HomePage() {
 
                 <div className="GridItem2">
 
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only") && !Badge && selectedState === 'standard' && FrontSize === "Option30" &&
+                    {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only") &&
+                        typeof LeftBadge?.Image === "undefined"
+                        &&
+                        typeof RightBadge?.Image === "undefined"
+                        && selectedState === 'standard' && FrontSize === "Option30" &&
                         <div className="Centeralize">
                             <div className="Option1_Basic"
                                 style={{
                                     backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
                                         PlateType === "Gel-Tinted" ? "rgba(0, 0, 0, 0.5)" : "#E7E7E7"
                                 }}>
+
                                 <div className='Option1_Container'>
                                     {PlateText && <div className="Option1_Number" style={{ color: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
                                     {!PlateText && <div className="Option1_Number" style={{ color: Font, border: `3px solid ${Border}` }}>PREVIEW</div>}
                                     <div className="centered-container">
                                         {Layout === "Legal Plates" && <p className="Option1_Footer" style={{
                                             backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
-                                                PlateType === "Gel-Tinted" ? "rgba(0, 0, 0, 0)" : "#E7E7E7"
-                                        }}>CPD JE2 4UE</p>}
+                                                PlateType === "Gel-Tinted" ? "rgba(0, 0, 0, 0)" : "#E7E7E7",
+                                            zIndex: '99'
+                                        }}>
+                                            {FooterText ? FooterText : "CPD JE2 4UE"}</p>
+                                        }
                                     </div>
-                                    <div className="centered-container">
-                                        {Layout === "Custom Plates" && (
-                                            <p
-                                                className="Option1_Footer"
-                                                style={{
-                                                    backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
-                                                        PlateType === "Gel-Tinted" ? "rgba(0, 0, 0, 0)" : "#E7E7E7"
-                                                    , color: FooterColor
-                                                }}
-                                            >
-                                                {FooterText}
-                                            </p>
-                                        )}
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
                     }
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only") && Badge && selectedState === 'standard' && FrontSize === "Option30" &&
+                    {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only")
+                        && typeof LeftBadge?.Image !== "undefined"
+                        &&
+                        typeof RightBadge?.Image === "undefined"
+                        && selectedState === 'standard' && FrontSize === "Option30" &&
                         <div className="Centeralize">
-                            <div className="Option1B" style={{ backgroundColor: "#E7E7E7" }}>
-                                <div className="Option1B_Container" style={{ backgroundColor: BadgeBackground }}>
-                                    <img src={`${BadgeFlag}.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
-                                    <div id={ShortHand ? "Option1B_Text1" : "Option1B_Text2"}>{BadgeCity}</div>
+                            <div className="Custom" style={{
+                                backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
+                                    PlateType === "Gel-Tinted" ? "rgba(0, 0, 0, 0.5)" : "#E7E7E7"
+                            }}>
+                                <div className="CustomImageContainer"
+                                    style={
+                                        {
+                                            backgroundColor: (LeftBadgeBackground === "white") ? "transparent" : LeftBadgeBackground,
+                                        }
+                                    }
+                                >
+                                    <img
+                                        src={`/Custom/${LeftBadge.Image}`}
+                                        alt="Aberdeen"
+                                        width={LeftBadge.width}
+                                        height={LeftBadge.height}
+                                    />
+                                    <h5>{LeftBadge.BadgeText}</h5>
                                 </div>
                                 <div className='Option1B_Container1'>
-                                    {PlateText && <div className="Option1B_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
-                                    {!PlateText && <div className="Option1B_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>YOUR REG</div>}
+                                    {PlateText && <div className="Option1B_Custom" style={{ color: Font, border: `3px solid ${Border}`, borderRadius: "0.3rem" }}>{PlateText}</div>}
+                                    {!PlateText && <div className="Option1B_Custom" style={{ color: Font, border: `3px solid ${Border}`, borderRadius: "0.3rem" }}>YOUR REG</div>}
                                     <div className="centered-container">
-                                        {Layout === "Legal Plates" && <p className="Option1_Footer" style={{ backgroundColor: "#E7E7E7" }}>CPD JE2 4UE</p>}
+                                        {Layout === "Legal Plates" && <p className="Option1_Footer" style={{
+                                            backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
+                                                PlateType === "Gel-Tinted" ? "rgba(0, 0, 0, 0)" : "#E7E7E7",
+                                            color: FooterColor
+                                        }}> {FooterText ? FooterText : "CPD JE2 4UE"}</p>}
                                     </div>
+                                </div>
+                            </div>
+                            <div className="centered-container" style={{
+                                marginTop: "-0.5rem"
+                            }}>
+                                {Layout === "Custom Plates" && (
+                                    <p
+                                        className="Option1_Footer"
+                                        style={{ backgroundColor: "#E7E7E7", color: FooterColor }}
+                                    >
+                                        {FooterText}
+                                    </p>
+                                )}
+                            </div>
+
+                        </div>
+                    }
+
+                    {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only") &&
+                        typeof LeftBadge?.Image === "undefined"
+                        &&
+                        typeof RightBadge?.Image !== "undefined"
+                        && selectedState === 'standard' && FrontSize === "Option30" &&
+                        <div className="Centeralize">
+                            <div className="CustomR" style={{
+                                backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
+                                    PlateType === "Gel-Tinted" ? "rgba(0, 0, 0, 0.5)" : "#E7E7E7"
+                            }}>
+
+                                <div className='Option1B_Container1'>
+                                    {PlateText && <div className="Option1B_Custom" style={{ color: Font, border: `3px solid ${Border}`, borderRadius: "0.3rem" }}>{PlateText}</div>}
+                                    {!PlateText && <div className="Option1B_Custom" style={{ color: Font, border: `3px solid ${Border}`, borderRadius: "0.3rem" }}>YOUR REG</div>}
                                     <div className="centered-container">
-                                        {Layout === "Custom Plates" && (
-                                            <p
-                                                className="Option1_Footer"
-                                                style={{ backgroundColor: "#E7E7E7", color: FooterColor }}
-                                            >
-                                                {FooterText}
-                                            </p>
-                                        )}
+                                        {Layout === "Legal Plates" && <p className="Option1_Footer" style={{
+                                            backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
+                                                PlateType === "Gel-Tinted" ? "rgba(0, 0, 0, 0)" : "#E7E7E7",
+                                            color: FooterColor
+                                        }}> {FooterText ? FooterText : "CPD JE2 4UE"}</p>}
+                                    </div>
+                                </div>
+                                <div className="CustomImageContainer"
+                                    style={
+                                        {
+                                            backgroundColor: (RightBadgeBackground === "white") ? "transparent" : RightBadgeBackground,
+                                        }
+                                    }
+                                >
+                                    <img
+                                        src={`/Custom/${RightBadge.Image}`}
+                                        alt="Aberdeen"
+                                        width={RightBadge.width}
+                                        height={RightBadge.height}
+                                    />
+                                    <h5>{RightBadge.BadgeText}</h5>
+                                </div>
+
+                            </div>
+
+                            <div className="centered-container" style={{
+                                marginTop: "-0.5rem"
+                            }}>
+                                {Layout === "Custom Plates" && (
+                                    <p
+                                        className="Option1_Footer"
+                                        style={{ backgroundColor: "#E7E7E7", color: FooterColor }}
+                                    >
+                                        {FooterText}
+                                    </p>
+                                )}
+                            </div>
+
+                        </div>
+                    }
+
+                    {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only") && typeof RightBadge?.Image !== "undefined"
+                        &&
+                        typeof LeftBadge?.Image !== "undefined"
+                        && selectedState === 'standard' && FrontSize === "Option30" &&
+                        <div className="Centeralize">
+                            <div className="CustomM" style={{
+                                backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
+                                    PlateType === "Gel-Tinted" ? "rgba(0, 0, 0, 0.5)" : "#E7E7E7"
+                            }}>
+                                <div className="CustomImageContainer"
+                                    style={
+                                        {
+                                            backgroundColor: (LeftBadgeBackground === "white") ? "transparent" : LeftBadgeBackground,
+                                        }
+                                    }
+                                >
+                                    <img
+                                        src={`/Custom/${LeftBadge.Image}`}
+                                        alt="Aberdeen"
+                                        width={LeftBadge.width}
+                                        height={LeftBadge.height}
+                                    />
+                                    <h5>{LeftBadge.BadgeText}</h5>
+                                </div>
+                                <div className='Option1B_Container1'>
+                                    {PlateText && <div className="Option1B_CustomM" style={{ color: Font, border: `3px solid ${Border}`, borderRadius: "0.3rem" }}>{PlateText}</div>}
+                                    {!PlateText && <div className="Option1B_CustomM" style={{ color: Font, border: `3px solid ${Border}`, borderRadius: "0.3rem" }}>YOUR REG</div>}
+                                    <div className="centered-container">
+                                        {Layout === "Legal Plates" && <p className="Option1_Footer" style={{
+                                            backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
+                                                PlateType === "Gel-Tinted" ? "rgba(0, 0, 0, 0)" : "#E7E7E7",
+                                            color: FooterColor
+                                        }}> {FooterText ? FooterText : "CPD JE2 4UE"}</p>}
+                                    </div>
+                                </div>
+                                <div className="CustomImageContainer"
+                                    style={
+                                        {
+                                            backgroundColor: (RightBadgeBackground === "white") ? "transparent" : RightBadgeBackground,
+                                        }
+                                    }
+                                >
+                                    <img
+                                        src={`/Custom/${RightBadge.Image}`}
+                                        alt="Aberdeen"
+                                        width={RightBadge.width}
+                                        height={RightBadge.height}
+                                    />
+                                    <h5>{RightBadge.BadgeText}</h5>
+                                </div>
+
+                            </div>
+
+                            <div className="centered-container" style={{
+                                marginTop: "-0.5rem"
+                            }}>
+                                {Layout === "Custom Plates" && (
+                                    <p
+                                        className="Option1_Footer"
+                                        style={{ backgroundColor: "#E7E7E7", color: FooterColor }}
+                                    >
+                                        {FooterText}
+                                    </p>
+                                )}
+                            </div>
+
+                        </div>
+                    }
+
+
+                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") &&
+                        typeof LeftBadge?.Image === "undefined"
+                        &&
+                        typeof RightBadge?.Image === "undefined"
+                        && selectedState === 'standard' && FrontSize === "Option30" &&
+                        <div className="Centeralize">
+                            <div className="Option1_Basic"
+                                style={{
+                                    backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
+                                        PlateType === "Gel-Tinted" ? "rgba(241, 179, 23, 0.5)" : "#F1B317"
+                                }}>
+
+                                <div className='Option1_Container'>
+                                    {PlateText && <div className="Option1_Number" style={{ color: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
+                                    {!PlateText && <div className="Option1_Number" style={{ color: Font, border: `3px solid ${Border}` }}>PREVIEW</div>}
+                                    <div className="centered-container">
+                                        {Layout === "Legal Plates" && <p className="Option1_Footer" style={{
+                                            backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
+                                                PlateType === "Gel-Tinted" ? "rgba(0, 0, 0, 0)" : "#F1B317",
+                                            zIndex: '99'
+                                        }}>
+                                            {FooterText ? FooterText : "CPD JE2 4UE"}</p>
+                                        }
                                     </div>
                                 </div>
                             </div>
                         </div>
                     }
+                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only")
+                        && typeof LeftBadge?.Image !== "undefined"
+                        &&
+                        typeof RightBadge?.Image === "undefined"
+                        && selectedState === 'standard' && FrontSize === "Option30" &&
+                        <div className="Centeralize">
+                            <div className="Custom" style={{
+                                backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
+                                    PlateType === "Gel-Tinted" ? "rgba(241, 179, 23, 0.5)" : "#F1B317"
+                            }}>
+                                <div className="CustomImageContainer"
+                                    style={
+                                        {
+                                            backgroundColor: (LeftBadgeBackground === "white") ? "transparent" : LeftBadgeBackground,
+                                        }
+                                    }
+                                >
+                                    <img
+                                        src={`/Custom/${LeftBadge.Image}`}
+                                        alt="Aberdeen"
+                                        width={LeftBadge.width}
+                                        height={LeftBadge.height}
+                                    />
+                                    <h5>{LeftBadge.BadgeText}</h5>
+                                </div>
+                                <div className='Option1B_Container1'>
+                                    {PlateText && <div className="Option1B_Custom" style={{ color: Font, border: `3px solid ${Border}`, borderRadius: "0.3rem" }}>{PlateText}</div>}
+                                    {!PlateText && <div className="Option1B_Custom" style={{ color: Font, border: `3px solid ${Border}`, borderRadius: "0.3rem" }}>YOUR REG</div>}
+                                    <div className="centered-container">
+                                        {Layout === "Legal Plates" && <p className="Option1_Footer" style={{
+                                            backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
+                                                PlateType === "Gel-Tinted" ? "rgba(0, 0, 0, 0)" : "#F1B317",
+                                            color: FooterColor
+                                        }}> {FooterText ? FooterText : "CPD JE2 4UE"}</p>}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="centered-container" style={{
+                                marginTop: "-0.5rem"
+                            }}>
+                                {Layout === "Custom Plates" && (
+                                    <p
+                                        className="Option1_Footer"
+                                        style={{ backgroundColor: "#F1B317", color: FooterColor }}
+                                    >
+                                        {FooterText}
+                                    </p>
+                                )}
+                            </div>
+
+                        </div>
+                    }
+
+                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") &&
+                        typeof LeftBadge?.Image === "undefined"
+                        &&
+                        typeof RightBadge?.Image !== "undefined"
+                        && selectedState === 'standard' && FrontSize === "Option30" &&
+                        <div className="Centeralize">
+                            <div className="CustomR" style={{
+                                backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
+                                    PlateType === "Gel-Tinted" ? "rgba(241, 179, 23, 0.5)" : "#F1B317"
+                            }}>
+
+                                <div className='Option1B_Container1'>
+                                    {PlateText && <div className="Option1B_Custom" style={{ color: Font, border: `3px solid ${Border}`, borderRadius: "0.3rem" }}>{PlateText}</div>}
+                                    {!PlateText && <div className="Option1B_Custom" style={{ color: Font, border: `3px solid ${Border}`, borderRadius: "0.3rem" }}>YOUR REG</div>}
+                                    <div className="centered-container">
+                                        {Layout === "Legal Plates" && <p className="Option1_Footer" style={{
+                                            backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
+                                                PlateType === "Gel-Tinted" ? "rgba(0, 0, 0, 0)" : "#F1B317",
+                                            color: FooterColor
+                                        }}> {FooterText ? FooterText : "CPD JE2 4UE"}</p>}
+                                    </div>
+                                </div>
+                                <div className="CustomImageContainer"
+                                    style={
+                                        {
+                                            backgroundColor: (RightBadgeBackground === "white") ? "transparent" : RightBadgeBackground,
+                                        }
+                                    }
+                                >
+                                    <img
+                                        src={`/Custom/${RightBadge.Image}`}
+                                        alt="Aberdeen"
+                                        width={RightBadge.width}
+                                        height={RightBadge.height}
+                                    />
+                                    <h5>{RightBadge.BadgeText}</h5>
+                                </div>
+
+                            </div>
+
+                            <div className="centered-container" style={{
+                                marginTop: "-0.5rem"
+                            }}>
+                                {Layout === "Custom Plates" && (
+                                    <p
+                                        className="Option1_Footer"
+                                        style={{ backgroundColor: "#F1B317", color: FooterColor }}
+                                    >
+                                        {FooterText}
+                                    </p>
+                                )}
+                            </div>
+
+                        </div>
+                    }
+
+                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && typeof RightBadge?.Image !== "undefined"
+                        &&
+                        typeof LeftBadge?.Image !== "undefined"
+                        && selectedState === 'standard' && FrontSize === "Option30" &&
+                        <div className="Centeralize">
+                            <div className="CustomM" style={{
+                                backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
+                                    PlateType === "Gel-Tinted" ? "rgba(241, 179, 23, 0.5)" : "#F1B317"
+                            }}>
+                                <div className="CustomImageContainer"
+                                    style={
+                                        {
+                                            backgroundColor: (LeftBadgeBackground === "white") ? "transparent" : LeftBadgeBackground,
+                                        }
+                                    }
+                                >
+                                    <img
+                                        src={`/Custom/${LeftBadge.Image}`}
+                                        alt="Aberdeen"
+                                        width={LeftBadge.width}
+                                        height={LeftBadge.height}
+                                    />
+                                    <h5>{LeftBadge.BadgeText}</h5>
+                                </div>
+                                <div className='Option1B_Container1'>
+                                    {PlateText && <div className="Option1B_CustomM" style={{ color: Font, border: `3px solid ${Border}`, borderRadius: "0.3rem" }}>{PlateText}</div>}
+                                    {!PlateText && <div className="Option1B_CustomM" style={{ color: Font, border: `3px solid ${Border}`, borderRadius: "0.3rem" }}>YOUR REG</div>}
+                                    <div className="centered-container">
+                                        {Layout === "Legal Plates" && <p className="Option1_Footer" style={{
+                                            backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
+                                                PlateType === "Gel-Tinted" ? "rgba(0, 0, 0, 0)" : "#F1B317",
+                                            color: FooterColor
+                                        }}> {FooterText ? FooterText : "CPD JE2 4UE"}</p>}
+                                    </div>
+                                </div>
+                                <div className="CustomImageContainer"
+                                    style={
+                                        {
+                                            backgroundColor: (RightBadgeBackground === "white") ? "transparent" : RightBadgeBackground,
+                                        }
+                                    }
+                                >
+                                    <img
+                                        src={`/Custom/${RightBadge.Image}`}
+                                        alt="Aberdeen"
+                                        width={RightBadge.width}
+                                        height={RightBadge.height}
+                                    />
+                                    <h5>{RightBadge.BadgeText}</h5>
+                                </div>
+
+                            </div>
+
+                            <div className="centered-container" style={{
+                                marginTop: "-0.5rem"
+                            }}>
+                                {Layout === "Custom Plates" && (
+                                    <p
+                                        className="Option1_Footer"
+                                        style={{ backgroundColor: "#F1B317", color: FooterColor }}
+                                    >
+                                        {FooterText}
+                                    </p>
+                                )}
+                            </div>
+
+                        </div>
+                    }
+
 
                     <div className="Centeralize" >
                         <div id='YAB'>
@@ -860,543 +1381,543 @@ const Cover = () => {
 
 const Badges = [
     {
-        Index : 1,
+        Index: 1,
         Image: "Badge0.png",
         BadgeText: "None",
         width: "60",
         height: "75"
     },
     {
-        Index : 1,
+        Index: 1,
         Image: "Badge1.png",
         BadgeText: "",
         width: "50",
         height: "75"
     },
     {
-        Index : 2,
+        Index: 2,
         Image: "Badge2.png",
         BadgeText: "",
         width: "80",
         height: "35"
     },
     {
-        Index : 3,
+        Index: 3,
         Image: "Badge2.png",
         BadgeText: "Kernow",
         width: "80",
         height: "35"
     },
     {
-        Index : 4,
+        Index: 4,
         Image: "Badge9.png",
         BadgeText: "",
         width: "50",
         height: "50"
     },
     {
-        Index : 5,
+        Index: 5,
         Image: "Badge9.png",
         BadgeText: "GB",
         width: "50",
         height: "50"
     },
     {
-        Index : 6,
+        Index: 6,
         Image: "Badge9.png",
         BadgeText: "CYM",
         width: "50",
         height: "50"
     },
     {
-        Index : 7,
+        Index: 7,
         Image: "Badge9.png",
         BadgeText: "CYMRU",
         width: "50",
         height: "50"
     },
     {
-        Index : 8,
+        Index: 8,
         Image: "Badge9.png",
         BadgeText: "D",
         width: "50",
         height: "50"
     },
     {
-        Index : 9,
+        Index: 9,
         Image: "Badge9.png",
         BadgeText: "E",
         width: "50",
         height: "50"
     },
     {
-        Index : 10,
+        Index: 10,
         Image: "Badge9.png",
         BadgeText: "ECOSSE",
         width: "50",
         height: "50"
     },
     {
-        Index : 11,
+        Index: 11,
         Image: "Badge9.png",
         BadgeText: "ENG",
         width: "50",
         height: "50"
     },
     {
-        Index : 12,
+        Index: 12,
         Image: "Badge9.png",
         BadgeText: "ENGLAND",
         width: "50",
         height: "50"
     },
     {
-        Index : 13,
+        Index: 13,
         Image: "Badge9.png",
         BadgeText: "GB",
         width: "50",
         height: "50"
     },
     {
-        Index : 14,
+        Index: 14,
         Image: "Badge9.png",
         BadgeText: "GBJ",
         width: "50",
         height: "50"
     },
     {
-        Index : 15,
+        Index: 15,
         Image: "Badge9.png",
         BadgeText: "GREAT BRITAIN",
         width: "50",
         height: "50"
     },
     {
-        Index : 16,
+        Index: 16,
         Image: "Badge9.png",
         BadgeText: "I",
         width: "50",
         height: "50"
     },
     {
-        Index : 17,
+        Index: 17,
         Image: "Badge9.png",
         BadgeText: "IRL",
         width: "50",
         height: "50"
     },
     {
-        Index : 18,
+        Index: 18,
         Image: "Badge9.png",
         BadgeText: "NL",
         width: "50",
         height: "50"
     },
     {
-        Index : 19,
+        Index: 19,
         Image: "Badge9.png",
         BadgeText: "SCO",
         width: "50",
         height: "50"
     },
     {
-        Index : 20,
+        Index: 20,
         Image: "Badge9.png",
         BadgeText: "SCOTLAND",
         width: "50",
         height: "50"
     },
     {
-        Index : 21,
+        Index: 21,
         Image: "Badge3.png",
         BadgeText: "GB",
         width: "60",
         height: "80"
     },
     {
-        Index : 22,
+        Index: 22,
         Image: "Badge9.png",
         BadgeText: "UK",
         width: "50",
         height: "50"
     },
     {
-        Index : 23,
+        Index: 23,
         Image: "Badge9.png",
         BadgeText: "UNITED KINGDOM",
         width: "50",
         height: "50"
     },
     {
-        Index : 24,
+        Index: 24,
         Image: "Badge3.png",
         BadgeText: "UK",
         width: "60",
         height: "80"
     },
     {
-        Index : 25,
+        Index: 25,
         Image: "Badge9.png",
         BadgeText: "WALES",
         width: "50",
         height: "50"
     },
     {
-        Index : 26,
+        Index: 26,
         Image: "Badge4.png",
         BadgeText: "GBM",
         width: "50",
-        height: "50"        
+        height: "50"
     },
     {
-        Index : 27,
+        Index: 27,
         Image: "Badge4.png",
         BadgeText: "",
         width: "50",
-        height: "50"        
+        height: "50"
     },
     {
-        Index : 28,
+        Index: 28,
         Image: "ENGLAND.png",
         BadgeText: "GB",
         width: "80",
-        height: "40"                
+        height: "40"
     },
     {
-        Index : 29,
+        Index: 29,
         Image: "ENGLAND.png",
         BadgeText: "GREAT BRITAIN",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 30,
+        Index: 30,
         Image: "ENGLAND.png",
         BadgeText: "UK",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 31,
+        Index: 31,
         Image: "ENGLAND.png",
         BadgeText: "UNITED KINGDOM",
         width: "80",
-        height: "40"       
+        height: "40"
     },
     {
-        Index : 32,
+        Index: 32,
         Image: "ENGLAND.png",
         BadgeText: "ENG",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 33,
+        Index: 33,
         Image: "ENGLAND.png",
         BadgeText: "ENGLAND",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 34,
+        Index: 34,
         Image: "ENGLAND2.png",
         BadgeText: "GB",
         width: "50",
-        height: "80"                
+        height: "80"
     },
     {
-        Index : 35,
+        Index: 35,
         Image: "ENGLAND2.png",
         BadgeText: "GREAT BRITAIN",
         width: "50",
-        height: "80"        
+        height: "80"
     },
     {
-        Index : 36,
+        Index: 36,
         Image: "ENGLAND2.png",
         BadgeText: "UK",
         width: "50",
-        height: "80"        
+        height: "80"
     },
     {
-        Index : 37,
+        Index: 37,
         Image: "ENGLAND2.png",
         BadgeText: "UNITED KINGDOM",
         width: "50",
-        height: "80"       
+        height: "80"
     },
     {
-        Index : 38,
+        Index: 38,
         Image: "ENGLAND2.png",
         BadgeText: "ENG",
         width: "50",
-        height: "80"        
+        height: "80"
     },
     {
-        Index : 39,
+        Index: 39,
         Image: "ENGLAND2.png",
         BadgeText: "ENGLAND",
         width: "50",
-        height: "80"        
+        height: "80"
     },
     {
-        Index : 40,
+        Index: 40,
         Image: "ENGLAND.png",
         BadgeText: "",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 41,
+        Index: 41,
         Image: "ENGLAND2.png",
         BadgeText: "",
         width: "50",
-        height: "80"        
+        height: "80"
     },
     {
-        Index : 42,
+        Index: 42,
         Image: "SCOTLAND.png",
         BadgeText: "SCO",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 43,
+        Index: 43,
         Image: "SCOTLAND2.png",
         BadgeText: "SCO",
         width: "50",
-        height: "80"        
+        height: "80"
     },
     {
-        Index : 44,
+        Index: 44,
         Image: "SCOTLAND.png",
         BadgeText: "SCOTLAND",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 45,
+        Index: 45,
         Image: "SCOTLAND2.png",
         BadgeText: "SCOTLAND",
         width: "50",
-        height: "80"        
+        height: "80"
     },
     {
-        Index : 46,
+        Index: 46,
         Image: "SCOTLAND.png",
         BadgeText: "",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 47,
+        Index: 47,
         Image: "SCOTLAND2.png",
         BadgeText: "",
         width: "50",
-        height: "80"        
+        height: "80"
     },
     {
-        Index : 48,
+        Index: 48,
         Image: "UK.png",
         BadgeText: "UK",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 49,
+        Index: 49,
         Image: "UK.png",
         BadgeText: "UNITED KINGDOM",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 50,
+        Index: 50,
         Image: "UK.png",
         BadgeText: "CYM",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 51,
+        Index: 51,
         Image: "UK.png",
         BadgeText: "GB",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 52,
+        Index: 52,
         Image: "UK.png",
         BadgeText: "GREAT BRITAIN",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 53,
+        Index: 53,
         Image: "UK.png",
         BadgeText: "SCO",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 54,
+        Index: 54,
         Image: "UK.png",
         BadgeText: "SCOTLAND",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 55,
+        Index: 55,
         Image: "UK.png",
         BadgeText: "WALES",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 56,
+        Index: 56,
         Image: "WALES.png",
         BadgeText: "UK",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 57,
+        Index: 57,
         Image: "WALES.png",
         BadgeText: "UNITED KINGDOM",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 58,
+        Index: 58,
         Image: "WALES.png",
         BadgeText: "CYM",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 59,
+        Index: 59,
         Image: "WALES.png",
         BadgeText: "GB",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 60,
+        Index: 60,
         Image: "WALES.png",
         BadgeText: "GREAT BRITAIN",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 61,
+        Index: 61,
         Image: "WALES.png",
         BadgeText: "SCO",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 62,
+        Index: 62,
         Image: "WALES.png",
         BadgeText: "SCOTLAND",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 63,
+        Index: 63,
         Image: "WALES.png",
         BadgeText: "WALES",
         width: "80",
-        height: "40"        
+        height: "40"
     },
     {
-        Index : 64,
+        Index: 64,
         Image: "Badge4.png",
         BadgeText: "",
         width: "70",
-        height: "70"        
+        height: "70"
     },
     {
-        Index : 65,
+        Index: 65,
         Image: "Badge5.png",
         BadgeText: "",
         width: "70",
-        height: "70"        
+        height: "70"
     },
     {
-        Index : 66,
+        Index: 66,
         Image: "Badge6.png",
         BadgeText: "",
         width: "70",
-        height: "70"        
+        height: "70"
     },
     {
-        Index : 67,
+        Index: 67,
         Image: "Badge7.png",
         BadgeText: "",
         width: "70",
-        height: "70"        
+        height: "70"
     },
     {
-        Index : 68,
+        Index: 68,
         Image: "Badge8.png",
         BadgeText: "",
         width: "70",
-        height: "70"        
+        height: "70"
     },
     {
-        Index : 69,
+        Index: 69,
         Image: "Badge10.png",
         BadgeText: "",
         width: "70",
-        height: "70"        
+        height: "70"
     },
     {
-        Index : 70,
+        Index: 70,
         Image: "Badge11.png",
         BadgeText: "",
         width: "70",
-        height: "70"        
+        height: "70"
     },
     {
-        Index : 71,
+        Index: 71,
         Image: "Badge12.png",
         BadgeText: "",
         width: "70",
-        height: "70"        
+        height: "70"
     },
     {
-        Index : 72,
+        Index: 72,
         Image: "Badge13.png",
         BadgeText: "",
         width: "70",
-        height: "70"        
+        height: "70"
     },
     {
-        Index : 73,
+        Index: 73,
         Image: "Badge14.png",
         BadgeText: "",
         width: "70",
-        height: "70"        
+        height: "70"
     },
     {
-        Index : 74,
+        Index: 74,
         Image: "Badge15.png",
         BadgeText: "",
         width: "70",
-        height: "70"        
+        height: "70"
     },
     {
-        Index : 75,
+        Index: 75,
         Image: "Badge16.png",
         BadgeText: "",
         width: "70",
-        height: "70"        
+        height: "70"
     },
     {
-        Index : 76,
+        Index: 76,
         Image: "Badge17.png",
         BadgeText: "",
         width: "70",
-        height: "70"        
+        height: "70"
     }
 ]
 
