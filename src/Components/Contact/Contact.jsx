@@ -22,7 +22,16 @@ export default function Contact() {
                     </div>
                     <div>
                         <h6 className='Contact1'>
-                            Or call us at:
+                            Email us at:
+                        </h6 >
+                        <h6 className='Contact'>
+                            platenkeys@gmail.com
+                        </h6>
+                    </div>
+                    
+                    <div>
+                        <h6 className='Contact1'>
+                            Call us at:
                         </h6 >
                         <h6 className='Contact'>
                             Office: 01908 222555

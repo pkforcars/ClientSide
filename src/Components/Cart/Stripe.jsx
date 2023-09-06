@@ -132,7 +132,7 @@ export default function Page2(props) {
             <>
                 <PaymentElement />
                 <div className="login-2">
-                    <button onClick={()=>{Navigate('/dashboard')}} style={{marginRight: "2px"}}className="Paynow">Cancel</button>
+                    <button className="btn-pay2" onClick={()=>{Navigate('/dashboard')}} style={{marginRight: "2px"}} >Cancel</button>
 
                     <button onClick={MakePayment} className="Paynow">Pay Now</button>
                 </div>

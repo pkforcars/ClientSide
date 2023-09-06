@@ -72,10 +72,13 @@ export default function HomePage() {
             "FittingKit": FittingKit,
             "Material": Material,
             "Total": CalculatePrice(),
-            "FrontText" : FrontText,
-            "RearText" : RearText
-
+            "FrontText": FrontText,
+            "RearText": RearText,
         });
+
+        Navigate('/checkout')
+
+        /*
         if (Global.isLoggedIn) {
             Navigate('/checkout')
         }
@@ -83,6 +86,7 @@ export default function HomePage() {
             Navigate('/login')
             Global.SetRedirectToCart(true)
         }
+        */
 
     }
 
@@ -108,6 +112,12 @@ export default function HomePage() {
                             <div><b>Badge Type:</b> Gel</div>
                         }
                         <div><b>Material:</b> Standard ABS</div>
+                        {Spare &&
+                            <div><b>Spare:</b> £30.00</div>
+                        }
+                        {FittingKit &&
+                            <div><b>Fitting Kit:</b> £3.99</div>
+                        }
                     </div>
                 }
                 {(selectedState === 'standard' && PlateChoice === 'Front Only') &&
@@ -127,6 +137,12 @@ export default function HomePage() {
                             <div><b>Badge Type:</b> Gel</div>
                         }
                         <div><b>Material:</b> Standard ABS</div>
+                        {Spare &&
+                            <div><b>Spare:</b> £30.00</div>
+                        }
+                        {FittingKit &&
+                            <div><b>Fitting Kit:</b> £3.99</div>
+                        }
                     </div>
                 }
                 {(selectedState === 'standard' && PlateChoice === 'Rear Only') &&
@@ -146,17 +162,29 @@ export default function HomePage() {
                             <div><b>Badge Type:</b> Gel</div>
                         }
                         <div><b>Material:</b> Standard ABS</div>
+                        {Spare &&
+                            <div><b>Spare:</b> £30.00</div>
+                        }
+                        {FittingKit &&
+                            <div><b>Fitting Kit:</b> £3.99</div>
+                        }
                     </div>
                 }
                 {(selectedState !== 'standard') &&
                     <div className="Bought">
-                        <div><b>Plate Type:</b>4D Plate</div>
-                        <div><b>FrontSize:</b> {FrontText} £39.99</div>
-                        <div><b>RearSize:</b> {RearText} £39.99</div>
+                        <div><b>Plate Type:</b> 4D Plate</div>
+                        <div><b>FrontSize:</b> {FrontText} £20.00</div>
+                        <div><b>RearSize:</b> {RearText} £20.00</div>
                         {(Border !== "transparent") &&
                             <div><b>Border:</b> {Border} £21.99</div>
                         }
                         <div><b>Material:</b> Standard ABS</div>
+                        {Spare &&
+                            <div><b>Spare:</b> £35.00</div>
+                        }
+                        {FittingKit &&
+                            <div><b>Fitting Kit:</b> £3.99</div>
+                        }
                     </div>
                 }
             </>
@@ -249,7 +277,7 @@ export default function HomePage() {
             SetPlateText(plateText.toUpperCase());
         }
     };
-    const handleRadioChange = (e) => { setSelectedState(e.target.value); };
+
     const HandleFrontSize = (e) => {
         SetFrontSize(e.target.value);
         const selectedText = e.target.options[e.target.selectedIndex].text;
@@ -288,53 +316,9 @@ export default function HomePage() {
             plateFront4D.setAttribute("data-content", PlateText);
         }
     };
-    const HandleBadgeBg = (e) => {
-        if (e.target.value === 'Gel') {
-            SetBadgeBackground("#428E3A")
-        }
-        else {
-            SetBadgeBackground("#366CB7")
-        }
-    };
+
     const HandleBorder = (e) => {
-        if (e.target.value === 'No') {
-            SetBorder("transparent")
-        }
-        else {
-            SetBorder("#000000")
-        }
-
-
-    };
-    const HandleBadge = (e) => {
-        SetBadge(e.target.value);
-        if (e.target.value === "None") {
-            SetBadge("")
-        }
-        if (e.target.value !== "" && e.target.value !== "None") {
-            const [flag, city] = e.target.value.split('-');
-            if (flag.endsWith('P')) {
-                SetVertical(true)
-            }
-            else {
-                SetVertical(false)
-            }
-            if (city.length > 4) {
-                setShortHand(true)
-            } else {
-                setShortHand(false)
-            }
-            SetBadgeCity(city);
-
-            var updatedFlag = flag.replace("P", "");
-            updatedFlag = updatedFlag.charAt(0).toUpperCase() + updatedFlag.slice(1);
-            SetBadgeFlag(updatedFlag);
-        }
-        if (e.target.value === "") {
-            SetBadge("")
-            SetBadgeCity("");
-            SetBadgeFlag("");
-        }
+        SetBorder(e.target.value)
     };
 
     const HandleMaterial = (e) => { SetMaterial(e.target.value) }
@@ -353,17 +337,6 @@ export default function HomePage() {
 
     })
 
-    const ReturnSize = (Option) => {
-        const Size = {
-            Option1: 'Standard Size (20.5x4.4in)',
-            Option6: 'Standard UK Car Large Rear',
-            Option2: 'Short Plate [ 6 Letters ]',
-            Option3: 'Short Plate [ 5 Letters ]',
-            Option4: 'Standard UK Motorcycle',
-            Option5: 'Standard 4x4 Plate'
-        }
-        return Size[Option] || ""
-    }
 
     const ResetAll = () => {
         SetRearSize("Option1");
@@ -378,10 +351,14 @@ export default function HomePage() {
         SetFont("'Montserrat', sans-serif")
         SetDelivery("")
         setSpare(false)
-    }
+        SetFittingKit(false)
+        SetMaterial("Standard-ABS")
+        SetPlateChoice("Front and Rear")
+        SetPlateText("")
+        SetVertical(false)
+        setShortHand(false)
+        SetFooterColor("black")
 
-    const HandlePlates = (e)=>{
-        SetPlateChoice(e.target.value)
     }
 
     return (
@@ -420,151 +397,101 @@ export default function HomePage() {
             </div>
             <div className='container my-2' id="Grid">
                 <div className="GridItem1">
-                    <div className='Plate-Builder'>
-                        {selectedState === 'standard' ? (
+
+                    <div className='MotorBoxTop'>
+                        <h6>Select Material:</h6>
+                        <div className='MotorBox'>
+                            <label>
+                                <input className="type-input" type="radio" name="platematerial" onChange={HandleMaterial} value="Standard-ABS" checked={Material === 'Standard-ABS'} />
+                                <span className="type-tile2">
+                                    <span className="type-label">Standard ABS</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div className='MotorBoxTop'>
+                        {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only") &&
                             <>
-                                <div className="type-inputs">
-                                    <label >
-                                        <input className="type-input" type="radio" name="engine" 
-                                        onChange={HandlePlates} value="Front and Rear" checked={PlateChoice=== 'Front and Rear'} />
-                                        <span className="type-tile">
-                                            <span className="type-icon">
-                                                <img src="/FRONTPLATE.png" alt="Front Plate" width={100} height={25} />
-                                                <img src="/REAR.png" alt="Rear" width={100} height={25} />
-                                            </span>
-                                            <span className="type-label">Front and Rear</span>
-                                        </span>
-                                    </label>
-                                    <label>
-                                        <input className="type-input" type="radio" name="engine" onChange={HandlePlates} value="Front Only" checked={PlateChoice=== 'Front Only'} />
-                                        <span className="type-tile">
-                                            <span className="type-icon">
-                                                <img src="/FRONTPLATE.png" alt="Front Plate" width={90} height={25} />
-                                            </span>
-                                            <span className="type-label">Front Only</span>
-                                        </span>
-                                    </label>
-                                    <label>
-                                        <input className="type-input" type="radio" name="engine" onChange={HandlePlates} value="Rear Only" checked={PlateChoice=== 'Rear Only'} />
-                                        <span className="type-tile">
-                                            <span className="type-icon">
-                                                <img src="/REAR.png" alt="Rear" width={90} height={25} />
-                                            </span>
-                                            <span className="type-label">Rear Only</span>
-                                        </span>
-                                    </label>
-                                </div>
+                                <h6>Select Front Size:</h6>
                                 <div className="container my-2" id='Selection-Options'>
-                                    <select id='Dropdown' required onChange={HandleMaterial}>
-                                        <option value="">-- Select Material--</option>
-                                        <option value="Standard-ABS">Standard ABS</option>
+                                    <select id='Dropdown-Large' required onChange={HandleFrontSize}>
+                                        <option value="">-- Select Front Plate Size--</option>
+                                        <option value="Option1">Standard Size (20.5x4.4in)</option>
+                                        <option value="Option2">Short Plate [ 6 Letters ] </option>
+                                        <option value="Option3">Short Plate [ 5 Letters ] </option>
+                                        <option value="Option4">Standard UK Motorcycle</option>
+                                        <option value="Option5">Standard 4x4 Plate</option>
                                     </select>
                                 </div>
-
-                                {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only") &&
-                                    <div className="container my-2" id='Selection-Options'>
-                                        <select id='Dropdown-Large' required onChange={HandleFrontSize}>
-                                            <option value="">-- Select Front Plate Size--</option>
-                                            <option value="Option1">Standard Size (20.5x4.4in)</option>
-                                            <option value="Option2">Short Plate [ 6 Letters ] </option>
-                                            <option value="Option3">Short Plate [ 5 Letters ] </option>
-                                            <option value="Option4">Standard UK Motorcycle</option>
-                                            <option value="Option5">Standard 4x4 Plate</option>
-                                        </select>
-                                    </div>
-                                }
-
-                                {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") &&
-                                    <div className="container my-2" id='Selection-Options'>
-                                        <select id='Dropdown-Large' required onChange={HandleRearSize}>
-                                            <option value="">-- Select Rear Plate Size--</option>
-                                            <option value="Option1">Standard Size (20.5x4.4in)</option>
-                                            <option value="Option6">Standard UK Car Large Rear</option>
-                                            <option value="Option2">Short Plate [ 6 Letters ] </option>
-                                            <option value="Option3">Short Plate [ 5 Letters ] </option>
-                                            <option value="Option4">Standard UK Motorcycle</option>
-                                            <option value="Option5">Standard 4x4 Plate</option>
-                                        </select>
-                                    </div>
-                                }
-                                <div className="container my-2" id='Selection-Options2'>
-                                    <select id='Dropdown-Large' required onChange={HandleBadge}>
-                                        <option value="">-- Select Badge --</option>
-                                        <option value="None">-- None --</option>
-                                        {Badges.map((badge, index) => (
-                                            <option key={index} value={badge}>{badge}</option>
-                                        ))}
-                                    </select>
-                                </div>
-
-
-                                <div className="container my-2" id='Selection-Options'>
-                                    <select id='Dropdown' required onChange={HandleBadgeBg}>
-                                        <option value="">-- Select Badge Type --</option>
-                                        <option value="Normal">Normal</option>
-                                        <option value="Gel">Gel</option>
-                                    </select>
-                                    <select id='Dropdown' required onChange={HandleBorder}>
-                                        <option value="">-- Select Border --</option>
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
-                                    </select>
-                                </div>
-
-
-                                <div className="Centeralize1" onClick={ResetAll}>
-                                    <button className="Cart-Button1">Reset</button>
-                                </div>
-
                             </>
-                        ) :
-                            (
-                                <>
-                                    <div className="container my-2" id='Selection-Options'>
-                                        <select id='Dropdown-Large' required onChange={HandleMaterial}>
-                                            <option value="">-- Select Material--</option>
-                                            <option value="Standard-ABS">Standard ABS</option>
-                                        </select>
-                                    </div>
+                        }
+                        {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") &&
+                            <>
+                                <h6
+                                    style={{
+                                        marginTop: "1rem"
+                                    }}
+                                >Select Rear Size:</h6>
 
-                                    <div className="container my-2" id='Selection-Options'>
-                                        <select id='Dropdown-Large' required onChange={HandleFrontSize}>
-                                            <option value="">-- Select Front Plate Size--</option>
-                                            <option value="Option1">Standard Size (20.5x4.4in)</option>
-                                            <option value="Option2">Short Plate [ 6 Letters ] </option>
-                                            <option value="Option3">Short Plate [ 5 Letters ] </option>
-                                            <option value="Option4">Standard UK Motorcycle</option>
-                                            <option value="Option5">Standard 4x4 Plate</option>
-                                        </select>
-                                    </div>
+                                <div className="container my-2" id='Selection-Options'>
+                                    <select id='Dropdown-Large' required onChange={HandleRearSize}>
+                                        <option value="">-- Select Rear Plate Size--</option>
+                                        <option value="Option1">Standard Size (20.5x4.4in)</option>
+                                        <option value="Option6">Standard UK Car Large Rear</option>
+                                        <option value="Option2">Short Plate [ 6 Letters ] </option>
+                                        <option value="Option3">Short Plate [ 5 Letters ] </option>
+                                        <option value="Option4">Standard UK Motorcycle</option>
+                                        <option value="Option5">Standard 4x4 Plate</option>
+                                    </select>
+                                </div>
+                            </>
+                        }
+                    </div>
 
-                                    <div className="container my-2" id='Selection-Options'>
-                                        <select id='Dropdown-Large' required onChange={HandleRearSize}>
-                                            <option value="">-- Select Rear Plate Size--</option>
-                                            <option value="Option1">Standard Size (20.5x4.4in)</option>
-                                            <option value="Option6">Standard UK Car Large Rear</option>
-                                            <option value="Option2">Short Plate [ 6 Letters ] </option>
-                                            <option value="Option3">Short Plate [ 5 Letters ] </option>
-                                            <option value="Option4">Standard UK Motorcycle</option>
-                                            <option value="Option5">Standard 4x4 Plate</option>
-                                        </select>
-                                    </div>
-
-                                    <div className="container my-2" id='Selection-Options'>
-                                        <select id='Dropdown' required onChange={HandleBorder}>
-                                            <option value="">-- Select Border --</option>
-                                            <option value="Yes">Yes</option>
-                                            <option value="No">No</option>
-                                        </select>
-                                    </div>
-
-
-                                    <div className="Centeralize1" onClick={ResetAll}>
-                                        <button className="Cart-Button1">Reset</button>
-                                    </div>
-
-                                </>
-                            )}
+                    <div className='MotorBoxTop'>
+                        <h6>Select Border:</h6>
+                        <div className='MotorBox1'>
+                            <label>
+                                <input className="type-input" type="radio" name="border" onChange={HandleBorder} value="transparent" checked={Border === 'transparent'} />
+                                <span className="type-tile2">
+                                    <span className="type-label">None</span>
+                                </span>
+                            </label>
+                            <label>
+                                <input className="type-input" type="radio" name="border" onChange={HandleBorder} value="Black" checked={Border === 'Black'} />
+                                <span className="type-tile2"
+                                    style={{
+                                        border: "2px solid black",
+                                    }}
+                                >
+                                    <span className="type-label">Black</span>
+                                </span>
+                            </label>
+                            <label>
+                                <input className="type-input" type="radio" name="border" onChange={HandleBorder} value="Blue" checked={Border === 'Blue'} />
+                                <span className="type-tile2"
+                                    style={{
+                                        border: "2px solid blue",
+                                    }}
+                                >
+                                    <span className="type-label">Blue</span>
+                                </span>
+                            </label>
+                            <label>
+                                <input className="type-input" type="radio" name="border" onChange={HandleBorder} value="Red" checked={Border === 'Red'} />
+                                <span className="type-tile2"
+                                    style={{
+                                        border: "2px solid red",
+                                    }}
+                                >
+                                    <span className="type-label">Red</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div className="Centeralize1" onClick={ResetAll}>
+                        <button className="Cart-Button1">Reset</button>
                     </div>
                 </div>
 
@@ -1325,7 +1252,7 @@ export default function HomePage() {
                             </div>
 
                             <div className='check'>
-                                <label style={{color: "black" }}
+                                <label style={{ color: "black" }}
                                 >
                                     <input
                                         type="checkbox"
@@ -1333,13 +1260,13 @@ export default function HomePage() {
                                         onChange={handleSpareChange}
                                         style={{
                                             marginRight: "0.5rem",
-                                            marginTop: "0.5rem"                                            
+                                            marginTop: "0.5rem"
                                         }}
 
                                     />
                                     A spare pair of plates is always handy. Do you want to add a spare pair? £35.00
                                 </label>
-                                <label style={{color: "black" }}
+                                <label style={{ color: "black" }}
                                 >
                                     <input
                                         type="checkbox"
@@ -1347,7 +1274,7 @@ export default function HomePage() {
                                         onChange={handleFittingKit}
                                         style={{
                                             marginRight: "0.5rem",
-                                            marginTop: "0.5rem"                                            
+                                            marginTop: "0.5rem"
                                         }}
                                     />
                                     Do you need a fitting kit? £3.99 Each
@@ -1359,7 +1286,7 @@ export default function HomePage() {
                     </div>
                 </div>
             </div>
-            <ToastContainer theme="colored"/>
+            <ToastContainer theme="colored" />
 
             <Footer />
         </>
@@ -1380,12 +1307,3 @@ const Cover = () => {
         </>
     )
 }
-
-
-const Badges = [
-    "UNION-ENG",
-    "UNION-ENGLAND",
-    "UNIONP-ENG",
-    "UNIONP-ENGLAND",
-];
-

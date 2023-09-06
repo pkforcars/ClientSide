@@ -5,6 +5,7 @@ import './Cart.css'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
 import Stripe from './Stripe'
+import Footer from '../Footer/Footer'
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_API_KEY);
 
@@ -18,17 +19,17 @@ export default function Cart2() {
         postcode: '',
         country: '',
         phone: '',
-      });
-    const HandleOrderEmail = (event) => { setOrderData({ ...orderData, email: event.target.value });};
-    const HandleAddress1 = (event) => {setOrderData({ ...orderData, address1: event.target.value });};
-    const HandleAddress2 = (event) => { setOrderData({ ...orderData, address2: event.target.value });};
+    });
+    const HandleOrderEmail = (event) => { setOrderData({ ...orderData, email: event.target.value }); };
+    const HandleAddress1 = (event) => { setOrderData({ ...orderData, address1: event.target.value }); };
+    const HandleAddress2 = (event) => { setOrderData({ ...orderData, address2: event.target.value }); };
     const HandleCity = (event) => { setOrderData({ ...orderData, city: event.target.value }); };
-    const HandlePostcode = (event) => { setOrderData({ ...orderData, postcode: event.target.value });};
-    const HandleCountry = (event) => {setOrderData({ ...orderData, country: event.target.value });};
-    const HandlePhone = (event) => {  setOrderData({ ...orderData, phone: event.target.value });};
+    const HandlePostcode = (event) => { setOrderData({ ...orderData, postcode: event.target.value }); };
+    const HandleCountry = (event) => { setOrderData({ ...orderData, country: event.target.value }); };
+    const HandlePhone = (event) => { setOrderData({ ...orderData, phone: event.target.value }); };
     const Global = useContext(Context)
     const [clientSecret, setClientSecret] = useState()
-   
+
     /*
     useEffect(() => {
         const stripeApiKey = process.env.REACT_APP_STRIPE_API_KEY;
@@ -51,114 +52,43 @@ export default function Cart2() {
     }, [])
     */
 
-    const GetPaymentIntent = async () =>{
-            const Response = await fetch(`${process.env.REACT_APP_BASE_URL}/PaymentIntent`,
+    const GetPaymentIntent = async () => {
+        const Response = await fetch(`${process.env.REACT_APP_BASE_URL}/PaymentIntent`,
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({Price: Global.Order.Total}),
-            });          
-            const ResponseToJson = await Response.json();
-            setClientSecret(ResponseToJson.ClientSecret)
+                body: JSON.stringify({ Price: Global.Order.Total }),
+            });
+        const ResponseToJson = await Response.json();
+        setClientSecret(ResponseToJson.ClientSecret)
     }
 
 
-    useEffect(()=>{
+    useEffect(() => {
         GetPaymentIntent()
-    },[])
+    }, [])
 
     return (
         <>
             <Navigation />
             <div className='container my-5' id="Cart-Holder">
                 <div className='Order-Display'>
-                    <div className='Order-Header'>
-                        Order Details
-                    </div>
 
                     <>
-                        {(Global.Order.Type === 'standard' && Global.Order.PlateChoice === 'Front and Rear') &&
-                            <div className="Order-His">
-                                <div><b>Plate Type:</b> Standard [Front and Rear]</div>
-                                <div><b>Plate Number:</b> {Global.Order.PlateText}</div>
-                                <div><b>Front Plate Size:</b> {Global.Order.FrontText}</div>
-                                <div><b>Rear Plate Size:</b> {Global.Order.RearText}</div>
-                                {(Global.Order.Border !== "transparent") &&
-                                    <div><b>Border:</b> {Global.Order.Border}</div>
-                                }
-                                {(Global.Order.Border === "transparent") &&
-                                    <div><b>Border:</b> None</div>
-                                }
-                                {Global.Order.Badge !== "" &&
-                                    <>
-                                        <div><b>Badge:</b> {Global.Order.Badge}</div>
-                                    </>
-                                }
-                                {Global.Order.Badge === "" &&
-                                    <div><b>Badge:</b> No Badges</div>
-                                }
-                                {Global.Order.Badge !== "" && Global.Order.BadgeBackground === '#366CB7' &&
-                                    <div><b>Badge Type:</b> Normal</div>
-                                }
-                                {Global.Order.Badge !== "" && Global.Order.BadgeBackground !== '#366CB7' &&
-                                    <div><b>Badge Type:</b> Gel</div>
-                                }
-                                <div><b>Material:</b> Standard ABS</div>
-                                <div><b>Delivery:</b> {Global.Order.Delivery} Delivery</div>
-                                {Global.Order.Spare &&
-                                    <div><b>Spare:</b> Spare Included</div>}
-                                {!Global.Order.Spare &&
-                                    <div><b>Spare:</b> Spare Excluded</div>}
-                                {Global.Order.FittingKit &&
-                                    <div><b>Fitting Kit:</b> Included</div>}
-                                {!Global.Order.FittingKit &&
-                                    <div><b>Fitting Kit:</b>Excluded</div>}
-                    
-                            </div>
-                        }
-                        {(Global.Order.Type === 'standard' && Global.Order.PlateChoice === 'Front Only') &&
-                            <div className="Order-His">
-                                <div><b>Plate Type:</b> Standard [Front Only]</div>
-                                <div><b>Plate Number:</b> {Global.Order.PlateText}</div>
-                                <div><b>Front Plate Size:</b> {Global.Order.FrontText}</div>
-                                {(Global.Order.Border !== "transparent") &&
-                                    <div><b>Border:</b> {Global.Order.Border}</div>
-                                }
-                                {(Global.Order.Border === "transparent") &&
-                                    <div><b>Border:</b> None</div>
-                                }
-                                {Global.Order.Badge !== "" &&
-                                    <>
-                                        <div><b>Badge:</b> {Global.Order.Badge}</div>
-                                    </>
-                                }
-                                {Global.Order.Badge === "" &&
-                                    <div><b>Badge:</b> No Badges</div>
-                                }
-                                {Global.Order.Badge !== "" && Global.Order.BadgeBackground === '#366CB7' &&
-                                    <div><b>Badge Type:</b> Normal</div>
-                                }
-                                {Global.Order.Badge !== "" && Global.Order.BadgeBackground !== '#366CB7' &&
-                                    <div><b>Badge Type:</b> Gel</div>
-                                }
-                                <div><b>Material:</b> Standard ABS</div>
-                                <div><b>Delivery:</b> {Global.Order.Delivery} Delivery</div>
-                                {Global.Order.Spare &&
-                                    <div><b>Spare:</b> Spare Included</div>}
-                                {!Global.Order.Spare &&
-                                    <div><b>Spare:</b> Spare Excluded</div>}
-                                {Global.Order.FittingKit &&
-                                    <div><b>Fitting Kit:</b> Included</div>}
-                                {!Global.Order.FittingKit &&
-                                    <div><b>Fitting Kit:</b>Excluded</div>}
+                        {(Global.Order.Type === 'standard') &&
 
-                            </div>
-                        }
-                        {(Global.Order.Type === 'standard' && Global.Order.PlateChoice === 'Rear Only') &&
                             <div className="Order-His">
-                                <div><b>Plate Type:</b> Standard [Rear Only]</div>
+                                <div className='Order-Header'>
+                                    Order Details
+                                </div>
+                                <div><b>Plate Type:</b> Standard [{Global.Order.PlateChoice}]</div>
                                 <div><b>Plate Number:</b> {Global.Order.PlateText}</div>
-                                <div><b>Rear Plate Size:</b> {Global.Order.RearText}</div>
+                                {(Global.Order.PlateChoice === 'Front and Rear' || Global.Order.PlateChoice === 'Front Only') &&
+                                    <div><b>Front Plate Size:</b> {Global.Order.FrontText}</div>
+                                }
+                                {(Global.Order.PlateChoice === 'Front and Rear' || Global.Order.PlateChoice === 'Rear Only') &&
+                                    <div><b>Rear Plate Size:</b> {Global.Order.RearText}</div>
+                                }
                                 {(Global.Order.Border !== "transparent") &&
                                     <div><b>Border:</b> {Global.Order.Border}</div>
                                 }
@@ -177,7 +107,7 @@ export default function Cart2() {
                                     <div><b>Badge Type:</b> Normal</div>
                                 }
                                 {Global.Order.Badge !== "" && Global.Order.BadgeBackground !== '#366CB7' &&
-                                    <div><b>Badge Type:</b> Gel</div>
+                                    <div><b>Badge Type:</b> Electric</div>
                                 }
                                 <div><b>Material:</b> Standard ABS</div>
                                 <div><b>Delivery:</b> {Global.Order.Delivery} Delivery</div>
@@ -188,11 +118,14 @@ export default function Cart2() {
                                 {Global.Order.FittingKit &&
                                     <div><b>Fitting Kit:</b> Included</div>}
                                 {!Global.Order.FittingKit &&
-                                    <div><b>Fitting Kit:</b>Excluded</div>}
+                                    <div><b>Fitting Kit:</b> Excluded</div>}
                             </div>
                         }
-                        {(Global.Order.Type !== 'standard') &&
+                        {(Global.Order.Type === '4D') &&
                             <div className="Order-His">
+                                <div className='Order-Header'>
+                                    Order Details
+                                </div>
                                 <div><b>Plate Type:</b> 4D [Front and Rear]</div>
                                 <div><b>Plate Number:</b> {Global.Order.PlateText}</div>
                                 <div><b>Front Plate Size:</b> {Global.Order.FrontText}</div>
@@ -213,7 +146,140 @@ export default function Cart2() {
                                 {Global.Order.FittingKit &&
                                     <div><b>Fitting Kit:</b> Included</div>}
                                 {!Global.Order.FittingKit &&
-                                    <div><b>Fitting Kit:</b>Excluded</div>}
+                                    <div><b>Fitting Kit:</b >Excluded</div>}
+                            </div>
+                        }
+                        {(Global.Order.Type === 'custom') &&
+                            <div className="Order-His">
+                                <div className='Order-Header'>
+                                    Order Details
+                                </div>
+                                <div><b>Plate Type:</b> Custom [{Global.Order.PlateChoice}]</div>
+                                {(Global.Order.PlateChoice === 'Front and Rear' || Global.Order.PlateChoice === 'Front Only') &&
+                                    <div><b>FrontSize:</b> {Global.Order.FrontText} £9.99</div>
+                                }
+                                {(Global.Order.PlateChoice === 'Front and Rear' || Global.Order.PlateChoice === 'Rear Only') &&
+                                    <div><b>RearSize:</b> {Global.Order.RearText} £9.99</div>
+                                }
+                                {(Global.Order.Border !== "transparent") &&
+                                    <div><b>Border:</b> {Global.Order.Border} £21.99</div>
+                                }
+                                {typeof Global.Order.LeftBadge?.Image !== "undefined" &&
+                                    <div><b>Left Badge :</b> {Global.Order.LeftBadge.Image} [{Global.Order.LeftBadgeBackground}]  £29.99</div>
+                                }
+                                {typeof Global.Order.RightBadge?.Image !== "undefined" &&
+                                    <div><b>Right Badge:</b> {Global.Order.RightBadge.Image} [{Global.Order.RightBadgeBackground}] £29.99</div>
+                                }
+                                {Global.Order.Badge !== "" &&
+                                    <div><b>Badge:</b> {Global.Order.Badge} £14.99</div>
+                                }
+                                {Global.Order.PlateType &&
+                                    <div><b>Plate Type:</b> {Global.Order.PlateType}</div>
+                                }
+                                {Global.Order.FooterText !== "" &&
+                                    <div><b>Footer Text:</b> {Global.Order.FooterText} [{Global.Order.FooterColor}]</div>
+                                }
+                                {Global.Order.Spare &&
+                                    <div><b>Spare:</b> £15.00</div>
+                                }
+                                {Global.Order.FittingKit &&
+                                    <div><b>Fitting Kit:</b> £3.99</div>
+                                }
+                                {Global.Order.Font &&
+                                    <div><b>Font Color:</b> {Global.Order.Font}</div>
+                                }
+                                <div><b>Material:</b> Standard ABS</div>
+                                <div><b>Delivery:</b> {Global.Order.Delivery}</div>
+                            </div>
+                        }
+                        {(Global.Order.Type === 'Motor' && Global.Order.PlateChoice === 'Front and Rear') &&
+                            <div className="Order-His">
+                                <div className='Order-Header'>
+                                    Order Details
+                                </div>
+                                <div><b>Plate Type:</b> Motor Plates</div>
+                                <div><b>FrontSize:</b> {Global.Order.FrontText} £9.99</div>
+                                <div><b>RearSize:</b> {Global.Order.RearText} £9.99</div>
+                                {(Global.Order.Border !== "transparent") &&
+                                    <div><b>Border:</b> {Global.Order.Border} £21.99</div>
+                                }
+                                {Global.Order.Badge !== "" &&
+                                    <div><b>Badge:</b> {Global.Order.Badge} £29.99</div>
+                                }
+                                {Global.Order.Badge !== "" && Global.Order.BadgeBackground === '#366CB7' &&
+                                    <div><b>Badge Type:</b> Normal</div>
+                                }
+                                {Global.Order.Badge !== "" && Global.Order.BadgeBackground !== '#366CB7' &&
+                                    <div><b>Badge Type:</b> Electric</div>
+                                }
+                                <div><b>Material:</b> Standard ABS</div>
+                                {Global.Order.Spare &&
+                                    <div><b>Spare:</b> £30.00</div>
+                                }
+                                {Global.Order.FittingKit &&
+                                    <div><b>Fitting Kit:</b> £3.99</div>
+                                }
+                                <div><b>Delivery:</b> {Global.Order.Delivery}</div>
+                            </div>
+                        }
+                        {(Global.Order.Type === 'Motor' && Global.Order.PlateChoice === 'Front Only') &&
+                            <div className="Order-His">
+                                <div className='Order-Header'>
+                                    Order Details
+                                </div>
+
+                                <div><b>Plate Type:</b> Motor Plates [Front Only]</div>
+                                <div><b>FrontSize:</b> {Global.Order.FrontText} £9.99</div>
+                                {(Global.Order.Border !== "transparent") &&
+                                    <div><b>Border:</b> {Global.Order.Border} £10.99</div>
+                                }
+                                {Global.Order.Badge !== "" &&
+                                    <div><b>Badge:</b> {Global.Order.Badge} £14.99</div>
+                                }
+                                {Global.Order.Badge !== "" && Global.Order.BadgeBackground === '#366CB7' &&
+                                    <div><b>Badge Type:</b> Normal</div>
+                                }
+                                {Global.Order.Badge !== "" && Global.Order.BadgeBackground !== '#366CB7' &&
+                                    <div><b>Badge Type:</b> Electric</div>
+                                }
+                                {Global.Order.Spare &&
+                                    <div><b>Spare:</b> £30.00</div>
+                                }
+                                {Global.Order.FittingKit &&
+                                    <div><b>Fitting Kit:</b> £3.99</div>
+                                }
+                                <div><b>Material:</b> Standard ABS</div>
+                                <div><b>Delivery:</b> {Global.Order.Delivery}</div>
+                            </div>
+                        }
+                        {(Global.Order.selectedState === 'Motor' && Global.Order.PlateChoice === 'Rear Only') &&
+                            <div className="Order-His">
+                                <div className='Order-Header'>
+                                    Order Details
+                                </div>
+
+                                <div><b>Plate Type:</b> Motor Plates [Rear Only]</div>
+                                <div><b>RearSize:</b> {Global.Order.RearText} £9.99</div>
+                                {(Global.Order.Border !== "transparent") &&
+                                    <div><b>Border:</b> {Global.Order.Border} £10.99</div>
+                                }
+                                {Global.Order.Badge !== "" &&
+                                    <div><b>Badge:</b> {Global.Order.Badge} £14.99</div>
+                                }
+                                {Global.Order.Badge !== "" && Global.Order.BadgeBackground === '#366CB7' &&
+                                    <div><b>Badge Type:</b> Normal</div>
+                                }
+                                {Global.Order.Badge !== "" && Global.Order.BadgeBackground !== '#366CB7' &&
+                                    <div><b>Badge Type:</b> Electric</div>
+                                }
+                                {Global.Order.Spare &&
+                                    <div><b>Spare:</b> £30.00</div>
+                                }
+                                {Global.Order.FittingKit &&
+                                    <div><b>Fitting Kit:</b> £3.99</div>
+                                }
+                                <div><b>Material:</b> Standard ABS</div>
+                                <div><b>Delivery:</b> {Global.Order.Delivery}</div>
                             </div>
                         }
                     </>
@@ -230,7 +296,7 @@ export default function Cart2() {
                         Address Details
                     </div>
                     <div className="Order-Form">
-                        <input placeholder="Enter Email Address" id="TopBox" required onChange={HandleOrderEmail}/>
+                        <input placeholder="Enter Email Address" id="TopBox" required onChange={HandleOrderEmail} />
                     </div>
 
                     <div className="Order-Form2">
@@ -247,34 +313,18 @@ export default function Cart2() {
                         <input placeholder="Phone Number" id="TopBox21" required onChange={HandlePhone}></input>
                     </div>
 
-                {clientSecret &&
-                (
-                    <Elements stripe={stripePromise} options={{clientSecret}}>
-                        <Stripe  orderData={orderData} />
-                    </Elements>
-                    )
-                }
+                    {clientSecret &&
+                        (
+                            <Elements stripe={stripePromise} options={{ clientSecret }}>
+                                <Stripe orderData={orderData} />
+                            </Elements>
+                        )
+                    }
                 </div>
-        </div >
+            </div >
 
-        <div className="FooterContainer1">
-        <div className="Content1">
-          &copy; Copyright 2005-2023 Plate and Kays For Cars. All rights Reserved.
-        </div>
-      </div>
-
+            <Footer />
         </>
     )
 }
 
-const ReturnSize = (Option) => {
-    const Size = {
-        Option1: 'Standard Size (20.5x4.4in)',
-        Option6: 'Standard UK Car Large Rear',
-        Option2: 'Short Plate [ 6 Letters ]',
-        Option3: 'Short Plate [ 5 Letters ]',
-        Option4: 'Standard UK Motorcycle',
-        Option5: 'Standard 4x4 Plate'
-    }
-    return Size[Option] || ""
-}
