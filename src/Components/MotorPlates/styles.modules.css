@@ -4,7 +4,7 @@ body {
 
 #Grid {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 45% 55%;
     justify-content: center;
     padding-bottom: 3rem;
 }
@@ -62,8 +62,6 @@ body {
     ;
     -moz-box-shadow: 0px -1px 13px 0px rgba(111, 111, 111, 0.401);
     ;
-
-
 }
 
 .Bulder-Bar {
@@ -4865,19 +4863,14 @@ body {
 
 .type-inputs {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    max-width: 500px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    margin: auto !important;
 }
 
 .type-inputs>* {
-    margin: 6px;
+    margin: 4px;
 }
 
 .type-input:checked+.type-tile {
@@ -4913,24 +4906,23 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     flex-wrap: wrap;
     width: 100%;
-    min-height: 120px;
-    padding: 1rem;
+    height: 100px;
     border: 2px solid #b5bfd9;
     background-color: #fff;
     transition: 0.15s ease;
     cursor: pointer;
     position: relative;
+    padding: 1rem;
 }
 
 .type-tile:before {
     content: "";
     position: absolute;
     display: block;
-    width: 0.75rem;
-    height: 0.75rem;
+    width: 0.5rem;
+    height: 0.5rem;
     border: 2px solid #b5bfd9;
     background-color: #fff;
     border-radius: 50%;
@@ -4948,6 +4940,78 @@ body {
 .type-tile:hover:before {
     opacity: 1;
 }
+.type-tile2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-height: 70px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    border: 2px solid #b5bfd9;
+    background-color: #fff;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    transition: 0.15s ease;
+    cursor: pointer;
+    position: relative;
+}
+.type-input:checked+.type-tile2 {
+    border-color: #F6C506;
+    color: #F6C506;
+}
+
+.type-input:checked+.type-tile2:before {
+    transform: scale(1);
+    opacity: 1;
+    background-color: #F6C506;
+    border-color: #F6C506;
+}
+
+.type-input:checked+.type-tile2 .type-icon svg {
+    fill: #F6C506;
+}
+
+.type-input:checked+.type-tile2 .type-label {
+    color: #F6C506;
+}
+
+.type-input:focus+.type-tile2 {
+    border-color: #F6C506;
+}
+
+.type-input:focus+.type-tile2:before {
+    transform: scale(1);
+    opacity: 1;
+}
+
+
+.type-tile2:before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border: 2px solid #b5bfd9;
+    background-color: #fff;
+    border-radius: 50%;
+    top: 0.25rem;
+    left: 0.25rem;
+    opacity: 0;
+    transform: scale(0);
+    transition: 0.25s ease;
+}
+
+.type-tile2:hover {
+    border-color: #F6C506;
+}
+
+.type-tile2:hover:before {
+    opacity: 1;
+}
+
 
 .type-icon {
     width: 100%;
@@ -4980,6 +5044,41 @@ body {
     position: absolute;
     white-space: nowrap;
     width: 1px;
+}
+
+.MotorBoxTop
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding: 1rem;
+    background-color: rgba(245, 245, 245, 0.333);
+    margin-bottom: 1rem;
+    border: 1px solid #F6C506;
+
+}
+.MotorBoxTop h6
+{
+    font-weight: 500;
+    color: black;
+    font-family: 'Nunito';
+    margin-bottom: 1rem;
+}
+
+.MotorBox
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+}
+.MotorBox1
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
 }
 
 
@@ -5268,4 +5367,369 @@ body {
 .Price
 {
     color: black;
+}
+
+
+.PopupContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .Popup {
+    background-color: white;
+    width: 35%;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .PopupImages {
+    display: flex;
+    justify-content: flex-start; /* Start from the left */
+    align-items: center;
+    margin-top: 1rem;
+    width: 100%; /* Adjust this width as needed */
+    gap: 1rem;
+    overflow-x: auto; /* Enable horizontal scroll if needed */
+  }
+    .PopupImageContainer
+  {
+    min-width: 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 8rem;
+    align-items: center;
+    border: 1px solid rgba(128, 128, 128, 0.59);
+    padding: 0.3rem;
+    border-radius: 0.3rem;
+    margin-bottom: 1rem;
+  }
+  .PopupImageContainer h5{
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Rubik';
+    text-align: center;
+  }
+
+  
+  .PopupNavbar
+  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .PopupTitle {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+    font-family: 'Rubik';
+    color: #EC5863;
+  }
+  .PopupTitleIn {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+    font-family: 'Rubik';
+    color: #FFCC00;
+  }
+  .PopupContent
+  {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-family: 'Rubik';
+    font-size: 1rem;
+  }
+  .PopupContent h6
+  {
+    font-weight: 600;
+    color: black;
+    font-size: 0.9rem;
+    line-height: 1.2;
+  }
+  .PopupTextArea
+  {
+    width: 100%;
+    height: 10rem;
+    border-radius: 0.5rem;
+    border: 1px solid #EC5863;
+    padding: 0.5rem;
+    font-family: 'Rubik';
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .PopupContentD
+  {
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+    font-family: 'Rubik';
+    font-size: 1rem;
+  }
+  .PopupContentD h6
+  {
+    font-weight: 300;
+    color: #776E6E;
+    font-size: 0.8rem;
+    line-height: 1.2;
+    text-align: justify;
+  }
+  .PopupButtons
+  {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 1rem;
+  }
+  .PopupButton2
+  {
+    width: 100%;
+    background-color: #F6C506;
+    color: black;
+    padding: 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid gray;
+  }
+  .PopupButton2:hover
+  {
+    background-color:#FFCC00;
+  }
+  .PopupButton2 h6
+  {
+    margin-left: 0.5rem;
+    margin-top: 0.7rem;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+  .PopupButton {
+    width: 100%;
+    background-color: white;
+    color: black;
+    padding: 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid gray;
+  }
+  
+  .PopupButton:hover {
+    background-color: #F9F9F9;
+    color: rgb(27, 26, 26);
+  }
+  
+  .PopupButton2R
+  {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #90BAFF;
+    color: white;
+    padding: -0.2rem;
+    border-radius: 0.4rem;
+    font-size: 0.6rem;
+    font-weight: bold;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  .PopupButton2R:hover
+  {
+    background-color: #1f66ff;
+  }
+  .PopupButton2R h6
+  {
+    margin-left: 0.5rem;
+    margin-top: 0.7rem;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+  .ImageContainer
+  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .ImageContainer img
+  {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 0.5rem;
+  }
+  .horizontal-scroll {
+    display: flex; /* Use a flex container to make the images align horizontally */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent images from wrapping to the next line */
+    max-width: 100%; 
+    margin-top: 1rem;
+  }
+  .MotorBox2
+  {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+  }
+  .MotorBox2 button{
+    width: 100%;
+    width: 100%;
+    background-color: #F6C506;
+    color: white;
+    cursor: pointer;
+    border: 1px solid gray;
+    font-family: "Rubik";
+    font-size: 0.8rem;
+    font-weight: 600;
+   
+  }
+  .MotorBox2 label{
+    width: 100%    
+  }
+
+
+  @media (max-width: 720px) {
+    .Popup {
+      width: 80%;
+    }
+    
+  }
+.Custom{
+    width: 90%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 20% 75%;
+    justify-content: center;
+    align-items: center;
+    gap:0.5rem;
+    border-radius: 0.2rem;
+    margin-bottom: 1rem;
+    padding: 0.2rem;
+}
+.CustomR{
+    width: 90%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 75% 20%;
+    justify-content: center;
+    align-items: center;
+    gap:0.5rem;
+    border-radius: 0.2rem;
+    margin-bottom: 1rem;
+    padding: 0.2rem;
+}
+.CustomM{
+    width: 90%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 20% 50% 20%;
+    justify-content: center;
+    align-items: center;
+    gap:0.5rem;
+    border-radius: 0.2rem;
+    margin-bottom: 1rem;
+    padding: 0.2rem;
+}
+
+.CustomImageContainer
+{
+    min-width: 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 7rem;
+    align-items: center;
+    border: 1px solid rgba(128, 128, 128, 0.59);
+    padding: 0.3rem;
+    border-radius: 0.3rem;
+}
+.CustomImageContainer h5{
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Rubik';
+    text-align: center;
+}
+
+
+.Option1B_Custom
+{
+    font-size: 4.5rem;
+    font-weight: bolder;
+    text-align: center;
+    height: max-content;
+}
+.Option1B_CustomM{
+    font-size: 3.5rem;
+    font-weight: bolder;
+    text-align: center;
+}
+@media (max-width: 780px) {
+    .Option1B_Custom
+    {
+        font-size: 3.5rem;
+    }
+    .CustomImageContainer
+    {
+        min-height: fit-content;
+    }
+    .Option1B_CustomM{
+        font-size: 2.5rem;
+    }
+    
+}
+
+@media (max-width: 480px) {
+    .Custom{
+        grid-template-columns: 30% 60%;        
+    }
+    .CustomR{
+        grid-template-columns: 60% 30%;        
+    }
+    .Option1B_Custom
+    {
+        font-size: 2.5rem;
+    }
+    .Option1B_CustomM{
+        font-size: 2rem;
+    }
+}
+@media (max-width: 410px) {
+    .Option1B_Custom
+    {
+        font-size: 2rem;
+    }
+    .Option1B_CustomM{
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .Option1B_Custom
+    {
+        font-size: 2rem;
+    }
+    .Option1B_CustomM{
+        font-size: 1.5rem;
+    }
 }
