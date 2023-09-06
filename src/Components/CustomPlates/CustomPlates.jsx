@@ -15,7 +15,7 @@ export default function HomePage() {
     const Global = useContext(Context)
     const Navigate = useNavigate()
 
-    const [selectedState, setSelectedState] = useState("standard");
+    const [selectedState, setSelectedState] = useState("custom");
     const [PlateChoice, SetPlateChoice] = useState("Front and Rear");
     const [PlateText, SetPlateText] = useState("");
     const [PlateType, SetPlateType] = useState("Normal")
@@ -77,7 +77,15 @@ export default function HomePage() {
             "Material": Material,
             "Total": CalculatePrice(),
             "FrontText": FrontText,
-            "RearText": RearText
+            "RearText": RearText,
+            "LeftBadge": LeftBadge,
+            "LeftBadgeBackground": LeftBadgeBackground,
+            "RightBadge": RightBadge,
+            "RightBadgeBackground": RightBadgeBackground,
+            "FooterText": FooterText,
+            "FooterColor": FooterColor,
+            "PlateType": PlateType,
+            "Layout": Layout            
         });
         if (Global.isLoggedIn) {
             Navigate('/checkout')
@@ -92,69 +100,41 @@ export default function HomePage() {
     const DisplayBought = () => {
         return (
             <>
-                {(selectedState === 'standard' && PlateChoice === 'Front and Rear') &&
+                {(selectedState === 'custom' && PlateChoice === 'Front and Rear') &&
                     <div className="Bought">
-                        <div><b>Plate Type:</b> Standard</div>
+                        <div><b>Plate Type:</b> Custom</div>
                         <div><b>FrontSize:</b> {FrontText} £9.99</div>
                         <div><b>RearSize:</b> {RearText} £9.99</div>
                         {(Border !== "transparent") &&
                             <div><b>Border:</b> {Border} £21.99</div>
                         }
-                        {Badge !== "" &&
-                            <div><b>Badge:</b> {Badge} £29.99</div>
+                        {typeof LeftBadge?.Image !== "undefined" &&
+                            <div><b>Left Badge :</b> {LeftBadge.Image} [{LeftBadgeBackground}]  £29.99</div>
                         }
-                        {Badge !== "" && BadgeBackground === '#366CB7' &&
-                            <div><b>Badge Type:</b> Normal</div>
-                        }
-                        {Badge !== "" && BadgeBackground !== '#366CB7' &&
-                            <div><b>Badge Type:</b> Electric</div>
-                        }
-                        {LeftBadge &&
-                            <div><b>Left Badge :</b> {LeftBadge.Image} [{LeftBadgeBackground}] </div>
-                        }
-                        {RightBadge &&
-                            <div><b>Right Badge:</b> {RightBadge.Image} [{RightBadgeBackground}] </div>
-                        }
-
-                        <div><b>Material:</b> Standard ABS</div>
-                    </div>
-                }
-                {(selectedState === 'standard' && PlateChoice === 'Front Only') &&
-                    <div className="Bought">
-                        <div><b>Plate Type:</b> Standard [Front Only]</div>
-                        <div><b>FrontSize:</b> {FrontText} £9.99</div>
-                        {(Border !== "transparent") &&
-                            <div><b>Border:</b> {Border} £10.99</div>
+                        {typeof RightBadge?.Image !== "undefined"  &&
+                            <div><b>Right Badge:</b> {RightBadge.Image} [{RightBadgeBackground}] £29.99</div>
                         }
                         {Badge !== "" &&
                             <div><b>Badge:</b> {Badge} £14.99</div>
                         }
-                        {Badge !== "" && BadgeBackground === '#366CB7' &&
-                            <div><b>Badge Type:</b> Normal</div>
+                        {PlateType &&
+                            <div><b>Plate Type:</b> {PlateType}</div>
                         }
-                        {Badge !== "" && BadgeBackground !== '#366CB7' &&
-                            <div><b>Badge Type:</b> Gel</div>
+                        {FooterText !== "" &&
+                            <div><b>Footer Text:</b> {FooterText} [{FooterColor}]</div>
                         }
-                        <div><b>Material:</b> Standard ABS</div>
-                    </div>
-                }
-                {(selectedState === 'standard' && PlateChoice === 'Rear Only') &&
-                    <div className="Bought">
-                        <div><b>Plate Type:</b> Standard [Rear Only]</div>
-                        <div><b>RearSize:</b> {RearText} £9.99</div>
-                        {(Border !== "transparent") &&
-                            <div><b>Border:</b> {Border} £10.99</div>
+                        {Spare &&
+                            <div><b>Spare:</b> £15.00</div>
                         }
-                        {Badge !== "" &&
-                            <div><b>Badge:</b> {Badge} £14.99</div>
+                        {FittingKit &&
+                            <div><b>Fitting Kit:</b> £3.99</div>
                         }
-                        {Badge !== "" && BadgeBackground === '#366CB7' &&
-                            <div><b>Badge Type:</b> Normal</div>
-                        }
-                        {Badge !== "" && BadgeBackground !== '#366CB7' &&
-                            <div><b>Badge Type:</b> Gel</div>
+                        {Font &&
+                            <div><b>Font Color:</b> {Font}</div>
                         }
                         <div><b>Material:</b> Standard ABS</div>
+                        <div><b>Delivery:</b> {Delivery}</div>
+                        <div><b>Total:</b> £{CalculatePrice()}</div>
                     </div>
                 }
             </>
@@ -163,7 +143,7 @@ export default function HomePage() {
 
     const CalculatePrice = () => {
         let CPrice = 0
-        if (selectedState === 'standard' && PlateChoice === 'Front and Rear') {
+        if (selectedState === 'custom' && PlateChoice === 'Front and Rear') {
             CPrice = CPrice + 19.99
             if (Border !== "transparent") {
                 CPrice = CPrice + 21.99
@@ -178,7 +158,7 @@ export default function HomePage() {
                 CPrice = CPrice + 3.99
             }
         }
-        if (selectedState === 'standard' && PlateChoice === 'Front Only') {
+        if (selectedState === 'custom' && PlateChoice === 'Front Only') {
             CPrice = CPrice + 9.99
             if (Border !== "transparent") {
                 CPrice = CPrice + 10.99
@@ -193,7 +173,7 @@ export default function HomePage() {
                 CPrice = CPrice + 3.99
             }
         }
-        if (selectedState === 'standard' && PlateChoice === 'Rear Only') {
+        if (selectedState === 'custom' && PlateChoice === 'Rear Only') {
             CPrice = CPrice + 9.99
             if (Border !== "transparent") {
                 CPrice = CPrice + 10.99
@@ -208,7 +188,7 @@ export default function HomePage() {
                 CPrice = CPrice + 3.99
             }
         }
-        if (selectedState !== 'standard') {
+        if (selectedState !== 'custom') {
             CPrice = CPrice + 39.99
             if (Border !== "transparent") {
                 CPrice = CPrice + 21.99
@@ -316,6 +296,18 @@ export default function HomePage() {
         SetFont("black")
         SetDelivery("")
         setSpare(false)
+        SetFittingKit(false)
+        SetPlateType("Normal")
+        SetPlateChoice("Front and Rear")
+        SetMaterial("Standard-ABS")
+        SetLeftBadge({})
+        SetRightBadge({})
+        SetLeftBadgeBackground("transparent")
+        SetRightBadgeBackground("transparent")
+        SetFooterColor("black")
+        SetPlateText("")
+        SetVertical(false)
+        setShortHand(false)
     }
 
     const HandlePlates = (e) => {
@@ -883,7 +875,7 @@ export default function HomePage() {
                         typeof LeftBadge?.Image === "undefined"
                         &&
                         typeof RightBadge?.Image === "undefined"
-                        && selectedState === 'standard' && FrontSize === "Option30" &&
+                        && selectedState === 'custom' && FrontSize === "Option30" &&
                         <div className="Centeralize">
                             <div className="Option1_Basic"
                                 style={{
@@ -911,7 +903,7 @@ export default function HomePage() {
                         && typeof LeftBadge?.Image !== "undefined"
                         &&
                         typeof RightBadge?.Image === "undefined"
-                        && selectedState === 'standard' && FrontSize === "Option30" &&
+                        && selectedState === 'custom' && FrontSize === "Option30" &&
                         <div className="Centeralize">
                             <div className="Custom" style={{
                                 backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
@@ -964,7 +956,7 @@ export default function HomePage() {
                         typeof LeftBadge?.Image === "undefined"
                         &&
                         typeof RightBadge?.Image !== "undefined"
-                        && selectedState === 'standard' && FrontSize === "Option30" &&
+                        && selectedState === 'custom' && FrontSize === "Option30" &&
                         <div className="Centeralize">
                             <div className="CustomR" style={{
                                 backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
@@ -1019,7 +1011,7 @@ export default function HomePage() {
                     {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only") && typeof RightBadge?.Image !== "undefined"
                         &&
                         typeof LeftBadge?.Image !== "undefined"
-                        && selectedState === 'standard' && FrontSize === "Option30" &&
+                        && selectedState === 'custom' && FrontSize === "Option30" &&
                         <div className="Centeralize">
                             <div className="CustomM" style={{
                                 backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
@@ -1090,7 +1082,7 @@ export default function HomePage() {
                         typeof LeftBadge?.Image === "undefined"
                         &&
                         typeof RightBadge?.Image === "undefined"
-                        && selectedState === 'standard' && FrontSize === "Option30" &&
+                        && selectedState === 'custom' && FrontSize === "Option30" &&
                         <div className="Centeralize">
                             <div className="Option1_Basic"
                                 style={{
@@ -1118,7 +1110,7 @@ export default function HomePage() {
                         && typeof LeftBadge?.Image !== "undefined"
                         &&
                         typeof RightBadge?.Image === "undefined"
-                        && selectedState === 'standard' && FrontSize === "Option30" &&
+                        && selectedState === 'custom' && FrontSize === "Option30" &&
                         <div className="Centeralize">
                             <div className="Custom" style={{
                                 backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
@@ -1171,7 +1163,7 @@ export default function HomePage() {
                         typeof LeftBadge?.Image === "undefined"
                         &&
                         typeof RightBadge?.Image !== "undefined"
-                        && selectedState === 'standard' && FrontSize === "Option30" &&
+                        && selectedState === 'custom' && FrontSize === "Option30" &&
                         <div className="Centeralize">
                             <div className="CustomR" style={{
                                 backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||
@@ -1226,7 +1218,7 @@ export default function HomePage() {
                     {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && typeof RightBadge?.Image !== "undefined"
                         &&
                         typeof LeftBadge?.Image !== "undefined"
-                        && selectedState === 'standard' && FrontSize === "Option30" &&
+                        && selectedState === 'custom' && FrontSize === "Option30" &&
                         <div className="Centeralize">
                             <div className="CustomM" style={{
                                 backgroundColor: PlateType === "Tinted" || PlateType === "Stick-On-Tinted" ||

@@ -255,3 +255,91 @@
         grid-template-columns: 100%;
     }
 }
+.fix h4
+{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-family: 'Nunito';
+    color: black;
+    font-weight: 600;
+}
+.FixingProduct
+{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25% ;
+    grid-gap: 1rem;
+    margin-top: 1rem;
+}
+
+.FixingProduct__card
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding: 1rem;
+    border: 1px solid #F6C506;
+    border-radius: 0.5rem;
+    transition-duration: 1s;
+}
+
+.ProductImage-Container
+{
+    width: 100%;
+    height: 15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ProductImage-Container img
+{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border: 
+    1px solid gainsboro
+    ;
+}
+.FixingProduct__info
+{
+    display: flex;
+    margin-top: 1rem;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+}
+.ProductHeight{
+    height: 13rem;
+}
+.product-btn
+{
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #F6C506;
+    margin-top: 0.5rem;
+    background-color: #F6C506;
+    color: black;
+    font-family: 'Nunito';
+    transition-duration: 1s;
+}
+.product-btn:hover{
+    background-color: transparent;
+    color: black;
+    border: 1px solid #F6C506;
+}
+
+@media (max-width:768px) {
+    .FixingProduct
+    {
+        grid-template-columns: 50% 50%;
+    } 
+}
+
+@media (max-width: 576px) {
+    .FixingProduct
+    {
+        grid-template-columns: 100%;
+    } 
+}

@@ -16,6 +16,8 @@ import StandardPlates from './Components/StandardPlates/StandardPlates'
 import MotorPlates from './Components/MotorPlates/MotorPlates'
 import DPlates from './Components/4DPlates/4D'
 import Custom from './Components/CustomPlates/CustomPlates'
+import Accessories from "./Components/Services/Accessories";
+
 
 
 function App() {
@@ -51,13 +53,10 @@ function App() {
                   </ProtectedRoute>
               }/>
               <Route exact path="/contact" element={<Contact/>}/>
-              <Route exact path="/services" element={<Services/>}/>
+              <Route exact path="/services" element={<Accessories/>}/>
               <Route exact path="/requestquote" element={<RequestQuote/>}/>
               
               <Route exact  path="/order" element={<Orders/>}/>
-                
-
-           
             </Routes>
         </BrowserRouter>
       </States>

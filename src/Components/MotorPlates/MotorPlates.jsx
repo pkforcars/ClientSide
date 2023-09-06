@@ -85,7 +85,7 @@ export default function HomePage() {
             <>
                 {(selectedState === 'standard' && PlateChoice === 'Front and Rear') &&
                     <div className="Bought">
-                        <div><b>Plate Type:</b> Standard</div>
+                        <div><b>Plate Type:</b> Motor Plates</div>
                         <div><b>FrontSize:</b> {FrontText} £9.99</div>
                         <div><b>RearSize:</b> {RearText} £9.99</div>
                         {(Border !== "transparent") &&
@@ -101,11 +101,17 @@ export default function HomePage() {
                             <div><b>Badge Type:</b> Electric</div>
                         }
                         <div><b>Material:</b> Standard ABS</div>
+                        {Spare &&
+                            <div><b>Spare:</b> £30.00</div>
+                        }
+                        {FittingKit &&
+                            <div><b>Fitting Kit:</b> £3.99</div>
+                        }
                     </div>
                 }
                 {(selectedState === 'standard' && PlateChoice === 'Front Only') &&
                     <div className="Bought">
-                        <div><b>Plate Type:</b> Standard [Front Only]</div>
+                        <div><b>Plate Type:</b> Motor Plates [Front Only]</div>
                         <div><b>FrontSize:</b> {FrontText} £9.99</div>
                         {(Border !== "transparent") &&
                             <div><b>Border:</b> {Border} £10.99</div>
@@ -119,12 +125,18 @@ export default function HomePage() {
                         {Badge !== "" && BadgeBackground !== '#366CB7' &&
                             <div><b>Badge Type:</b> Gel</div>
                         }
+                        {Spare &&
+                            <div><b>Spare:</b> £30.00</div>
+                        }
+                        {FittingKit &&
+                            <div><b>Fitting Kit:</b> £3.99</div>
+                        }
                         <div><b>Material:</b> Standard ABS</div>
                     </div>
                 }
                 {(selectedState === 'standard' && PlateChoice === 'Rear Only') &&
                     <div className="Bought">
-                        <div><b>Plate Type:</b> Standard [Rear Only]</div>
+                        <div><b>Plate Type:</b> Motor Plates [Rear Only]</div>
                         <div><b>RearSize:</b> {RearText} £9.99</div>
                         {(Border !== "transparent") &&
                             <div><b>Border:</b> {Border} £10.99</div>
@@ -137,6 +149,12 @@ export default function HomePage() {
                         }
                         {Badge !== "" && BadgeBackground !== '#366CB7' &&
                             <div><b>Badge Type:</b> Gel</div>
+                        }
+                        {Spare &&
+                            <div><b>Spare:</b> £30.00</div>
+                        }
+                        {FittingKit &&
+                            <div><b>Fitting Kit:</b> £3.99</div>
                         }
                         <div><b>Material:</b> Standard ABS</div>
                     </div>
@@ -276,8 +294,6 @@ export default function HomePage() {
             var updatedFlag = flag.replace("P", "");
             updatedFlag = updatedFlag.charAt(0).toUpperCase() + updatedFlag.slice(1);
             SetBadgeFlag(updatedFlag);
-            console.log("SALISISISSI", updatedFlag)
-
         }
         if (e.target.value === "") {
             SetBadge("")
@@ -412,32 +428,32 @@ export default function HomePage() {
                                 }}
                             >Select Rear Size:</h6>
                             <div className="container my-2" id='Selection-Options'>
-                                    <select id='Dropdown-Large' required onChange={HandleRearSize}>
-                                        <option value="">-- Select Rear Plate Size--</option>
-                                        <option value="Option1">Standard Size (20.5x4.4in)</option>
-                                        <option value="Option20">Standard Square (297mm x 203mm)</option>
-                                        <option value="Option20">Standard Motorcycle (229mm x 178mm) </option>
-                                        <option value="Option21">Jaguar S-Type V1(584mm x 171mm)</option>
-                                        <option value="Option22">Jaguar S-Type V2(565mm x 165mm)</option>
-                                        <option value="Option23">Jaguar XJ-Type V1(610mm x 150mm)</option>
-                                        <option value="Option24">Aston Martin DBS(560mm x 150mm)</option>
-                                        <option value="Option25">Jaguar XK8/DB9(552mm x 171mm)</option>
-                                        <option value="Option26">Jaguar X-Type Saloon V2(559mm x 160mm)</option>
-                                        <option value="Option1">Oversized Oblong V1 (533mm x 127mm)</option>
-                                        <option value="Option27">Oversized Oblong V2 (533mm x 152mm)</option>
-                                        <option value="Option27">Oversized Oblong V3 (520mm x 152mm)</option>
-                                        <option value="Option27">Oversized Oblong V4 (533mm x 140mm)</option>
-                                        <option value="Option1">Oversized Oblong V5 (508mm x 152mm)</option>
-                                        <option value="Option28">Range Rover Sports V1(616mm x 146mm)</option>
-                                        <option value="Option29">Range Rover 75(630mm x 171mm)</option>
-                                        <option value="Option20">American Import (305mm x 152mm) </option>
-                                        <option value="Option20">Euro Square (310mm x 210mm)</option>
-                                        <option value="Option20">Small Japenese Import Square (330mm x 165mm)</option>
-                                        <option value="Option20">Large Japenese Import Square (330mm x 178mm)</option>
-                                        <option value="Option20">Oversize Square (345mm x 200mm)</option>
-                                        <option value="Option20">Import (346mm x 178mm)</option>
-                                    </select>
-                                </div>
+                                <select id='Dropdown-Large' required onChange={HandleRearSize}>
+                                    <option value="">-- Select Rear Plate Size--</option>
+                                    <option value="Option1">Standard Size (20.5x4.4in)</option>
+                                    <option value="Option20">Standard Square (297mm x 203mm)</option>
+                                    <option value="Option20">Standard Motorcycle (229mm x 178mm) </option>
+                                    <option value="Option21">Jaguar S-Type V1(584mm x 171mm)</option>
+                                    <option value="Option22">Jaguar S-Type V2(565mm x 165mm)</option>
+                                    <option value="Option23">Jaguar XJ-Type V1(610mm x 150mm)</option>
+                                    <option value="Option24">Aston Martin DBS(560mm x 150mm)</option>
+                                    <option value="Option25">Jaguar XK8/DB9(552mm x 171mm)</option>
+                                    <option value="Option26">Jaguar X-Type Saloon V2(559mm x 160mm)</option>
+                                    <option value="Option1">Oversized Oblong V1 (533mm x 127mm)</option>
+                                    <option value="Option27">Oversized Oblong V2 (533mm x 152mm)</option>
+                                    <option value="Option27">Oversized Oblong V3 (520mm x 152mm)</option>
+                                    <option value="Option27">Oversized Oblong V4 (533mm x 140mm)</option>
+                                    <option value="Option1">Oversized Oblong V5 (508mm x 152mm)</option>
+                                    <option value="Option28">Range Rover Sports V1(616mm x 146mm)</option>
+                                    <option value="Option29">Range Rover 75(630mm x 171mm)</option>
+                                    <option value="Option20">American Import (305mm x 152mm) </option>
+                                    <option value="Option20">Euro Square (310mm x 210mm)</option>
+                                    <option value="Option20">Small Japenese Import Square (330mm x 165mm)</option>
+                                    <option value="Option20">Large Japenese Import Square (330mm x 178mm)</option>
+                                    <option value="Option20">Oversize Square (345mm x 200mm)</option>
+                                    <option value="Option20">Import (346mm x 178mm)</option>
+                                </select>
+                            </div>
                         </div>
                     }
 
@@ -520,10 +536,10 @@ export default function HomePage() {
                                 </span>
                             </label>
                         </div>
-                    </div>                                
+                    </div>
                     <div className="Centeralize1" onClick={ResetAll}>
-                                <button className="Cart-Button1">Reset</button>
-                            </div>
+                        <button className="Cart-Button1">Reset</button>
+                    </div>
                 </div>
 
                 <div className="GridItem2">
