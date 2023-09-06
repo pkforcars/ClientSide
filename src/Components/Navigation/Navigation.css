@@ -247,6 +247,10 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+<<<<<<< HEAD
+=======
+    margin-bottom: -2rem;
+>>>>>>> 6d06c0f5728c409f57714e4ecfaa1b7944627d0f
     padding-top: 1.5rem;
     margin-bottom: -1rem;
 }
