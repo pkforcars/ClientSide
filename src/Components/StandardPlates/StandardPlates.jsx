@@ -48,7 +48,6 @@ export default function HomePage() {
             return
         }
 
-
         Global.SetOrder({
             "Type": selectedState,
             "FrontOption": FrontSize,
@@ -71,6 +70,9 @@ export default function HomePage() {
             "FrontText": FrontText,
             "RearText": RearText
         });
+
+        Navigate('/checkout')
+        /*
         if (Global.isLoggedIn) {
             Navigate('/checkout')
         }
@@ -78,6 +80,7 @@ export default function HomePage() {
             Navigate('/login')
             Global.SetRedirectToCart(true)
         }
+        */
 
     }
 

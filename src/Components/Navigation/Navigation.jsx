@@ -45,7 +45,7 @@ export default function Navigation() {
       <>
         <div id="NavbarPT">
           <div id="NavbarPT1">
-            <h3><span>PLATES N KEYS </span>FOR CARS</h3>
+            <h3><span>PLATES N KEYS </span>4 CARS</h3>
           </div>
           <div id="NavbarPT2">
             <div className='Username-Holder'>{Username}</div>
@@ -98,7 +98,7 @@ export default function Navigation() {
                   className='drawer'
                 >
                   <div className='Drawer-Top'>
-                    <h5>PLATES N KEYS FOR CARS</h5>
+                    <h5>PLATES N KEYS 4 CARS</h5>
                     <CloseOutlined className='close-icon'
                       onClick={handleToggleDrawer}
                      />
@@ -106,9 +106,8 @@ export default function Navigation() {
                   <div className='Drawer-Inner'>
                     <div onClick={() => handleOptionSelect('/')}>Home</div>
                     <div onClick={() => handleOptionSelect('/contact')}>Contact</div>
-                    <div onClick={() => handleOptionSelect('/services')}>Services</div>
-                    <div onClick={() => handleOptionSelect('/login')}>Login</div>
-                    <div onClick={() => handleOptionSelect('/createaccount')}>Register</div>
+                    <div onClick={() => handleOptionSelect('/accessories')}>Accessories</div>
+                    <div onClick={() => handleOptionSelect('/how-to-fit')}>How To Fit</div>
                   </div>
                   <button onClick={() => { Navigate('/requestquote') }} className='RequestB'>Request a Quote</button>
                  
@@ -119,15 +118,12 @@ export default function Navigation() {
               <div id="Component-2">
                 <h6 onClick={() => Navigate('/')}>Home</h6>
                 <h6 onClick={() => Navigate('/contact')}>Contact</h6>
-                <h6 onClick={() => Navigate('/services')}>Services</h6>
-                <h6>|</h6>
-                <h6 onClick={() => Navigate('/login')}>Login</h6>
-                <h6 onClick={() => Navigate('/createaccount')}>Register</h6>
+                <h6 onClick={() => Navigate('/accessories')}>Accessories</h6>
+                <h6 onClick={() => Navigate('/how-to-fit')}>How To Fit</h6>
+                <button onClick={() => { Navigate('/requestquote') }} className='Request'>Request a Quote</button>
               </div>
             }
           </div>
-          {!isMobile &&
-            <button onClick={() => { Navigate('/requestquote') }} className='Request'>Request a Quote</button>}
         </div>
       </>
     )

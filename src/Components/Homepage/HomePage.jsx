@@ -19,20 +19,7 @@ export default function HomePage() {
           <h1>Standard/4D Number Plates and Replacement Keys</h1>
           <div className='cover-inner-div'>
             <div className='cover-inner-div-left'>
-              <h2>Order Replacement Keys</h2>
-              <br />
-              <p>
-                Lost your keys? We've got you covered. Fast and affordable replacement key service to get you back on track. Contact us today
-              </p>
-              <br />
-              <button className='cover-btn'
-                onClick={
-                  () => { navigate('/requestquote') }
-                }
-              >Order Keys</button>
-            </div>
-            <div className='cover-inner-div-right'>
-              <h2>Order Number Plates</h2>
+            <h2>Order Number Plates</h2>
               <br />
               <p>
                 We offer a wide range of number plates, made of high quality materials. We also offer Standard / 4D / Private number plates. Contact us today
@@ -43,6 +30,21 @@ export default function HomePage() {
                   navigate('/customized')
                 }
               }>Design Plates</button>
+
+            </div>
+            <div className='cover-inner-div-right'>
+                            <h2>Order Replacement Keys</h2>
+              <br />
+              <p>
+                Lost your keys? We've got you covered. Fast and affordable replacement key service to get you back on track. Contact us today
+              </p>
+              <br />
+              <button className='cover-btn'
+                onClick={
+                  () => { navigate('/requestquote') }
+                }
+              >Order Keys</button>
+
             </div>
           </div>
         </div>
@@ -95,7 +97,7 @@ export default function HomePage() {
         onClick={()=>navigate(
           '/customized'
         )}>
-          <h5>Private Number Plates</h5>
+          <h5>Custom Plates</h5>
           <img src="/PrivatePlate.png" alt="" />
         </div>
         <div className='product2'

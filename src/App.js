@@ -10,14 +10,13 @@ import AdminLogin from './Components/Admin/Admin-Login'
 import AdminDashboard from './Components/Admin Dashboard/Dashboard'
 import Contact from './Components/Contact/Contact'
 import Orders from "./Components/Orders/Orders";
-import Services from "./Components/Services/Services";
 import RequestQuote from './Components/Services/RequestQuote'
 import StandardPlates from './Components/StandardPlates/StandardPlates'
 import MotorPlates from './Components/MotorPlates/MotorPlates'
 import DPlates from './Components/4DPlates/4D'
 import Custom from './Components/CustomPlates/CustomPlates'
 import Accessories from "./Components/Services/Accessories";
-
+import Fit from './Components/Services/Fit'
 
 
 function App() {
@@ -35,11 +34,15 @@ function App() {
               <Route exact path="/4dplates" element={<DPlates/>}/>
               <Route exact path="/customized" element={<Custom/>}/>
 
+              {/*
               <Route exact path="/checkout" element={
                   <ProtectedRoute>
                   <Cart/>
                   </ProtectedRoute>
               }/>
+              */}
+              <Route exact path="/checkout" element={<Cart/>}/>
+
               <Route exact path="/dashboard" element={
                   <ProtectedRoute>
                   <Dashboard/>
@@ -53,8 +56,10 @@ function App() {
                   </ProtectedRoute>
               }/>
               <Route exact path="/contact" element={<Contact/>}/>
-              <Route exact path="/services" element={<Accessories/>}/>
+              <Route exact path="/accessories" element={<Accessories/>}/>
               <Route exact path="/requestquote" element={<RequestQuote/>}/>
+              <Route exact path="/how-to-fit" element={<Fit/>}/>
+
               
               <Route exact  path="/order" element={<Orders/>}/>
             </Routes>

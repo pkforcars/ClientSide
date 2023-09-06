@@ -73,9 +73,12 @@ export default function HomePage() {
             "Material": Material,
             "Total": CalculatePrice(),
             "FrontText": FrontText,
-            "RearText": RearText
-
+            "RearText": RearText,
         });
+
+        Navigate('/checkout')
+
+        /*
         if (Global.isLoggedIn) {
             Navigate('/checkout')
         }
@@ -83,6 +86,7 @@ export default function HomePage() {
             Navigate('/login')
             Global.SetRedirectToCart(true)
         }
+        */
 
     }
 
@@ -168,7 +172,7 @@ export default function HomePage() {
                 }
                 {(selectedState !== 'standard') &&
                     <div className="Bought">
-                        <div><b>Plate Type:</b>4D Plate</div>
+                        <div><b>Plate Type:</b> 4D Plate</div>
                         <div><b>FrontSize:</b> {FrontText} £20.00</div>
                         <div><b>RearSize:</b> {RearText} £20.00</div>
                         {(Border !== "transparent") &&
@@ -1303,12 +1307,3 @@ const Cover = () => {
         </>
     )
 }
-
-
-const Badges = [
-    "UNION-ENG",
-    "UNION-ENGLAND",
-    "UNIONP-ENG",
-    "UNIONP-ENGLAND",
-];
-

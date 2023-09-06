@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     height: 50vh;
-    background-image: url("/public/CoverImage.png");
+    background-image: url("/public/CoverImage2.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
@@ -22,7 +22,7 @@
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 0;
-    color: #F6C506;
+    color: black;
     margin-bottom: 3rem;
 
 }
@@ -35,16 +35,16 @@
 .cover-inner-div p
 {
     font-size: 20px;
-    font-weight: 200;
+    font-weight: 400;
     margin-bottom: 0;
-    color: white;
+    color: black;
 }
 .cover-inner-div h2
 {
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 0;
-    color: white;
+    color: black;
 }
 .cover-inner-div-left
 {
@@ -63,7 +63,7 @@
 .cover-btn
 {
     background-color: #F6C506;
-    color: white;
+    color: black;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
@@ -245,16 +245,16 @@
         font-size: 20px;
         font-weight: 700;
         margin-bottom: 0;
-        color: #F6C506;
+        ;
         margin-bottom: 1rem;   
         margin-top: -6rem;
     }
     .cover-inner-div p
     {
         font-size: 15px;
-        font-weight: 200;
+        font-weight: 400;
         margin-bottom: 0;
-        color: white;
+        color: black;
     }
     .cover-inner-div-left
     {
@@ -313,7 +313,7 @@
         font-size: 20px;
         font-weight: 700;
         margin-bottom: 0;
-        color: #F6C506;
+        color: black;
         margin-bottom: 1rem;   
         margin-top: -8rem;
     }
@@ -322,3 +322,10 @@
         width: 50%;
     }
 }
+@media (max-width: 360px) {
+    .cover-div h1
+    {
+        display: none;
+    }
+}
+

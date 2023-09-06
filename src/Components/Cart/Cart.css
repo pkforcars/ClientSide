@@ -1,24 +1,26 @@
 #Cart-Holder {
     display: grid;
     grid-template-columns: 50% 50%;
+    gap:1rem;
 }
 
 .Order-Display {
-    border-radius: 1rem;
-    background-color: black;
-    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 0.5rem;
+    color: black;
     padding: 2rem;
-    border: 1px solid red;
-    border-right: 0;
-    border-top-right-radius: 0%;
-    border-bottom-right-radius: 0%;
+    border: 3px solid #F6C506;
 }
 
 
 .Order-Header {
-    text-align: center;
+    text-align: left;
     font-family: 'Nunito';
     font-size: 1.2rem;
+    color: black;
+    font-weight: 800;
     margin-bottom: 1rem;
 }
 
@@ -41,7 +43,7 @@
     margin-top: 1.5rem;
     font-size: 0.9rem;
     font-family: 'Nunito';
-    color: white;
+    color: black;
 }
 
 .check {
@@ -59,6 +61,10 @@
     display: flex;
     justify-content: space-between;
     font-size: 1.2rem;
+    color: black;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #F6C506;
 }
 
 .custom-stripe-checkout {
@@ -67,14 +73,13 @@
 }
 
 .Order-Button {
+    padding: 2rem;
+    border: 3px solid gray;
     background-color: white;
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
-    border-radius: 1rem;
-    border-top-left-radius: 0%;
-    border-bottom-left-radius: 0%;
+    border-radius: 0.5rem;
     padding: 2rem;
 }
 
@@ -119,25 +124,48 @@
     padding: 0.3rem;
     border: 1px solid black;
 }
-
-.Paynow {
+.btn-pay2
+{
     width: 150%;
     margin-top: 1rem;
     border-radius: 0.2rem;
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
     padding: 0.5rem;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     font-family: 'Nunito';
     font-size: 1rem;
-    border: 1px solid red;
+    border: 1px solid #F6C506;
+    transition-duration: 1s;
+
+}
+
+.btn-pay2:hover
+{
+    background-color: #F6C506;
+    border: 1px solid #F6C506;
+    color: black;
+}
+
+.Paynow {
+    width: 150%;
+    margin-top: 1rem;
+    border-radius: 0.2rem;
+    background-color: #F6C506;
+    color: black;
+    padding: 0.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    font-family: 'Nunito';
+    font-size: 1rem;
+    border: 1px solid #F6C506;
     transition-duration: 1s;
 }
 
 .Paynow:hover {
     background-color: white;
-    border: 1px solid red;
+    border: 1px solid #F6C506;
     color: black;
 }
 #Component-2 h6

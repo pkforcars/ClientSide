@@ -87,6 +87,9 @@ export default function HomePage() {
             "PlateType": PlateType,
             "Layout": Layout            
         });
+
+        Navigate('/checkout')
+        /*
         if (Global.isLoggedIn) {
             Navigate('/checkout')
         }
@@ -94,17 +97,22 @@ export default function HomePage() {
             Navigate('/login')
             Global.SetRedirectToCart(true)
         }
+        */
 
     }
 
     const DisplayBought = () => {
         return (
             <>
-                {(selectedState === 'custom' && PlateChoice === 'Front and Rear') &&
+                {(selectedState === 'custom') &&
                     <div className="Bought">
-                        <div><b>Plate Type:</b> Custom</div>
+                        <div><b>Plate Type:</b> Custom [{PlateChoice}]</div>
+                        {(PlateChoice === 'Front and Rear' || PlateChoice === 'Front Only') &&
                         <div><b>FrontSize:</b> {FrontText} £9.99</div>
-                        <div><b>RearSize:</b> {RearText} £9.99</div>
+                        }
+                        {(PlateChoice === 'Front and Rear' || PlateChoice === 'Rear Only') &&                            
+                            <div><b>RearSize:</b> {RearText} £9.99</div>
+                        }
                         {(Border !== "transparent") &&
                             <div><b>Border:</b> {Border} £21.99</div>
                         }
@@ -133,8 +141,6 @@ export default function HomePage() {
                             <div><b>Font Color:</b> {Font}</div>
                         }
                         <div><b>Material:</b> Standard ABS</div>
-                        <div><b>Delivery:</b> {Delivery}</div>
-                        <div><b>Total:</b> £{CalculatePrice()}</div>
                     </div>
                 }
             </>
@@ -247,37 +253,6 @@ export default function HomePage() {
     };
     const HandleBorder = (e) => {
         SetBorder(e.target.value)
-    };
-    const HandleBadge = (e) => {
-        SetBadge(e.target.value);
-        if (e.target.value === "None") {
-            SetBadge("")
-        }
-        if (e.target.value !== "" && e.target.value !== "None") {
-            const [flag, city] = e.target.value.split('-');
-            if (flag.endsWith('P')) {
-                SetVertical(true)
-            }
-            else {
-                SetVertical(false)
-            }
-            if (city.length > 4) {
-                setShortHand(true)
-            } else {
-                setShortHand(false)
-            }
-            SetBadgeCity(city);
-
-            var updatedFlag = flag.replace("P", "");
-            updatedFlag = updatedFlag.charAt(0).toUpperCase() + updatedFlag.slice(1);
-            SetBadgeFlag(updatedFlag);
-
-        }
-        if (e.target.value === "") {
-            SetBadge("")
-            SetBadgeCity("");
-            SetBadgeFlag("");
-        }
     };
 
     const HandleMaterial = (e) => { SetMaterial(e.target.value) }
