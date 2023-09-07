@@ -84,6 +84,8 @@ export default function HomePage() {
         };
 
         Global.SetOrder(CartItem)        
+        let Total = Global.Total + CalculatePrice()
+        Global.SetTotal(Total)
         Navigate('/checkout')
 
         /*

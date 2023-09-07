@@ -31,7 +31,6 @@ export default function HomePage() {
     const [Vertical, SetVertical] = useState(false)
     const [ShortHand, setShortHand] = useState(false);
     const [FooterColor, SetFooterColor] = useState("black")
-    const [Delivery, SetDelivery] = useState("")
     const [Spare, setSpare] = useState(false)
     const [Material, SetMaterial] = useState("Standard-ABS")
     const [FittingKit, SetFittingKit] = useState(false)
@@ -43,11 +42,7 @@ export default function HomePage() {
             toast.error("Enter Plate Number")
             return
         }
-        if (Delivery === "" || Delivery === "N/A") {
-            toast.error("Select Delivery Option")
-            return
-        }
-        if(Global?.Order !== "undefined")
+        if(typeof Global?.Order !== "undefined")
         {
             toast.error("You have already added this item to cart. Please remove it from cart to add it again.")
             return
@@ -67,7 +62,6 @@ export default function HomePage() {
             "Border": Border,
             "Vertical": Vertical,
             "ShortHand": ShortHand,
-            "Delivery": Delivery,
             "Spare": Spare,
             "FittingKit": FittingKit,
             "Material": Material,
@@ -80,7 +74,11 @@ export default function HomePage() {
         }
  
         Global.SetOrder(CartItem);
+        let Total = parseFloat(Global.Total) + parseFloat(CalculatePrice());
+        Global.SetTotal(Total)
+
         Navigate('/checkout')
+    
         /*
         if (Global.isLoggedIn) {
             Navigate('/checkout')
@@ -236,23 +234,8 @@ export default function HomePage() {
             }
         }
 
-        if (Delivery === "Local in Milton Keynes free delivery/collection") {
-            CPrice = CPrice + 0
-        }
-        if (Delivery === "Standard Delivery £3.99") {
-            CPrice = CPrice + 3.99
-        }
-        if (Delivery === "First Class Tracked £6.99") {
-            CPrice = CPrice + 6.99
-        }
-        if (Delivery === "Spacial Delivery £11.99") {
-            CPrice = CPrice + 11.99
-        }
-
-
         return CPrice.toFixed(2)
     }
-    const HandleDelivery = (e) => { SetDelivery(e.target.value) }
     const handleSpareChange = (event) => { setSpare(event.target.checked); };
     const handleFittingKit = (event) => { SetFittingKit(event.target.checked); };
     const HandlePlateText = (e) => {
@@ -328,7 +311,6 @@ export default function HomePage() {
         SetFooterText("Enter Footer Text");
         SetLayout("Legal Plates");
         SetFont("'Montserrat', sans-serif")
-        SetDelivery("")
         setSpare(false)
     }
 
@@ -947,16 +929,6 @@ export default function HomePage() {
                                 <div className="Price" style={{
                                     color: "black",
                                 }}>£{CalculatePrice()}</div>
-                            </div>
-                            <div className='Order-Div' >
-                                <select id='Dropdown' required onChange={HandleDelivery} style={{ color: "black" }}>
-                                    <option value="N/A">-- Select Delivery Option--</option>
-                                    <option value="Local in Milton Keynes free delivery/collection">Local in Milton Keynes free delivery/collection</option>
-                                    <option value="Standard Delivery £3.99">Standard Delivery [3-5 Working Days] £3.99</option>
-                                    <option value="First Class Tracked £6.99">First Class Tracked [1-2 Working Days] £6.99</option>
-                                    <option value="Spacial Delivery £11.99">Spacial Delivery [Next Working Day] £11.99</option>
-
-                                </select>
                             </div>
 
                             <div className='check'>

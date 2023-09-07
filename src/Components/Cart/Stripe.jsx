@@ -14,10 +14,6 @@ export default function Page2(props) {
     const Navigate = useNavigate()
     const stripe = useStripe()
     const elements = useElements()
-    const nameRef = useRef(props.orderData.email);
-    const emailRef = useRef(props.orderData.email);
-
-    const [loading, setLoading] = useState(false);
     useEffect(() => emailjs.init("4UXhp1ho-2XzxocHz"), []);
 
     const AddOrder = async () => {
@@ -26,7 +22,6 @@ export default function Page2(props) {
             method: "POST",
             headers: { 
                 "Content-Type": "application/json",
-                'Authorization-Token' : localStorage.getItem('Token')      
             },
             body: JSON.stringify({
               Email: props.orderData.email,
@@ -48,13 +43,15 @@ export default function Page2(props) {
               Border: Global.Order.Border,
               Vertical: Global.Order.Vertical,
               ShortHand: Global.Order.ShortHand,
-              Delivery: Global.Order.Delivery,
+              Delivery: props.orderData.delivery,
               Spare: Global.Order.Spare,
-              OrderValue: Global.Order.Total,
+              OrderValue: props.orderData.total,
               FittingKit :  Global.Order.FittingKit ,     
               Material :  Global.Order.Material,
               FrontText :  Global.Order.FrontText,
-              RearText :  Global.Order.RearText,   
+              RearText :  Global.Order.RearText,
+              Font: Global.Order.Font,
+              OtherItems : Global.Cart
             }),
             
           });
@@ -64,7 +61,6 @@ export default function Page2(props) {
             Navigate('/dashboard')
             const serviceId = "service_x8viupa";
             const templateId = "template_89adesx";
-            setLoading(true);
             await emailjs.send(serviceId, templateId, 
               {
                 to_name : props.orderData.email,
@@ -81,8 +77,10 @@ export default function Page2(props) {
                 plate_fitting_kit: Global.Order.FittingKit,
                 plate_total: Global.Order.Total,
               });
-            setLoading(false);
             toast.success("Order Placed Successfully")
+            Global.SetTotal(0)
+            Global.SetCart([])
+            Global.SetOrder()
           } else {
             toast.error("Request Failed")
             throw new Error("Request failed with status " + response.status);
@@ -115,12 +113,13 @@ export default function Page2(props) {
                     redirect: "if_required"
 
                 })
-            if (error) {
-                toast.error('Unable to Process')
-            }
-            else if (paymentIntent && paymentIntent.status === "succeeded") {
+            if (paymentIntent && paymentIntent.status === "succeeded") {
                 toast.success('Payment Successful')
                 AddOrder()
+            }
+            else if(error)
+            {
+                toast.error('Payment Failed')
             }
             else {
                 toast.error('Card Declined')
