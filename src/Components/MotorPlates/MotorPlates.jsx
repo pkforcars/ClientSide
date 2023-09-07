@@ -1000,11 +1000,6 @@ const Cover = () => {
 
 const Badges = [
     {
-        Name: "Wales",
-        ShortHand: "WALES-CYM",
-        Flag: "WALES.png"
-    },
-    {
         Name: "United Kingdom",
         ShortHand: "UK-UK",
         Flag: "UK.png"
@@ -1018,6 +1013,12 @@ const Badges = [
         Name: "England",
         ShortHand: "ENGLAND-ENG",
         Flag: "ENGLAND.png"
-    }
+    },
+    {
+        Name: "Wales",
+        ShortHand: "WALES-CYM",
+        Flag: "WALES.png"
+    },
+
 ]
 
