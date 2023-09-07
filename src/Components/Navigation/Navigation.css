@@ -309,3 +309,25 @@ body {
     cursor: pointer;
     color: black !important;
 }
+.CartMobile
+{
+    margin-top: 1rem;
+   font-size: 1.2rem;
+}
+.CartIconMobile
+{
+    font-size: 2.2rem;
+    margin-top: -3rem !important;
+    margin-bottom: 3rem;
+    margin-left: 2rem;
+    cursor: pointer;
+    color: black !important;
+}
+
+@media (max-width: 368px) {
+    .CartIconMobile
+    {
+        margin-left: 0.5rem;
+    }
+}
+ 

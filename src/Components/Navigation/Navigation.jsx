@@ -91,6 +91,13 @@ export default function Navigation() {
             {isMobile &&
               <div className="mobile-menu">
                 <img src="/Logo.png" />
+                <div className="CartMobile">
+                  <ShoppingCartOutlined className="CartIconMobile" onClick={
+                    () => {
+                      Navigate('/checkout')
+                    }
+                  }/>
+              </div>
                 <MenuOutlined className="menu-icon" onClick={handleToggleDrawer} />
                 <Drawer
                   placement="left"
@@ -110,10 +117,10 @@ export default function Navigation() {
                     <div onClick={() => handleOptionSelect('/contact')}>Contact</div>
                     <div onClick={() => handleOptionSelect('/accessories')}>Accessories</div>
                     <div onClick={() => handleOptionSelect('/how-to-fit')}>How To Fit</div>
+                    <div onClick={() => handleOptionSelect('/checkout')}>View Cart</div>
                   </div>
                   <button onClick={() => { Navigate('/requestquote') }} className='RequestB'>Request a Quote</button>
                 </Drawer>
-                <ShoppingCartOutlined />
               </div>
             }
             {!isMobile &&

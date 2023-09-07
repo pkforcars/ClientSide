@@ -7,6 +7,7 @@ import PaymentsOutlinedIcon from '@mui/icons-material/PaymentsOutlined';
 import AssuredWorkloadOutlinedIcon from '@mui/icons-material/AssuredWorkloadOutlined';
 import Footer from '../Footer/Footer';
 import { useNavigate } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify';
 
 export default function HomePage() {
   const navigate = useNavigate()
@@ -137,7 +138,7 @@ export default function HomePage() {
 
       </div>
 
-
+      <ToastContainer/>
       <Footer />
 
     </>

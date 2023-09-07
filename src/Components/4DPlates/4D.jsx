@@ -15,10 +15,6 @@ export default function HomePage() {
     const Global = useContext(Context)
     const Navigate = useNavigate()
 
-    const RenderPage = () => {
-        Navigate('/requestquote')
-    }
-
     const [selectedState, setSelectedState] = useState("4D");
     const [PlateChoice, SetPlateChoice] = useState("Front and Rear");
     const [PlateText, SetPlateText] = useState("");
@@ -35,7 +31,6 @@ export default function HomePage() {
     const [Vertical, SetVertical] = useState(false)
     const [ShortHand, setShortHand] = useState(false);
     const [FooterColor, SetFooterColor] = useState("black")
-    const [Delivery, SetDelivery] = useState("")
     const [Spare, setSpare] = useState(false)
     const [Material, SetMaterial] = useState("Standard-ABS")
     const [FittingKit, SetFittingKit] = useState(false)
@@ -47,14 +42,9 @@ export default function HomePage() {
             toast.error("Enter Plate Number")
             return
         }
-        if (Delivery === "" || Delivery === "N/A") {
-            toast.error("Select Delivery Option")
-            return
-        }
-        if(Global?.Order !== "undefined")
-        {
-            toast.error("You have already added this item to cart. Please remove it from cart to add it again.")
-            return
+        if (typeof Global?.Order !== 'undefined') {
+            toast.error("You have already added this item to cart. Please remove it from cart to add it again.");
+            return;
         }
 
         let CartItem = {
@@ -71,7 +61,6 @@ export default function HomePage() {
             "Border": Border,
             "Vertical": Vertical,
             "ShortHand": ShortHand,
-            "Delivery": Delivery,
             "Spare": Spare,
             "FittingKit": FittingKit,
             "Material": Material,
@@ -84,7 +73,7 @@ export default function HomePage() {
         };
 
         Global.SetOrder(CartItem)        
-        let Total = Global.Total + CalculatePrice()
+        let Total = parseFloat(Global.Total) + parseFloat(CalculatePrice());
         Global.SetTotal(Total)
         Navigate('/checkout')
 
@@ -104,83 +93,7 @@ export default function HomePage() {
     const DisplayBought = () => {
         return (
             <>
-                {(selectedState === 'standard' && PlateChoice === 'Front and Rear') &&
-                    <div className="Bought">
-                        <div><b>Plate Type:</b> Standard</div>
-                        <div><b>FrontSize:</b> {FrontText} £9.99</div>
-                        <div><b>RearSize:</b> {RearText} £9.99</div>
-                        {(Border !== "transparent") &&
-                            <div><b>Border:</b> {Border} £21.99</div>
-                        }
-                        {Badge !== "" &&
-                            <div><b>Badge:</b> {Badge} £29.99</div>
-                        }
-                        {Badge !== "" && BadgeBackground === '#366CB7' &&
-                            <div><b>Badge Type:</b> Normal</div>
-                        }
-                        {Badge !== "" && BadgeBackground !== '#366CB7' &&
-                            <div><b>Badge Type:</b> Gel</div>
-                        }
-                        <div><b>Material:</b> Standard ABS</div>
-                        {Spare &&
-                            <div><b>Spare:</b> £30.00</div>
-                        }
-                        {FittingKit &&
-                            <div><b>Fitting Kit:</b> £3.99</div>
-                        }
-                    </div>
-                }
-                {(selectedState === 'standard' && PlateChoice === 'Front Only') &&
-                    <div className="Bought">
-                        <div><b>Plate Type:</b> Standard [Front Only]</div>
-                        <div><b>FrontSize:</b> {FrontText} £9.99</div>
-                        {(Border !== "transparent") &&
-                            <div><b>Border:</b> {Border} £10.99</div>
-                        }
-                        {Badge !== "" &&
-                            <div><b>Badge:</b> {Badge} £14.99</div>
-                        }
-                        {Badge !== "" && BadgeBackground === '#366CB7' &&
-                            <div><b>Badge Type:</b> Normal</div>
-                        }
-                        {Badge !== "" && BadgeBackground !== '#366CB7' &&
-                            <div><b>Badge Type:</b> Gel</div>
-                        }
-                        <div><b>Material:</b> Standard ABS</div>
-                        {Spare &&
-                            <div><b>Spare:</b> £30.00</div>
-                        }
-                        {FittingKit &&
-                            <div><b>Fitting Kit:</b> £3.99</div>
-                        }
-                    </div>
-                }
-                {(selectedState === 'standard' && PlateChoice === 'Rear Only') &&
-                    <div className="Bought">
-                        <div><b>Plate Type:</b> Standard [Rear Only]</div>
-                        <div><b>RearSize:</b> {RearText} £9.99</div>
-                        {(Border !== "transparent") &&
-                            <div><b>Border:</b> {Border} £10.99</div>
-                        }
-                        {Badge !== "" &&
-                            <div><b>Badge:</b> {Badge} £14.99</div>
-                        }
-                        {Badge !== "" && BadgeBackground === '#366CB7' &&
-                            <div><b>Badge Type:</b> Normal</div>
-                        }
-                        {Badge !== "" && BadgeBackground !== '#366CB7' &&
-                            <div><b>Badge Type:</b> Gel</div>
-                        }
-                        <div><b>Material:</b> Standard ABS</div>
-                        {Spare &&
-                            <div><b>Spare:</b> £30.00</div>
-                        }
-                        {FittingKit &&
-                            <div><b>Fitting Kit:</b> £3.99</div>
-                        }
-                    </div>
-                }
-                {(selectedState !== 'standard') &&
+                {(selectedState === '4D') &&
                     <div className="Bought">
                         <div><b>Plate Type:</b> 4D Plate</div>
                         <div><b>FrontSize:</b> {FrontText} £20.00</div>
@@ -203,52 +116,7 @@ export default function HomePage() {
 
     const CalculatePrice = () => {
         let CPrice = 0
-        if (selectedState === 'standard' && PlateChoice === 'Front and Rear') {
-            CPrice = CPrice + 19.99
-            if (Border !== "transparent") {
-                CPrice = CPrice + 21.99
-            }
-            if (Badge !== "") {
-                CPrice = CPrice + 29.99
-            }
-            if (Spare) {
-                CPrice = CPrice + 30.00
-            }
-            if (FittingKit) {
-                CPrice = CPrice + 3.99
-            }
-        }
-        if (selectedState === 'standard' && PlateChoice === 'Front Only') {
-            CPrice = CPrice + 9.99
-            if (Border !== "transparent") {
-                CPrice = CPrice + 10.99
-            }
-            if (Badge !== "") {
-                CPrice = CPrice + 14.99
-            }
-            if (Spare) {
-                CPrice = CPrice + 15.00
-            }
-            if (FittingKit) {
-                CPrice = CPrice + 3.99
-            }
-        }
-        if (selectedState === 'standard' && PlateChoice === 'Rear Only') {
-            CPrice = CPrice + 9.99
-            if (Border !== "transparent") {
-                CPrice = CPrice + 10.99
-            }
-            if (Badge !== "") {
-                CPrice = CPrice + 14.99
-            }
-            if (Spare) {
-                CPrice = CPrice + 15.00
-            }
-            if (FittingKit) {
-                CPrice = CPrice + 3.99
-            }
-        }
-        if (selectedState !== 'standard') {
+        if (selectedState === '4D') {
             CPrice = CPrice + 39.99
             if (Border !== "transparent") {
                 CPrice = CPrice + 21.99
@@ -260,23 +128,8 @@ export default function HomePage() {
                 CPrice = CPrice + 3.99
             }
         }
-
-        if (Delivery === "Local in Milton Keynes free delivery/collection") {
-            CPrice = CPrice + 0
-        }
-        if (Delivery === "Standard Delivery £3.99") {
-            CPrice = CPrice + 3.99
-        }
-        if (Delivery === "First Class Tracked £6.99") {
-            CPrice = CPrice + 6.99
-        }
-        if (Delivery === "Spacial Delivery £11.99") {
-            CPrice = CPrice + 11.99
-        }
-
         return CPrice.toFixed(2)
     }
-    const HandleDelivery = (e) => { SetDelivery(e.target.value) }
     const handleSpareChange = (event) => { setSpare(event.target.checked); };
     const handleFittingKit = (event) => { SetFittingKit(event.target.checked); };
     const HandlePlateText = (e) => {
@@ -359,7 +212,6 @@ export default function HomePage() {
         SetFooterText("Enter Footer Text");
         SetLayout("Legal Plates");
         SetFont("'Montserrat', sans-serif")
-        SetDelivery("")
         setSpare(false)
         SetFittingKit(false)
         SetMaterial("Standard-ABS")
@@ -506,163 +358,46 @@ export default function HomePage() {
                 </div>
 
                 <div className="GridItem2">
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only") && !Badge && selectedState === 'standard' && FrontSize === "Option1" &&
+                    {selectedState === '4D' && FrontSize === "Option1" &&
                         <div className="Centeralize">
                             <div className="Option1_Basic" style={{ backgroundColor: "#E7E7E7" }}>
                                 <div className='Option1_Container'>
-                                    {PlateText && <div className="Option1_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
+                                    {PlateText && <div id={Attribute} style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
                                     {!PlateText && <div className="Option1_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>PREVIEW</div>}
                                     <div className="centered-container">
-                                        {Layout === "Legal Plates" && <p className="Option1_Footer" style={{ backgroundColor: "#E7E7E7" }}>CPD JE2 4UE</p>}
-                                    </div>
-                                    <div className="centered-container">
-                                        {Layout === "Custom Plates" && (
-                                            <p
-                                                className="Option1_Footer"
-                                                style={{ backgroundColor: "#E7E7E7", color: FooterColor }}
-                                            >
-                                                {FooterText}
-                                            </p>
-                                        )}
+                                        <p className="Option1_Footer" style={{ backgroundColor: "#E7E7E7" }}>CPD JE2 4UE</p>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
                     }
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only") && Badge && selectedState === 'standard' && FrontSize === "Option1" &&
-                        <div className="Centeralize">
-                            <div className="Option1B" style={{ backgroundColor: "#E7E7E7" }}>
-                                <div className="Option1B_Container" style={{ backgroundColor: BadgeBackground }}>
-                                    <img src={`/Union.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
-                                    <div id={ShortHand ? "Option1B_Text1" : "Option1B_Text2"}>{BadgeCity}</div>
-                                </div>
-                                <div className='Option1B_Container1'>
-                                    {PlateText && <div className="Option1B_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
-                                    {!PlateText && <div className="Option1B_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>YOUR REG</div>}
-                                    <div className="centered-container">
-                                        {Layout === "Legal Plates" && <p className="Option1_Footer" style={{ backgroundColor: "#E7E7E7" }}>CPD JE2 4UE</p>}
-                                    </div>
-                                    <div className="centered-container">
-                                        {Layout === "Custom Plates" && (
-                                            <p
-                                                className="Option1_Footer"
-                                                style={{ backgroundColor: "#E7E7E7", color: FooterColor }}
-                                            >
-                                                {FooterText}
-                                            </p>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only") && !Badge && selectedState === 'standard' && FrontSize === "Option2" &&
-                        <div className="Centeralize">
-                            <div className="Option3NEW_NoBadge" style={{ backgroundColor: "#E7E7E7" }}>
-                                <div className='BG_Container2'>
-                                    {PlateText && <div className="Option10NEW_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText.replace(/\s/g, '').slice(0, 6).replace(/(.{4})/g, '$1 ')}</div>}
-                                    {!PlateText && <div className="Option10NEW_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>PREVIEW</div>}
-                                    <div className="centered-container">
-                                        {Layout === "Legal Plates" && <p className="Option2_Footer" style={{ backgroundColor: "#E7E7E7" }}>CPD JE2 4UE</p>}
-                                    </div>
-                                    <div className="centered-container">
-                                        {Layout === "Custom Plates" && (
-                                            <p
-                                                className="Option2_Footer"
-                                                style={{ backgroundColor: "#E7E7E7", color: FooterColor }}
-                                            >
-                                                {FooterText}
-                                            </p>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only") && Badge && selectedState === 'standard' && FrontSize === "Option2" &&
-                        <div className="Centeralize">
-                            <div className="Option3NEW_Plate1" style={{ backgroundColor: "#E7E7E7" }}>
-                                <div className="BG_Container1" style={{ backgroundColor: BadgeBackground }}>
-                                    <img src={`/Union.png`} className={Vertical ? "Option3_Image2" : "Option3_Image1"} alt='Badge'></img>
-                                    <div id={ShortHand ? "Option3_Text" : "Option3_Text1"}>{BadgeCity}</div>
-                                </div>
-                                <div className='BG_Container2'>
-                                    {PlateText && <div className="Option10NEW_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText.replace(/\s/g, '').slice(0, 6).replace(/(.{4})/g, '$1 ')}</div>}
-                                    {!PlateText && <div className="Option10NEW_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>PREVIEW</div>}
-                                    <div className="centered-container">
-                                        {Layout === "Legal Plates" && <p className="Option2_Footer" style={{ backgroundColor: "#E7E7E7" }}>CPD JE2 4UE</p>}
-                                    </div>
-                                    <div className="centered-container">
-                                        {Layout === "Custom Plates" && (
-                                            <p
-                                                className="Option2_Footer"
-                                                style={{ backgroundColor: "#E7E7E7", color: FooterColor }}
-                                            >
-                                                {FooterText}
-                                            </p>
-                                        )}
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    }
-
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only") && !Badge && selectedState === 'standard' && FrontSize === "Option3" &&
+                    {selectedState === '4D' && FrontSize === "Option3" &&
                         <div className="Centeralize">
                             <div className="Option10_NoBadge" style={{ backgroundColor: "#E7E7E7" }}>
                                 <div className='BG_Container2'>
-                                    {PlateText && <div className="Option10NEW_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText.replace(/\s/g, '').slice(0, 5).replace(/(.{4})/g, '$1 ')}</div>}
-                                    {!PlateText && <div className="Option10NEW_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>PREVIEW</div>}
-                                    <div className="centered-container">
-                                        {Layout === "Legal Plates" && <p className="Option2_Footer" style={{ backgroundColor: "#E7E7E7" }}>CPD JE2 4UE</p>}
-                                    </div>
-                                    <div className="centered-container">
-                                        {Layout === "Custom Plates" && (
-                                            <p
-                                                className="Option2_Footer"
-                                                style={{ backgroundColor: "#E7E7E7", color: FooterColor }}
-                                            >
-                                                {FooterText}
-                                            </p>
-                                        )}
-                                    </div>
+                                    {PlateText && <div id={Attribute} style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
+                                    {!PlateText && <div className="Option10_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>YOUR REG</div>}
+                                    {Layout === "Legal Plates" && <p className="Option5_Footer" style={{ backgroundColor: "#E7E7E7" }}>CPD JE2 4UE</p>}
+                                    {Layout === "Custom Plates" && <p className="Option5_Footer" style={{ backgroundColor: "#E7E7E7", color: FooterColor }}>{FooterText}</p>}
                                 </div>
                             </div>
                         </div>
                     }
-
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only") && Badge && selectedState === 'standard' && FrontSize === "Option3" &&
+                    {selectedState === '4D' && FrontSize === "Option2" &&
                         <div className="Centeralize">
-                            <div className="Option10NEW_Plate1" style={{ backgroundColor: "#E7E7E7" }}>
-                                <div className="BG_Container1" style={{ backgroundColor: BadgeBackground }}>
-                                    <img src={`/Union.png`} className={Vertical ? "Option3_Image2" : "Option3_Image1"} alt='Badge'></img>
-                                    <div id={ShortHand ? "Option3_Text" : "Option3_Text1"}>{BadgeCity}</div>
-                                </div>
+                            <div className="Option3NEW_NoBadge" style={{ backgroundColor: "#E7E7E7" }}>
                                 <div className='BG_Container2'>
-                                    {PlateText && <div className="Option10NEW_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText.replace(/\s/g, '').slice(0, 5).replace(/(.{4})/g, '$1 ')}</div>}
-                                    {!PlateText && <div className="Option10NEW_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>PREVIEW</div>}
-                                    <div className="centered-container">
-                                        {Layout === "Legal Plates" && <p className="Option2_Footer" style={{ backgroundColor: "#E7E7E7" }}>CPD JE2 4UE</p>}
-                                    </div>
-                                    <div className="centered-container">
-                                        {Layout === "Custom Plates" && (
-                                            <p
-                                                className="Option2_Footer"
-                                                style={{ backgroundColor: "#E7E7E7", color: FooterColor }}
-                                            >
-                                                {FooterText}
-                                            </p>
-                                        )}
-                                    </div>
-
+                                    {PlateText && <div id={Attribute} style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
+                                    {!PlateText && <div className="Option6_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>YOUR REG</div>}
+                                    {Layout === "Legal Plates" && <p className="Option5_Footer" style={{ backgroundColor: "#E7E7E7" }}>CPD JE2 4UE</p>}
+                                    {Layout === "Custom Plates" && <p className="Option5_Footer" style={{ backgroundColor: "#E7E7E7", color: FooterColor }}>{FooterText}</p>}
                                 </div>
                             </div>
                         </div>
                     }
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only") && !Badge && selectedState === 'standard' && FrontSize === "Option4" &&
+
+                    {selectedState === '4D' && FrontSize === "Option4" &&
                         <div className="Centeralize">
                             <div className='Option2_Wrapper' style={{ backgroundColor: "#E7E7E7" }}>
                                 <div className='Option2_Container' style={{ fontFamily: Font, border: `3px solid ${Border}` }}>
@@ -680,244 +415,62 @@ export default function HomePage() {
                             </div>
                         </div>
                     }
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only") && Badge && selectedState === 'standard' && FrontSize === "Option4" &&
-                        <div className="Centeralize">
-                            <div className='Option2B_Wrapper' style={{ backgroundColor: "#E7E7E7" }}>
-                                <div className='Option2B_Container' style={{ fontFamily: Font, border: `3px solid ${Border}` }}>
-                                    <div className='Option2B_Top'>
-                                        {PlateText && <p>{PlateText.substring(0, 4)}</p>}
-                                        {!PlateText && <p>REG</p>}
-                                    </div>
-                                    <div className='Option2B_Bottom'>
-                                        <div className='Option2B_Container2' style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/Union.png`} className={Vertical ? "BG_Image2" : "BG_Image1"} alt='Badge'></img>
-                                            <div id={ShortHand ? "BG_Text" : "BG_Text1"}>{BadgeCity}</div>
-                                        </div>
-                                        <div className='Option2B_Plate'>
-                                            {PlateText && <p>{PlateText.substring(4)}</p>}
-                                            {!PlateText && <p>NO#</p>}
-                                        </div>
-                                    </div>
-                                    <div>
-                                        {Layout === "Legal Plates" && <p className="SIZE6_Footer" style={{ backgroundColor: "#E7E7E7" }}>CPD JE2 4UE</p>}
-                                    </div>
-                                    <div>
-                                        {Layout === "Custom Plates" && <p className="SIZE6_Footer" style={{ backgroundColor: "#E7E7E7", color: FooterColor }}>{FooterText}</p>}
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only") && !Badge && selectedState === 'standard' && FrontSize === "Option5" &&
+                    {selectedState === '4D' && FrontSize === "Option5" &&
                         <div className="Centeralize">
                             <div className="Option1_Basic" style={{ backgroundColor: "#E7E7E7" }}>
                                 <div className='Option1_Container'>
-                                    {PlateText && <div className="Option1_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
+                                    {PlateText && <div id={Attribute} style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
                                     {!PlateText && <div className="Option1_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>PREVIEW</div>}
                                     <div className="centered-container">
-                                        {Layout === "Legal Plates" && <p className="Option1_Footer" style={{ backgroundColor: "#E7E7E7" }}>CPD JE2 4UE</p>}
-                                    </div>
-                                    <div className="centered-container">
-                                        {Layout === "Custom Plates" && (
-                                            <p
-                                                className="Option1_Footer"
-                                                style={{ backgroundColor: "#E7E7E7", color: FooterColor }}
-                                            >
-                                                {FooterText}
-                                            </p>
-                                        )}
+                                        <p className="Option1_Footer" style={{ backgroundColor: "#E7E7E7" }}>CPD JE2 4UE</p>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
                     }
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Front Only") && Badge && selectedState === 'standard' && FrontSize === "Option5" &&
-                        <div className="Centeralize">
-                            <div className="Option1B" style={{ backgroundColor: "#E7E7E7" }}>
-                                <div className="Option1B_Container" style={{ backgroundColor: BadgeBackground }}>
-                                    <img src={`/Union.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
-                                    <div id={ShortHand ? "Option1B_Text1" : "Option1B_Text2"}>{BadgeCity}</div>
-                                </div>
-                                <div className='Option1B_Container1'>
-                                    {PlateText && <div className="Option1B_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
-                                    {!PlateText && <div className="Option1B_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>YOUR REG</div>}
-                                    <div className="centered-container">
-                                        {Layout === "Legal Plates" && <p className="Option1_Footer" style={{ backgroundColor: "#E7E7E7" }}>CPD JE2 4UE</p>}
-                                    </div>
-                                    <div className="centered-container">
-                                        {Layout === "Custom Plates" && (
-                                            <p
-                                                className="Option1_Footer"
-                                                style={{ backgroundColor: "#E7E7E7", color: FooterColor }}
-                                            >
-                                                {FooterText}
-                                            </p>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
 
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && !Badge && selectedState === 'standard' && RearSize === "Option1" &&
+
+                    {selectedState === '4D' && RearSize === "Option1" &&
                         <div className="Centeralize">
                             <div className="Option1_Basic" style={{ backgroundColor: "#F1B317" }}>
                                 <div className='Option1_Container'>
-                                    {PlateText && <div className="Option1_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
+                                    {PlateText && <div id={Attribute2} style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
                                     {!PlateText && <div className="Option1_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>PREVIEW</div>}
                                     <div className="centered-container">
-                                        {Layout === "Legal Plates" && <p className="Option1_Footer" style={{ backgroundColor: "#F1B317" }}>CPD JE2 4UE</p>}
-                                    </div>
-                                    <div className="centered-container">
-                                        {Layout === "Custom Plates" && (
-                                            <p
-                                                className="Option1_Footer"
-                                                style={{ backgroundColor: "#F1B317", color: FooterColor }}
-                                            >
-                                                {FooterText}
-                                            </p>
-                                        )}
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && Badge && selectedState === 'standard' && RearSize === "Option1" &&
-                        <div className="Centeralize">
-                            <div className="Option1B" style={{ backgroundColor: "#F1B317" }}>
-                                <div className="Option1B_Container" style={{ backgroundColor: BadgeBackground }}>
-                                    <img src={`/Union.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
-                                    <div id={ShortHand ? "Option1B_Text1" : "Option1B_Text2"}>{BadgeCity}</div>
-                                </div>
-                                <div className='Option1B_Container1'>
-                                    {PlateText && <div className="Option1B_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
-                                    {!PlateText && <div className="Option1B_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>YOUR REG</div>}
-                                    <div className="centered-container">
-                                        {Layout === "Legal Plates" && <p className="Option1_Footer" style={{ backgroundColor: "#F1B317" }}>CPD JE2 4UE</p>}
-                                    </div>
-                                    <div className="centered-container">
-                                        {Layout === "Custom Plates" && (
-                                            <p
-                                                className="Option1_Footer"
-                                                style={{ backgroundColor: "#F1B317", color: FooterColor }}
-                                            >
-                                                {FooterText}
-                                            </p>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && !Badge && selectedState === 'standard' && RearSize === "Option2" &&
-                        <div className="Centeralize">
-                            <div className="Option3NEW_NoBadge" style={{ backgroundColor: "#F1B317" }}>
-                                <div className='BG_Container2'>
-                                    {PlateText && <div className="Option10NEW_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText.replace(/\s/g, '').slice(0, 6).replace(/(.{4})/g, '$1 ')}</div>}
-                                    {!PlateText && <div className="Option10NEW_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>PREVIEW</div>}
-                                    <div className="centered-container">
-                                        {Layout === "Legal Plates" && <p className="Option2_Footer" style={{ backgroundColor: "#F1B317" }}>CPD JE2 4UE</p>}
-                                    </div>
-                                    <div className="centered-container">
-                                        {Layout === "Custom Plates" && (
-                                            <p
-                                                className="Option2_Footer"
-                                                style={{ backgroundColor: "#F1B317", color: FooterColor }}
-                                            >
-                                                {FooterText}
-                                            </p>
-                                        )}
+                                        <p className="Option1_Footer" style={{ backgroundColor: "#F1B317" }}>CPD JE2 4UE</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     }
 
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && Badge && selectedState === 'standard' && RearSize === "Option2" &&
-                        <div className="Centeralize">
-                            <div className="Option3NEW_Plate1" style={{ backgroundColor: "#F1B317" }}>
-                                <div className="BG_Container1" style={{ backgroundColor: BadgeBackground }}>
-                                    <img src={`/Union.png`} className={Vertical ? "Option3_Image2" : "Option3_Image1"} alt='Badge'></img>
-                                    <div id={ShortHand ? "Option3_Text" : "Option3_Text1"}>{BadgeCity}</div>
-                                </div>
-                                <div className='BG_Container2'>
-                                    {PlateText && <div className="Option10NEW_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText.replace(/\s/g, '').slice(0, 6).replace(/(.{4})/g, '$1 ')}</div>}
-                                    {!PlateText && <div className="Option10NEW_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>PREVIEW</div>}
-                                    <div className="centered-container">
-                                        {Layout === "Legal Plates" && <p className="Option2_Footer" style={{ backgroundColor: "#F1B317" }}>CPD JE2 4UE</p>}
-                                    </div>
-                                    <div className="centered-container">
-                                        {Layout === "Custom Plates" && (
-                                            <p
-                                                className="Option2_Footer"
-                                                style={{ backgroundColor: "#F1B317", color: FooterColor }}
-                                            >
-                                                {FooterText}
-                                            </p>
-                                        )}
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    }
-
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && !Badge && selectedState === 'standard' && RearSize === "Option3" &&
+                    {selectedState === '4D' && RearSize === "Option3" &&
                         <div className="Centeralize">
                             <div className="Option10_NoBadge" style={{ backgroundColor: "#F1B317" }}>
                                 <div className='BG_Container2'>
-                                    {PlateText && <div className="Option10NEW_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText.replace(/\s/g, '').slice(0, 5).replace(/(.{4})/g, '$1 ')}</div>}
-                                    {!PlateText && <div className="Option10NEW_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>PREVIEW</div>}
-                                    <div className="centered-container">
-                                        {Layout === "Legal Plates" && <p className="Option2_Footer" style={{ backgroundColor: "#F1B317" }}>CPD JE2 4UE</p>}
-                                    </div>
-                                    <div className="centered-container">
-                                        {Layout === "Custom Plates" && (
-                                            <p
-                                                className="Option2_Footer"
-                                                style={{ backgroundColor: "#F1B317", color: FooterColor }}
-                                            >
-                                                {FooterText}
-                                            </p>
-                                        )}
-                                    </div>
+                                    {PlateText && <div id={Attribute2} style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
+                                    {!PlateText && <div className="Option10_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>YOUR REG</div>}
+                                    {Layout === "Legal Plates" && <p className="Option5_Footer" style={{ backgroundColor: "#F1B317" }}>CPD JE2 4UE</p>}
+                                    {Layout === "Custom Plates" && <p className="Option5_Footer" style={{ backgroundColor: "#F1B317", color: FooterColor }}>{FooterText}</p>}
                                 </div>
                             </div>
                         </div>
                     }
-
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && Badge && selectedState === 'standard' && RearSize === "Option3" &&
+                    {selectedState === '4D' && RearSize === "Option2" &&
                         <div className="Centeralize">
-                            <div className="Option10NEW_Plate1" style={{ backgroundColor: "#F1B317" }}>
-                                <div className="BG_Container1" style={{ backgroundColor: BadgeBackground }}>
-                                    <img src={`/Union.png`} className={Vertical ? "Option3_Image2" : "Option3_Image1"} alt='Badge'></img>
-                                    <div id={ShortHand ? "Option3_Text" : "Option3_Text1"}>{BadgeCity}</div>
-                                </div>
+                            <div className="Option3NEW_NoBadge" style={{ backgroundColor: "#F1B317" }}>
                                 <div className='BG_Container2'>
-                                    {PlateText && <div className="Option10NEW_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText.replace(/\s/g, '').slice(0, 5).replace(/(.{4})/g, '$1 ')}</div>}
-                                    {!PlateText && <div className="Option10NEW_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>PREVIEW</div>}
-                                    <div className="centered-container">
-                                        {Layout === "Legal Plates" && <p className="Option2_Footer" style={{ backgroundColor: "#F1B317" }}>CPD JE2 4UE</p>}
-                                    </div>
-                                    <div className="centered-container">
-                                        {Layout === "Custom Plates" && (
-                                            <p
-                                                className="Option2_Footer"
-                                                style={{ backgroundColor: "#F1B317", color: FooterColor }}
-                                            >
-                                                {FooterText}
-                                            </p>
-                                        )}
-                                    </div>
-
+                                    {PlateText && <div id={Attribute2} style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
+                                    {!PlateText && <div className="Option6_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>YOUR REG</div>}
+                                    {Layout === "Legal Plates" && <p className="Option5_Footer" style={{ backgroundColor: "#F1B317" }}>CPD JE2 4UE</p>}
+                                    {Layout === "Custom Plates" && <p className="Option5_Footer" style={{ backgroundColor: "#F1B317", color: FooterColor }}>{FooterText}</p>}
                                 </div>
                             </div>
                         </div>
                     }
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && !Badge && selectedState === 'standard' && RearSize === "Option4" &&
+
+                    {selectedState === '4D' && RearSize === "Option4" &&
                         <div className="Centeralize">
                             <div className='Option2_Wrapper' style={{ backgroundColor: "#F1B317" }}>
                                 <div className='Option2_Container' style={{ fontFamily: Font, border: `3px solid ${Border}` }}>
@@ -935,284 +488,7 @@ export default function HomePage() {
                             </div>
                         </div>
                     }
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && Badge && selectedState === 'standard' && RearSize === "Option4" &&
-                        <div className="Centeralize">
-                            <div className='Option2B_Wrapper' style={{ backgroundColor: "#F1B317" }}>
-                                <div className='Option2B_Container' style={{ fontFamily: Font, border: `3px solid ${Border}` }}>
-                                    <div className='Option2B_Top'>
-                                        {PlateText && <p>{PlateText.substring(0, 4)}</p>}
-                                        {!PlateText && <p>REG</p>}
-                                    </div>
-                                    <div className='Option2B_Bottom'>
-                                        <div className='Option2B_Container2' style={{ backgroundColor: BadgeBackground }}>
-                                            <img src={`/Union.png`} className={Vertical ? "BG_Image2" : "BG_Image1"} alt='Badge'></img>
-                                            <div id={ShortHand ? "BG_Text" : "BG_Text1"}>{BadgeCity}</div>
-                                        </div>
-                                        <div className='Option2B_Plate'>
-                                            {PlateText && <p>{PlateText.substring(4)}</p>}
-                                            {!PlateText && <p>NO#</p>}
-                                        </div>
-                                    </div>
-                                    <div>
-                                        {Layout === "Legal Plates" && <p className="SIZE6_Footer" style={{ backgroundColor: "#F1B317" }}>CPD JE2 4UE</p>}
-                                    </div>
-                                    <div>
-                                        {Layout === "Custom Plates" && <p className="SIZE6_Footer" style={{ backgroundColor: "#F1B317", color: FooterColor }}>{FooterText}</p>}
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && !Badge && selectedState === 'standard' && RearSize === "Option5" &&
-                        <div className="Centeralize">
-                            <div className="Option1_Basic" style={{ backgroundColor: "#F1B317" }}>
-                                <div className='Option1_Container'>
-                                    {PlateText && <div className="Option1_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
-                                    {!PlateText && <div className="Option1_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>PREVIEW</div>}
-                                    <div className="centered-container">
-                                        {Layout === "Legal Plates" && <p className="Option1_Footer" style={{ backgroundColor: "#F1B317" }}>CPD JE2 4UE</p>}
-                                    </div>
-                                    <div className="centered-container">
-                                        {Layout === "Custom Plates" && (
-                                            <p
-                                                className="Option1_Footer"
-                                                style={{ backgroundColor: "#F1B317", color: FooterColor }}
-                                            >
-                                                {FooterText}
-                                            </p>
-                                        )}
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && Badge && selectedState === 'standard' && RearSize === "Option5" &&
-                        <div className="Centeralize">
-                            <div className="Option1B" style={{ backgroundColor: "#F1B317" }}>
-                                <div className="Option1B_Container" style={{ backgroundColor: BadgeBackground }}>
-                                    <img src={`/Union.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
-                                    <div id={ShortHand ? "Option1B_Text1" : "Option1B_Text2"}>{BadgeCity}</div>
-                                </div>
-                                <div className='Option1B_Container1'>
-                                    {PlateText && <div className="Option1B_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
-                                    {!PlateText && <div className="Option1B_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>YOUR REG</div>}
-                                    <div className="centered-container">
-                                        {Layout === "Legal Plates" && <p className="Option1_Footer" style={{ backgroundColor: "#F1B317" }}>CPD JE2 4UE</p>}
-                                    </div>
-                                    <div className="centered-container">
-                                        {Layout === "Custom Plates" && (
-                                            <p
-                                                className="Option1_Footer"
-                                                style={{ backgroundColor: "#F1B317", color: FooterColor }}
-                                            >
-                                                {FooterText}
-                                            </p>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && !Badge && selectedState === 'standard' && RearSize === "Option6" &&
-                        <div className="Centeralize">
-                            <div className="Option2NEW_Basic" style={{ backgroundColor: "#F1B317" }}>
-                                <div className='Option1_Container'>
-                                    {PlateText && <div className="Option1_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
-                                    {!PlateText && <div className="Option1_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>PREVIEW</div>}
-                                    <div className="centered-container">
-                                        {Layout === "Legal Plates" && <p className="Option1_Footer" style={{ backgroundColor: "#F1B317" }}>CPD JE2 4UE</p>}
-                                    </div>
-                                    <div className="centered-container">
-                                        {Layout === "Custom Plates" && (
-                                            <p
-                                                className="Option1_Footer"
-                                                style={{ backgroundColor: "#F1B317", color: FooterColor }}
-                                            >
-                                                {FooterText}
-                                            </p>
-                                        )}
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    {(PlateChoice === "Front and Rear" || PlateChoice === "Rear Only") && Badge && selectedState === 'standard' && RearSize === "Option6" &&
-                        <div className="Centeralize">
-                            <div className="Option1BNEW" style={{ backgroundColor: "#F1B317" }}>
-                                <div className="Option1B_Container" style={{ backgroundColor: BadgeBackground }}>
-                                    <img src={`/Union.png`} className={Vertical ? "Option1B_Image2" : "Option1B_Image1"} alt='Badge'></img>
-                                    <div id={ShortHand ? "Option1B_Text1" : "Option1B_Text2"}>{BadgeCity}</div>
-                                </div>
-                                <div className='Option1B_Container1'>
-                                    {PlateText && <div className="Option1B_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
-                                    {!PlateText && <div className="Option1B_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>YOUR REG</div>}
-                                    <div className="centered-container">
-                                        {Layout === "Legal Plates" && <p className="Option1_Footer" style={{ backgroundColor: "#F1B317" }}>CPD JE2 4UE</p>}
-                                    </div>
-                                    <div className="centered-container">
-                                        {Layout === "Custom Plates" && (
-                                            <p
-                                                className="Option1_Footer"
-                                                style={{ backgroundColor: "#F1B317", color: FooterColor }}
-                                            >
-                                                {FooterText}
-                                            </p>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    {selectedState !== 'standard' && FrontSize === "Option1" &&
-                        <div className="Centeralize">
-                            <div className="Option1_Basic" style={{ backgroundColor: "#E7E7E7" }}>
-                                <div className='Option1_Container'>
-                                    {PlateText && <div id={Attribute} style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
-                                    {!PlateText && <div className="Option1_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>PREVIEW</div>}
-                                    <div className="centered-container">
-                                        <p className="Option1_Footer" style={{ backgroundColor: "#E7E7E7" }}>CPD JE2 4UE</p>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    {selectedState !== 'standard' && FrontSize === "Option3" &&
-                        <div className="Centeralize">
-                            <div className="Option10_NoBadge" style={{ backgroundColor: "#E7E7E7" }}>
-                                <div className='BG_Container2'>
-                                    {PlateText && <div id={Attribute} style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
-                                    {!PlateText && <div className="Option10_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>YOUR REG</div>}
-                                    {Layout === "Legal Plates" && <p className="Option5_Footer" style={{ backgroundColor: "#E7E7E7" }}>CPD JE2 4UE</p>}
-                                    {Layout === "Custom Plates" && <p className="Option5_Footer" style={{ backgroundColor: "#E7E7E7", color: FooterColor }}>{FooterText}</p>}
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    {selectedState !== 'standard' && FrontSize === "Option2" &&
-                        <div className="Centeralize">
-                            <div className="Option3NEW_NoBadge" style={{ backgroundColor: "#E7E7E7" }}>
-                                <div className='BG_Container2'>
-                                    {PlateText && <div id={Attribute} style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
-                                    {!PlateText && <div className="Option6_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>YOUR REG</div>}
-                                    {Layout === "Legal Plates" && <p className="Option5_Footer" style={{ backgroundColor: "#E7E7E7" }}>CPD JE2 4UE</p>}
-                                    {Layout === "Custom Plates" && <p className="Option5_Footer" style={{ backgroundColor: "#E7E7E7", color: FooterColor }}>{FooterText}</p>}
-                                </div>
-                            </div>
-                        </div>
-                    }
-
-                    {selectedState !== 'standard' && FrontSize === "Option4" &&
-                        <div className="Centeralize">
-                            <div className='Option2_Wrapper' style={{ backgroundColor: "#E7E7E7" }}>
-                                <div className='Option2_Container' style={{ fontFamily: Font, border: `3px solid ${Border}` }}>
-                                    <div className='Option2_Top'>
-                                        {PlateText && <p>{PlateText.substring(0, 4)}</p>}
-                                        {!PlateText && <p>REG</p>}
-                                    </div>
-                                    <div className='Option2_Bottom'>
-                                        {PlateText && <p>{PlateText.substring(4)}</p>}
-                                        {!PlateText && <p className='S2'>NO#</p>}
-                                    </div>
-                                    {Layout === "Legal Plates" && <p className="SIZE6_Footer" style={{ backgroundColor: "#E7E7E7" }}>CPD JE2 4UE</p>}
-                                    {Layout === "Custom Plates" && <p className="SIZE6_Footer" style={{ backgroundColor: "#E7E7E7", color: FooterColor }}>{FooterText}</p>}
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    {selectedState !== 'standard' && FrontSize === "Option5" &&
-                        <div className="Centeralize">
-                            <div className="Option1_Basic" style={{ backgroundColor: "#E7E7E7" }}>
-                                <div className='Option1_Container'>
-                                    {PlateText && <div id={Attribute} style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
-                                    {!PlateText && <div className="Option1_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>PREVIEW</div>}
-                                    <div className="centered-container">
-                                        <p className="Option1_Footer" style={{ backgroundColor: "#E7E7E7" }}>CPD JE2 4UE</p>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    }
-
-
-                    {selectedState !== 'standard' && RearSize === "Option1" &&
-                        <div className="Centeralize">
-                            <div className="Option1_Basic" style={{ backgroundColor: "#F1B317" }}>
-                                <div className='Option1_Container'>
-                                    {PlateText && <div id={Attribute2} style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
-                                    {!PlateText && <div className="Option1_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>PREVIEW</div>}
-                                    <div className="centered-container">
-                                        <p className="Option1_Footer" style={{ backgroundColor: "#F1B317" }}>CPD JE2 4UE</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-
-                    {selectedState !== 'standard' && RearSize === "Option3" &&
-                        <div className="Centeralize">
-                            <div className="Option10_NoBadge" style={{ backgroundColor: "#F1B317" }}>
-                                <div className='BG_Container2'>
-                                    {PlateText && <div id={Attribute2} style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
-                                    {!PlateText && <div className="Option10_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>YOUR REG</div>}
-                                    {Layout === "Legal Plates" && <p className="Option5_Footer" style={{ backgroundColor: "#F1B317" }}>CPD JE2 4UE</p>}
-                                    {Layout === "Custom Plates" && <p className="Option5_Footer" style={{ backgroundColor: "#F1B317", color: FooterColor }}>{FooterText}</p>}
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    {selectedState !== 'standard' && RearSize === "Option2" &&
-                        <div className="Centeralize">
-                            <div className="Option3NEW_NoBadge" style={{ backgroundColor: "#F1B317" }}>
-                                <div className='BG_Container2'>
-                                    {PlateText && <div id={Attribute2} style={{ fontFamily: Font, border: `3px solid ${Border}` }}>{PlateText}</div>}
-                                    {!PlateText && <div className="Option6_Number" style={{ fontFamily: Font, border: `3px solid ${Border}` }}>YOUR REG</div>}
-                                    {Layout === "Legal Plates" && <p className="Option5_Footer" style={{ backgroundColor: "#F1B317" }}>CPD JE2 4UE</p>}
-                                    {Layout === "Custom Plates" && <p className="Option5_Footer" style={{ backgroundColor: "#F1B317", color: FooterColor }}>{FooterText}</p>}
-                                </div>
-                            </div>
-                        </div>
-                    }
-
-                    {selectedState !== 'standard' && RearSize === "Option4" &&
-                        <div className="Centeralize">
-                            <div className='Option2_Wrapper' style={{ backgroundColor: "#F1B317" }}>
-                                <div className='Option2_Container' style={{ fontFamily: Font, border: `3px solid ${Border}` }}>
-                                    <div className='Option2_Top'>
-                                        {PlateText && <p>{PlateText.substring(0, 4)}</p>}
-                                        {!PlateText && <p>REG</p>}
-                                    </div>
-                                    <div className='Option2_Bottom'>
-                                        {PlateText && <p>{PlateText.substring(4)}</p>}
-                                        {!PlateText && <p className='S2'>NO#</p>}
-                                    </div>
-                                    {Layout === "Legal Plates" && <p className="SIZE6_Footer" style={{ backgroundColor: "#F1B317" }}>CPD JE2 4UE</p>}
-                                    {Layout === "Custom Plates" && <p className="SIZE6_Footer" style={{ backgroundColor: "#F1B317", color: FooterColor }}>{FooterText}</p>}
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    {selectedState !== 'standard' && RearSize === "Option5" &&
+                    {selectedState === '4D' && RearSize === "Option5" &&
                         <div className="Centeralize">
                             <div className="Option1_Basic" style={{ backgroundColor: "#F1B317" }}>
                                 <div className='Option1_Container'>
@@ -1227,7 +503,7 @@ export default function HomePage() {
                         </div>
                     }
 
-                    {selectedState !== 'standard' && RearSize === "Option6" &&
+                    {selectedState === '4D' && RearSize === "Option6" &&
                         <div className="Centeralize">
                             <div className="Option2NEW_Basic" style={{ backgroundColor: "#F1B317" }}>
                                 <div className='Option1_Container'>
@@ -1250,15 +526,6 @@ export default function HomePage() {
                             <div className="Payment-Box">
                                 <DisplayBought />
                                 <div className="Price">£{CalculatePrice()}</div>
-                            </div>
-                            <div className='Order-Div' >
-                                <select id='Dropdown' required onChange={HandleDelivery} style={{ color: "black" }}>
-                                    <option value="N/A">-- Select Delivery Option--</option>
-                                    <option value="Local in Milton Keynes free delivery/collection">Local in Milton Keynes free delivery/collection</option>
-                                    <option value="Standard Delivery £3.99">Standard Delivery [3-5 Working Days] £3.99</option>
-                                    <option value="First Class Tracked £6.99">First Class Tracked [1-2 Working Days] £6.99</option>
-                                    <option value="Spacial Delivery £11.99">Spacial Delivery [Next Working Day] £11.99</option>
-                                </select>
                             </div>
 
                             <div className='check'>
@@ -1296,7 +563,7 @@ export default function HomePage() {
                     </div>
                 </div>
             </div>
-            <ToastContainer theme="colored" />
+            <ToastContainer/>
 
             <Footer />
         </>
