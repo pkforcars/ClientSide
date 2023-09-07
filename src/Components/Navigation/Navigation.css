@@ -4,8 +4,8 @@ body {
 
 #Navbar {
     width: 100%;
-    display: grid;
-    grid-template-columns: 60% 30% 10%;
+    display: flex;
+    justify-content: space-around;
     align-items: center;
     color: black;
     padding: 1.5rem;
@@ -28,7 +28,6 @@ body {
 #Component-1 {
     display: flex;
     align-items: center;
-    margin-left: 10%;
 }
 
 #Component-1 h3 span {
@@ -302,4 +301,11 @@ body {
         margin-bottom: 0.5rem;
     }
 
+}
+.CartIcon{
+    font-size: 1.5rem;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    color: black !important;
 }

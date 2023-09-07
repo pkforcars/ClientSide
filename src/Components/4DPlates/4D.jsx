@@ -51,9 +51,13 @@ export default function HomePage() {
             toast.error("Select Delivery Option")
             return
         }
+        if(Global?.Order !== "undefined")
+        {
+            toast.error("You have already added this item to cart. Please remove it from cart to add it again.")
+            return
+        }
 
-
-        Global.SetOrder({
+        let CartItem = {
             "Type": selectedState,
             "FrontOption": FrontSize,
             "RearOption": RearSize,
@@ -74,8 +78,12 @@ export default function HomePage() {
             "Total": CalculatePrice(),
             "FrontText": FrontText,
             "RearText": RearText,
-        });
+            "BadgeCity": BadgeCity,
+            "BadgeFlag": BadgeFlag,
+            "Layout": Layout,
+        };
 
+        Global.SetOrder(CartItem)        
         Navigate('/checkout')
 
         /*

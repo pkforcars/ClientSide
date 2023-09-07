@@ -30,28 +30,6 @@ export default function Cart2() {
     const Global = useContext(Context)
     const [clientSecret, setClientSecret] = useState()
 
-    /*
-    useEffect(() => {
-        const stripeApiKey = process.env.REACT_APP_STRIPE_API_KEY;
-        const stripePromise = loadStripe(stripeApiKey);
-        setStripePromise(stripePromise)
-    }, [])
-    useEffect(() => {
-        const CreatePaymentIntent = async () => {
-            const Response = await fetch(`${process.env.REACT_APP_BASE_URL}/create-payment-intent`,
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({Price: Global.Order.Total}),
-                });
-
-            const ResponseToJson = await Response.json();
-            setClientSecret(ResponseToJson.ClientSecret)
-        }
-        CreatePaymentIntent()
-    }, [])
-    */
-
     const GetPaymentIntent = async () => {
         const Response = await fetch(`${process.env.REACT_APP_BASE_URL}/PaymentIntent`,
             {
