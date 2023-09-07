@@ -13,7 +13,7 @@
 {
     display: grid;
     grid-template-columns: 50% 50%;
-    border: 1px solid #6AD3FE;
+    border: 1px solid #F6C506;
     margin-top: 1rem;
     margin-bottom: 1rem;
     border-radius: 8px;
@@ -39,8 +39,8 @@
 #Plate-Box
 {
     text-align: center;
-    border: 2px solid #6AD3FE;
-    background-color:#6AD3FE;
+    border: 2px solid #F6C506;
+    background-color:#F6C506;
     color: black;
     width: 100%;
     font-size: 1rem;
@@ -49,7 +49,7 @@
 }
 #Plate-Box1
 {
-    background-color:#6AD3FE;
+    background-color:#F6C506;
     display: flex;
     border-bottom: 1px solid white;
     padding: 0.5rem;
@@ -62,7 +62,7 @@
 #Plate-Box2
 {
     display: flex;
-    border-bottom: 1px solid #6AD3FE;
+    border-bottom: 1px solid #F6C506;
     padding: 0.5rem;
     justify-content:space-between;
     color: black;
@@ -72,17 +72,17 @@
 }
 .PlatesAdmin
 {
-    margin-top:25%;
+    margin-top: 2rem;
 }
 .back-btn
 {
-    margin-top: 49%;
-    width: 100%;
+    margin-top: 10%;
+    width: 80%;
     font-size: 1rem;
     font-family: 'Nunito';
-    background-color: #6AD3FE;
+    background-color: #F6C506;
     color: black;
-    border: 1px solid #6AD3FE;
+    border: 1px solid #F6C506;
     padding: 0.5rem;
     border-radius: 0.3rem;
     transition-duration: 1s;
@@ -92,7 +92,7 @@
 {
     background-color: transparent;
     color: black;
-    border: 1px solid #6AD3FE;
+    border: 1px solid #F6C506;
     padding: 0.5rem;
     border-radius: 0.3rem;
 }
@@ -107,11 +107,11 @@
     }
 .back-btn
 {
-    margin-top: 0%;
+    margin-top: -5rem;
     width: 100%;
     font-size: 1rem;
     font-family: 'Nunito';
-    background-color: #6AD3FE;
+    background-color: #F6C506;
     color: white;
     border: 1px solid black;
     padding: 0.5rem;
@@ -120,3 +120,51 @@
 }
 }
 
+.CartContainer
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+}
+.Accessories
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+.CartProduct
+{
+    width: 120%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid gray;
+}
+.CartProduct h6
+{
+    font-family: 'Nunito';
+    font-size: 1rem;
+    color: black;
+    font-weight: 800;
+}
+.CartProduct img{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+}
+
+@media (max-width:480px) {
+    .CartProduct
+    {
+        width: 100%;
+    }
+    
+    .back-btn{
+        width: 80%;
+        margin-top: 4rem;
+    }
+}

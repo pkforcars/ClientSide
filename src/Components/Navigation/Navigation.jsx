@@ -2,9 +2,11 @@ import React, { useState, useContext, useEffect } from 'react'
 import './Navigation.css'
 import { useNavigate } from 'react-router-dom'
 import Context from "../../Context/Context"
-import { Button, Drawer } from 'antd';
+import { Drawer } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import { CloseOutlined } from '@ant-design/icons';
+import { ShoppingCartOutlined } from '@ant-design/icons';
+import { Badge } from 'antd';
 
 
 export default function Navigation() {
@@ -14,6 +16,7 @@ export default function Navigation() {
     Username = `${Global.User.firstName}  ${Global.User.lastName}`
   }
   const [isMobile, setIsMobile] = useState(false);
+
 
   const handleOptionSelect = (value) => {
     Navigate(value)
@@ -71,11 +74,10 @@ export default function Navigation() {
           </div>
 
         </div>
-
       </>
     )
-
   }
+  
   else {
     return (
       <>
@@ -89,6 +91,13 @@ export default function Navigation() {
             {isMobile &&
               <div className="mobile-menu">
                 <img src="/Logo.png" />
+                <div className="CartMobile">
+                  <ShoppingCartOutlined className="CartIconMobile" onClick={
+                    () => {
+                      Navigate('/checkout')
+                    }
+                  }/>
+              </div>
                 <MenuOutlined className="menu-icon" onClick={handleToggleDrawer} />
                 <Drawer
                   placement="left"
@@ -108,9 +117,9 @@ export default function Navigation() {
                     <div onClick={() => handleOptionSelect('/contact')}>Contact</div>
                     <div onClick={() => handleOptionSelect('/accessories')}>Accessories</div>
                     <div onClick={() => handleOptionSelect('/how-to-fit')}>How To Fit</div>
+                    <div onClick={() => handleOptionSelect('/checkout')}>View Cart</div>
                   </div>
                   <button onClick={() => { Navigate('/requestquote') }} className='RequestB'>Request a Quote</button>
-                 
                 </Drawer>
               </div>
             }
@@ -118,9 +127,18 @@ export default function Navigation() {
               <div id="Component-2">
                 <h6 onClick={() => Navigate('/')}>Home</h6>
                 <h6 onClick={() => Navigate('/contact')}>Contact</h6>
-                <h6 onClick={() => Navigate('/accessories')}>Accessories</h6>
                 <h6 onClick={() => Navigate('/how-to-fit')}>How To Fit</h6>
+                <h6 onClick={() => Navigate('/accessories')}>Accessories</h6>
                 <button onClick={() => { Navigate('/requestquote') }} className='Request'>Request a Quote</button>
+                <div className="Cart">
+                  <ShoppingCartOutlined className="CartIcon" onClick={
+                    () => {
+                      Navigate('/checkout')
+                    }
+                  }/>
+                 {/*<Badge count={cartItemsCount ? cartItemsCount : ''}/>*/}
+                </div>
+
               </div>
             }
           </div>

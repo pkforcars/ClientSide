@@ -11,6 +11,8 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_API_KEY);
 
 
 export default function Cart2() {
+
+    const [DeliveryCharges, SetDeliveryCharges] = useState(0)
     const [orderData, setOrderData] = useState({
         email: '',
         address1: '',
@@ -19,7 +21,11 @@ export default function Cart2() {
         postcode: '',
         country: '',
         phone: '',
+        delivery: 'N/A',
+        total: ""
     });
+    const [SubmitClicked, SetSubmitClicked] = useState(false)
+
     const HandleOrderEmail = (event) => { setOrderData({ ...orderData, email: event.target.value }); };
     const HandleAddress1 = (event) => { setOrderData({ ...orderData, address1: event.target.value }); };
     const HandleAddress2 = (event) => { setOrderData({ ...orderData, address2: event.target.value }); };
@@ -27,46 +33,37 @@ export default function Cart2() {
     const HandlePostcode = (event) => { setOrderData({ ...orderData, postcode: event.target.value }); };
     const HandleCountry = (event) => { setOrderData({ ...orderData, country: event.target.value }); };
     const HandlePhone = (event) => { setOrderData({ ...orderData, phone: event.target.value }); };
+    const HandleDelivery = (event) => {
+        setOrderData({ ...orderData, delivery: event.target.value });
+        if (event.target.value === "Local in Milton Keynes free delivery/collection") {
+            SetDeliveryCharges(0)
+        };
+        if (event.target.value === "Standard Delivery £3.99") {
+            SetDeliveryCharges(3.99)
+        };
+        if (event.target.value === "First Class Tracked £6.99") {
+            SetDeliveryCharges(6.99)
+        };
+        if (event.target.value === "Spacial Delivery £11.99") {
+            SetDeliveryCharges(11.99)
+        };
+    };
+
     const Global = useContext(Context)
     const [clientSecret, setClientSecret] = useState()
 
-    /*
-    useEffect(() => {
-        const stripeApiKey = process.env.REACT_APP_STRIPE_API_KEY;
-        const stripePromise = loadStripe(stripeApiKey);
-        setStripePromise(stripePromise)
-    }, [])
-    useEffect(() => {
-        const CreatePaymentIntent = async () => {
-            const Response = await fetch(`${process.env.REACT_APP_BASE_URL}/create-payment-intent`,
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({Price: Global.Order.Total}),
-                });
-
-            const ResponseToJson = await Response.json();
-            setClientSecret(ResponseToJson.ClientSecret)
-        }
-        CreatePaymentIntent()
-    }, [])
-    */
-
     const GetPaymentIntent = async () => {
+        let Total = Global?.Total + DeliveryCharges
         const Response = await fetch(`${process.env.REACT_APP_BASE_URL}/PaymentIntent`,
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ Price: Global.Order.Total }),
+                body: JSON.stringify({ Price: parseInt(Total+1) }),
             });
         const ResponseToJson = await Response.json();
         setClientSecret(ResponseToJson.ClientSecret)
+        orderData.total = (Global?.Total + DeliveryCharges).toFixed(2)
     }
-
-
-    useEffect(() => {
-        GetPaymentIntent()
-    }, [])
 
     return (
         <>
@@ -75,7 +72,7 @@ export default function Cart2() {
                 <div className='Order-Display'>
 
                     <>
-                        {(Global.Order.Type === 'standard') &&
+                        {(Global?.Order?.Type === 'standard') &&
 
                             <div className="Order-His">
                                 <div className='Order-Header'>
@@ -110,7 +107,6 @@ export default function Cart2() {
                                     <div><b>Badge Type:</b> Electric</div>
                                 }
                                 <div><b>Material:</b> Standard ABS</div>
-                                <div><b>Delivery:</b> {Global.Order.Delivery} Delivery</div>
                                 {Global.Order.Spare &&
                                     <div><b>Spare:</b> Spare Included</div>}
                                 {!Global.Order.Spare &&
@@ -119,9 +115,10 @@ export default function Cart2() {
                                     <div><b>Fitting Kit:</b> Included</div>}
                                 {!Global.Order.FittingKit &&
                                     <div><b>Fitting Kit:</b> Excluded</div>}
+                                <div><b>Price:</b> £{Global.Order.Total}</div>
                             </div>
                         }
-                        {(Global.Order.Type === '4D') &&
+                        {(Global?.Order?.Type === '4D') &&
                             <div className="Order-His">
                                 <div className='Order-Header'>
                                     Order Details
@@ -138,7 +135,6 @@ export default function Cart2() {
                                 }
 
                                 <div><b>Material:</b> Standard ABS</div>
-                                <div><b>Delivery:</b> {Global.Order.Delivery} Delivery</div>
                                 {Global.Order.Spare &&
                                     <div><b>Spare:</b> Spare Included</div>}
                                 {!Global.Order.Spare &&
@@ -147,9 +143,10 @@ export default function Cart2() {
                                     <div><b>Fitting Kit:</b> Included</div>}
                                 {!Global.Order.FittingKit &&
                                     <div><b>Fitting Kit:</b >Excluded</div>}
+                                <div><b>Price:</b> £{Global.Order.Total}</div>
                             </div>
                         }
-                        {(Global.Order.Type === 'custom') &&
+                        {(Global?.Order?.Type === 'custom') &&
                             <div className="Order-His">
                                 <div className='Order-Header'>
                                     Order Details
@@ -165,10 +162,10 @@ export default function Cart2() {
                                     <div><b>Border:</b> {Global.Order.Border} £21.99</div>
                                 }
                                 {typeof Global.Order.LeftBadge?.Image !== "undefined" &&
-                                    <div><b>Left Badge :</b> {Global.Order.LeftBadge.Image} [{Global.Order.LeftBadgeBackground}]  £29.99</div>
+                                    <div><b>Left Badge :</b> {Global.Order.LeftBadge.Image} [{Global.Order.LeftBadgeBackground}]  {Global.Order.PlateChoice === 'Front and Rear' ? "£29.99" : "£14.99"}</div>
                                 }
                                 {typeof Global.Order.RightBadge?.Image !== "undefined" &&
-                                    <div><b>Right Badge:</b> {Global.Order.RightBadge.Image} [{Global.Order.RightBadgeBackground}] £29.99</div>
+                                    <div><b>Right Badge:</b> {Global.Order.RightBadge.Image} [{Global.Order.RightBadgeBackground}] {Global.Order.PlateChoice === 'Front and Rear' ? "£29.99" : "£14.99"}</div>
                                 }
                                 {Global.Order.Badge !== "" &&
                                     <div><b>Badge:</b> {Global.Order.Badge} £14.99</div>
@@ -180,7 +177,7 @@ export default function Cart2() {
                                     <div><b>Footer Text:</b> {Global.Order.FooterText} [{Global.Order.FooterColor}]</div>
                                 }
                                 {Global.Order.Spare &&
-                                    <div><b>Spare:</b> £15.00</div>
+                                    <div><b>Spare:</b> {Global.Order.PlateChoice === 'Front and Rear' ? "£30.00" : "£15.00"}</div>
                                 }
                                 {Global.Order.FittingKit &&
                                     <div><b>Fitting Kit:</b> £3.99</div>
@@ -189,10 +186,10 @@ export default function Cart2() {
                                     <div><b>Font Color:</b> {Global.Order.Font}</div>
                                 }
                                 <div><b>Material:</b> Standard ABS</div>
-                                <div><b>Delivery:</b> {Global.Order.Delivery}</div>
+                                <div><b>Price:</b> £{Global.Order.Total}</div>
                             </div>
                         }
-                        {(Global.Order.Type === 'Motor' && Global.Order.PlateChoice === 'Front and Rear') &&
+                        {(Global?.Order?.Type === 'Motor' && Global.Order.PlateChoice === 'Front and Rear') &&
                             <div className="Order-His">
                                 <div className='Order-Header'>
                                     Order Details
@@ -219,10 +216,10 @@ export default function Cart2() {
                                 {Global.Order.FittingKit &&
                                     <div><b>Fitting Kit:</b> £3.99</div>
                                 }
-                                <div><b>Delivery:</b> {Global.Order.Delivery}</div>
+                                <div><b>Price:</b> £{Global.Order.Total}</div>
                             </div>
                         }
-                        {(Global.Order.Type === 'Motor' && Global.Order.PlateChoice === 'Front Only') &&
+                        {(Global?.Order?.Type === 'Motor' && Global.Order.PlateChoice === 'Front Only') &&
                             <div className="Order-His">
                                 <div className='Order-Header'>
                                     Order Details
@@ -249,10 +246,10 @@ export default function Cart2() {
                                     <div><b>Fitting Kit:</b> £3.99</div>
                                 }
                                 <div><b>Material:</b> Standard ABS</div>
-                                <div><b>Delivery:</b> {Global.Order.Delivery}</div>
+                                <div><b>Price:</b> £{Global.Order.Total}</div>
                             </div>
                         }
-                        {(Global.Order.selectedState === 'Motor' && Global.Order.PlateChoice === 'Rear Only') &&
+                        {(Global?.Order?.selectedState === 'Motor' && Global.Order.PlateChoice === 'Rear Only') &&
                             <div className="Order-His">
                                 <div className='Order-Header'>
                                     Order Details
@@ -279,15 +276,29 @@ export default function Cart2() {
                                     <div><b>Fitting Kit:</b> £3.99</div>
                                 }
                                 <div><b>Material:</b> Standard ABS</div>
-                                <div><b>Delivery:</b> {Global.Order.Delivery}</div>
+                                <div><b>Price:</b> £{Global.Order.Total}</div>
                             </div>
                         }
+                        <div>
+                            {Global?.Cart?.map((item, index) => {
+                                return (
+                                    <div className="Accessories" key={index}>
+                                        <div className='Acc-Header'>
+                                            {item.name} [x1]
+                                        </div>
+                                        <div> £{item.price}</div>
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </>
+
+
 
 
                     <div className='Price-display'>
                         <div>Total Amount:</div>
-                        <div>£{Global.Order.Total}</div>
+                        <div>£{(Global?.Total + DeliveryCharges).toFixed(2)}</div>
                     </div>
                 </div>
 
@@ -296,21 +307,73 @@ export default function Cart2() {
                         Address Details
                     </div>
                     <div className="Order-Form">
-                        <input placeholder="Enter Email Address" id="TopBox" required onChange={HandleOrderEmail} />
+                        <input placeholder="Enter Email Address" id="TopBox" required onChange={HandleOrderEmail}
+                            value={orderData.email} disabled={SubmitClicked}
+                         />
                     </div>
 
                     <div className="Order-Form2">
-                        <input placeholder="Address Line 1" id="TopBox2" required onChange={HandleAddress1}></input>
-                        <input placeholder="Address Line 2" id="TopBox21" onChange={HandleAddress2}></input>
+                        <input placeholder="Address Line 1" id="TopBox2" required onChange={HandleAddress1}
+                            value={orderData.address1} disabled={SubmitClicked}
+                        ></input>
+                        <input placeholder="Address Line 2" id="TopBox21" onChange={HandleAddress2}
+                            value={orderData.address2} disabled={SubmitClicked}
+                        ></input>
                     </div>
                     <div className="Order-Form2">
-                        <input placeholder="City" id="TopBox2" required onChange={HandleCity}></input>
-                        <input placeholder="Postcode" id="TopBox21" required onChange={HandlePostcode}></input>
+                        <input placeholder="City" id="TopBox2" required onChange={HandleCity}
+                            value={orderData.city} disabled={SubmitClicked}
+                        ></input>
+                        <input placeholder="Postcode" id="TopBox21" required onChange={HandlePostcode}
+                            value={orderData.postcode} disabled={SubmitClicked}
+                        ></input>
                     </div>
 
                     <div className="Order-Form2">
-                        <input placeholder="Country" id="TopBox2" required onChange={HandleCountry}></input>
-                        <input placeholder="Phone Number" id="TopBox21" required onChange={HandlePhone}></input>
+                        <input placeholder="Country" id="TopBox2" required onChange={HandleCountry}
+                            value={orderData.country} disabled={SubmitClicked}
+                        ></input>
+                        <input placeholder="Phone Number" id="TopBox21" required onChange={HandlePhone}
+                            value={orderData.phone} disabled={SubmitClicked}
+                        ></input>
+                    </div>
+                    <div className="Order-Form2">
+                        {SubmitClicked === false &&
+                            <select id='Dropdown' required onChange={HandleDelivery} style={{ color: "black" }}>
+                                <option value="N/A">-- Select Delivery Option--</option>
+                                <option value="Local in Milton Keynes free delivery/collection">Local in Milton Keynes free delivery/collection</option>
+                                <option value="Standard Delivery £3.99">Standard Delivery [3-5 Working Days] £3.99</option>
+                                <option value="First Class Tracked £6.99">First Class Tracked [1-2 Working Days] £6.99</option>
+                                <option value="Spacial Delivery £11.99">Spacial Delivery [Next Working Day] £11.99</option>
+                            </select>
+                        }
+                        {SubmitClicked === true &&
+                            <select id='Dropdown' required style={{ color: "black" }}
+                                value={
+                                    orderData.delivery === "N/A" ? "N/A" :
+                                        orderData.delivery === "Local in Milton Keynes free delivery/collection" ? "Local in Milton Keynes free delivery/collection" :
+                                            orderData.delivery === "Standard Delivery £3.99" ? "Standard Delivery £3.99" :
+                                                orderData.delivery === "First Class Tracked £6.99" ? "First Class Tracked £6.99" :
+                                                    orderData.delivery === "Spacial Delivery £11.99" ? "Spacial Delivery £11.99" : "N/A"
+                                }
+
+                                disabled>
+                                <option value="N/A">-- Select Delivery Option--</option>
+                                <option value="Local in Milton Keynes free delivery/collection">Local in Milton Keynes free delivery/collection</option>
+                                <option value="Standard Delivery £3.99">Standard Delivery [3-5 Working Days] £3.99</option>
+                                <option value="First Class Tracked £6.99">First Class Tracked [1-2 Working Days] £6.99</option>
+                                <option value="Spacial Delivery £11.99">Spacial Delivery [Next Working Day] £11.99</option>
+                            </select>
+                        }
+                        {SubmitClicked === false &&
+                            <button
+                                className="Paynow3" onClick={() => {
+                                    GetPaymentIntent()
+                                    SetSubmitClicked(true)
+                                }
+                                }
+                            >Submit Order</button>
+                        }
                     </div>
 
                     {clientSecret &&

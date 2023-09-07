@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState , useContext } from 'react'
 import Navigation from '../Navigation/Navigation'
 import './Services.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from '../Footer/Footer'
 import { useNavigate } from "react-router-dom";
+import Context from "../../Context/Context"
 
 export default function Accessories() {
+    const Global = useContext(Context)
 
     const FixingProducts = [
         {
@@ -216,11 +218,12 @@ export default function Accessories() {
         }
     ]
 
-
-    const [cart, setCart] = useState([]);
     
     const addToCart = (product) => {
-        setCart([...cart, { ...product }]);
+        Global.AddToCart(product)
+        let Total = parseFloat(Global.Total) + parseFloat(product.price)
+        Global.SetTotal(Total)
+        toast.success(`${product.name} added to cart`)
     }
 
     return (
@@ -340,6 +343,7 @@ export default function Accessories() {
                     ))}
                 </div>
             </div>
+            <ToastContainer/>
 
 
             <Footer />

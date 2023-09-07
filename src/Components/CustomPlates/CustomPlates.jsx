@@ -32,7 +32,6 @@ export default function HomePage() {
     const [ShortHand, setShortHand] = useState(false);
     const [FooterText, SetFooterText] = useState("")
     const [FooterColor, SetFooterColor] = useState("black")
-    const [Delivery, SetDelivery] = useState("")
     const [Spare, setSpare] = useState(false)
     const [Material, SetMaterial] = useState("Standard-ABS")
     const [FittingKit, SetFittingKit] = useState(false)
@@ -52,12 +51,12 @@ export default function HomePage() {
             toast.error("Enter Plate Number")
             return
         }
-        if (Delivery === "" || Delivery === "N/A") {
-            toast.error("Select Delivery Option")
-            return
+        if (typeof Global?.Order !== 'undefined') {
+          toast.error("You have already added this item to cart. Please remove it from cart to add it again.");
+          return;
         }
-
-        Global.SetOrder({
+        
+        let CartItem = {
             "Type": selectedState,
             "FrontOption": FrontSize,
             "RearOption": RearSize,
@@ -71,7 +70,6 @@ export default function HomePage() {
             "Border": Border,
             "Vertical": Vertical,
             "ShortHand": ShortHand,
-            "Delivery": Delivery,
             "Spare": Spare,
             "FittingKit": FittingKit,
             "Material": Material,
@@ -85,9 +83,14 @@ export default function HomePage() {
             "FooterText": FooterText,
             "FooterColor": FooterColor,
             "PlateType": PlateType,
-            "Layout": Layout            
-        });
+            "BadgeCity": BadgeCity,
+            "BadgeFlag": BadgeFlag,
+            "Layout": Layout,
+        }
 
+        Global.SetOrder(CartItem)        
+        let Total = parseFloat(Global.Total) + parseFloat(CalculatePrice());
+        Global.SetTotal(Total)
         Navigate('/checkout')
         /*
         if (Global.isLoggedIn) {
@@ -114,13 +117,14 @@ export default function HomePage() {
                             <div><b>RearSize:</b> {RearText} £9.99</div>
                         }
                         {(Border !== "transparent") &&
-                            <div><b>Border:</b> {Border} £21.99</div>
+
+                            <div><b>Border:</b> {Border} {PlateChoice === 'Front and Rear'? "£21.99" : "£10.99"}</div>
                         }
                         {typeof LeftBadge?.Image !== "undefined" &&
-                            <div><b>Left Badge :</b> {LeftBadge.Image} [{LeftBadgeBackground}]  £29.99</div>
+                            <div><b>Left Badge:</b> {LeftBadge.Image} [{LeftBadgeBackground}] {PlateChoice === 'Front and Rear'? "£29.99" : "£14.99"}</div>
                         }
                         {typeof RightBadge?.Image !== "undefined"  &&
-                            <div><b>Right Badge:</b> {RightBadge.Image} [{RightBadgeBackground}] £29.99</div>
+                            <div><b>Right Badge:</b> {RightBadge.Image} [{RightBadgeBackground}] {PlateChoice === 'Front and Rear'? "£29.99" : "£14.99"}</div>
                         }
                         {Badge !== "" &&
                             <div><b>Badge:</b> {Badge} £14.99</div>
@@ -132,7 +136,7 @@ export default function HomePage() {
                             <div><b>Footer Text:</b> {FooterText} [{FooterColor}]</div>
                         }
                         {Spare &&
-                            <div><b>Spare:</b> £15.00</div>
+                            <div><b>Spare:</b>  {PlateChoice === 'Front and Rear' ? "£30.00" : "£15.00"}</div>
                         }
                         {FittingKit &&
                             <div><b>Fitting Kit:</b> £3.99</div>
@@ -155,8 +159,16 @@ export default function HomePage() {
                 CPrice = CPrice + 21.99
             }
             if (Badge !== "") {
+                CPrice = CPrice + 14.99
+            }
+            if (typeof LeftBadge?.Image !== "undefined")
+            {
                 CPrice = CPrice + 29.99
             }
+            if (typeof RightBadge?.Image !== "undefined")
+            {
+                CPrice = CPrice + 29.99
+            }            
             if (Spare) {
                 CPrice = CPrice + 30.00
             }
@@ -172,6 +184,14 @@ export default function HomePage() {
             if (Badge !== "") {
                 CPrice = CPrice + 14.99
             }
+            if (typeof LeftBadge?.Image !== "undefined")
+            {
+                CPrice = CPrice + 14.99
+            }
+            if (typeof RightBadge?.Image !== "undefined")
+            {
+                CPrice = CPrice + 14.99
+            }            
             if (Spare) {
                 CPrice = CPrice + 15.00
             }
@@ -187,6 +207,14 @@ export default function HomePage() {
             if (Badge !== "") {
                 CPrice = CPrice + 14.99
             }
+            if (typeof LeftBadge?.Image !== "undefined")
+            {
+                CPrice = CPrice + 14.99
+            }
+            if (typeof RightBadge?.Image !== "undefined")
+            {
+                CPrice = CPrice + 14.99
+            }            
             if (Spare) {
                 CPrice = CPrice + 15.00
             }
@@ -194,36 +222,9 @@ export default function HomePage() {
                 CPrice = CPrice + 3.99
             }
         }
-        if (selectedState !== 'custom') {
-            CPrice = CPrice + 39.99
-            if (Border !== "transparent") {
-                CPrice = CPrice + 21.99
-            }
-            if (Spare) {
-                CPrice = CPrice + 35.00
-            }
-            if (FittingKit) {
-                CPrice = CPrice + 3.99
-            }
-        }
-
-        if (Delivery === "Local in Milton Keynes free delivery/collection") {
-            CPrice = CPrice + 0
-        }
-        if (Delivery === "Standard Delivery £3.99") {
-            CPrice = CPrice + 3.99
-        }
-        if (Delivery === "First Class Tracked £6.99") {
-            CPrice = CPrice + 6.99
-        }
-        if (Delivery === "Spacial Delivery £11.99") {
-            CPrice = CPrice + 11.99
-        }
-
-
         return CPrice.toFixed(2)
     }
-    const HandleDelivery = (e) => { SetDelivery(e.target.value) }
+
     const handleSpareChange = (event) => { setSpare(event.target.checked); };
     const handleFittingKit = (event) => { SetFittingKit(event.target.checked); };
     const HandlePlateText = (e) => {
@@ -243,14 +244,6 @@ export default function HomePage() {
         const selectedText = e.target.options[e.target.selectedIndex].text;
         SetRearText(selectedText)
     };
-    const HandleBadgeBg = (e) => {
-        if (e.target.value === 'Electric') {
-            SetBadgeBackground("#428E3A")
-        }
-        else {
-            SetBadgeBackground("#366CB7")
-        }
-    };
     const HandleBorder = (e) => {
         SetBorder(e.target.value)
     };
@@ -269,7 +262,6 @@ export default function HomePage() {
         SetFooterText("");
         SetLayout("Legal Plates");
         SetFont("black")
-        SetDelivery("")
         setSpare(false)
         SetFittingKit(false)
         SetPlateType("Normal")
@@ -382,7 +374,7 @@ export default function HomePage() {
             )}
             {RightBadgesPopup && (
                 <div className="PopupContainer">
-                    <div className="Popup">
+                    <div className="Popup">g
                         <div className="PopupNavbar">
                             <h3 className="PopupTitle">Right</h3>
                             <h3 className="PopupTitleIn">Badges</h3>
@@ -1268,17 +1260,6 @@ export default function HomePage() {
                                     color: "black",
                                 }}>£{CalculatePrice()}</div>
                             </div>
-                            <div className='Order-Div' >
-                                <select id='Dropdown' required onChange={HandleDelivery} style={{ color: "black" }}>
-                                    <option value="N/A">-- Select Delivery Option--</option>
-                                    <option value="Local in Milton Keynes free delivery/collection">Local in Milton Keynes free delivery/collection</option>
-                                    <option value="Standard Delivery £3.99">Standard Delivery [3-5 Working Days] £3.99</option>
-                                    <option value="First Class Tracked £6.99">First Class Tracked [1-2 Working Days] £6.99</option>
-                                    <option value="Spacial Delivery £11.99">Spacial Delivery [Next Working Day] £11.99</option>
-
-                                </select>
-                            </div>
-
                             <div className='check'>
                                 <label style={{ color: "black" }}
                                 >
