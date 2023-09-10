@@ -6,6 +6,7 @@ import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
 import Stripe from './Stripe'
 import Footer from '../Footer/Footer'
+import { DeleteOutlined } from '@ant-design/icons';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_API_KEY);
 
@@ -58,12 +59,31 @@ export default function Cart2() {
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ Price: parseInt(Total+1) }),
+                body: JSON.stringify({ Price: parseInt(Total + 1) }),
             });
         const ResponseToJson = await Response.json();
         setClientSecret(ResponseToJson.ClientSecret)
         orderData.total = (Global?.Total + DeliveryCharges).toFixed(2)
     }
+
+    const removeFromCart = (item) => {
+
+        let NewCart = Global.Cart.filter((cartItem) => {
+            return cartItem.id !== item.id
+        })
+        console.log("New Cart ", NewCart);
+        Global.SetCart(NewCart)
+        let NewTotal = Global.Total - item.price
+        Global.SetTotal(NewTotal)
+    }
+
+    const removeOrder = () => {
+        Global.SetOrder()
+        Global.SetTotal(
+            Global.Total - Global.Order.Total
+        )
+    }
+
 
     return (
         <>
@@ -115,7 +135,15 @@ export default function Cart2() {
                                     <div><b>Fitting Kit:</b> Included</div>}
                                 {!Global.Order.FittingKit &&
                                     <div><b>Fitting Kit:</b> Excluded</div>}
-                                <div><b>Price:</b> £{Global.Order.Total}</div>
+                                <div className="Accessories" >
+                                    <div className='Acc-Header'>
+                                        <div><b>Price:</b> £{Global.Order.Total}</div>
+                                    </div>
+                                    <div className='Acc2'>
+                                        <DeleteOutlined onClick={() => removeOrder()} />
+                                    </div>
+                                </div>
+
                             </div>
                         }
                         {(Global?.Order?.Type === '4D') &&
@@ -143,7 +171,14 @@ export default function Cart2() {
                                     <div><b>Fitting Kit:</b> Included</div>}
                                 {!Global.Order.FittingKit &&
                                     <div><b>Fitting Kit:</b >Excluded</div>}
-                                <div><b>Price:</b> £{Global.Order.Total}</div>
+                                <div className="Accessories" >
+                                    <div className='Acc-Header'>
+                                        <div><b>Price:</b> £{Global.Order.Total}</div>
+                                    </div>
+                                    <div className='Acc2'>
+                                        <DeleteOutlined onClick={() => removeOrder()} />
+                                    </div>
+                                </div>
                             </div>
                         }
                         {(Global?.Order?.Type === 'custom') &&
@@ -186,7 +221,14 @@ export default function Cart2() {
                                     <div><b>Font Color:</b> {Global.Order.Font}</div>
                                 }
                                 <div><b>Material:</b> Standard ABS</div>
-                                <div><b>Price:</b> £{Global.Order.Total}</div>
+                                <div className="Accessories" >
+                                    <div className='Acc-Header'>
+                                        <div><b>Price:</b> £{Global.Order.Total}</div>
+                                    </div>
+                                    <div className='Acc2'>
+                                        <DeleteOutlined onClick={() => removeOrder()} />
+                                    </div>
+                                </div>
                             </div>
                         }
                         {(Global?.Order?.Type === 'Motor' && Global.Order.PlateChoice === 'Front and Rear') &&
@@ -216,7 +258,14 @@ export default function Cart2() {
                                 {Global.Order.FittingKit &&
                                     <div><b>Fitting Kit:</b> £3.99</div>
                                 }
-                                <div><b>Price:</b> £{Global.Order.Total}</div>
+                                <div className="Accessories" >
+                                    <div className='Acc-Header'>
+                                        <div><b>Price:</b> £{Global.Order.Total}</div>
+                                    </div>
+                                    <div className='Acc2'>
+                                        <DeleteOutlined onClick={() => removeOrder()} />
+                                    </div>
+                                </div>
                             </div>
                         }
                         {(Global?.Order?.Type === 'Motor' && Global.Order.PlateChoice === 'Front Only') &&
@@ -246,7 +295,14 @@ export default function Cart2() {
                                     <div><b>Fitting Kit:</b> £3.99</div>
                                 }
                                 <div><b>Material:</b> Standard ABS</div>
-                                <div><b>Price:</b> £{Global.Order.Total}</div>
+                                <div className="Accessories" >
+                                    <div className='Acc-Header'>
+                                        <div><b>Price:</b> £{Global.Order.Total}</div>
+                                    </div>
+                                    <div className='Acc2'>
+                                        <DeleteOutlined onClick={() => removeOrder()} />
+                                    </div>
+                                </div>
                             </div>
                         }
                         {(Global?.Order?.selectedState === 'Motor' && Global.Order.PlateChoice === 'Rear Only') &&
@@ -276,8 +332,16 @@ export default function Cart2() {
                                     <div><b>Fitting Kit:</b> £3.99</div>
                                 }
                                 <div><b>Material:</b> Standard ABS</div>
-                                <div><b>Price:</b> £{Global.Order.Total}</div>
+                                <div className="Accessories" >
+                                    <div className='Acc-Header'>
+                                        <div><b>Price:</b> £{Global.Order.Total}</div>
+                                    </div>
+                                    <div className='Acc2'>
+                                        <DeleteOutlined onClick={() => removeOrder()} />
+                                    </div>
+                                </div>
                             </div>
+
                         }
                         <div>
                             {Global?.Cart?.map((item, index) => {
@@ -286,7 +350,12 @@ export default function Cart2() {
                                         <div className='Acc-Header'>
                                             {item.name} [x1]
                                         </div>
-                                        <div> £{item.price}</div>
+                                        <div className='Acc2'
+                                        >
+                                            <div> £{item.price}</div>
+                                            <DeleteOutlined onClick={() => removeFromCart(item)} />
+                                        </div>
+
                                     </div>
                                 )
                             })}
@@ -309,7 +378,7 @@ export default function Cart2() {
                     <div className="Order-Form">
                         <input placeholder="Enter Email Address" id="TopBox" required onChange={HandleOrderEmail}
                             value={orderData.email} disabled={SubmitClicked}
-                         />
+                        />
                     </div>
 
                     <div className="Order-Form2">

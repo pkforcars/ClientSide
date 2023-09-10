@@ -19,12 +19,9 @@ export default function Page2(props) {
 
   const AddOrder = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/createOrder`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+      let body = {}
+      if (typeof Global?.Order !== 'undefined') {
+        body = {
           Email: props.orderData.email,
           Address1: props.orderData.address1,
           Address2: props.orderData.address2,
@@ -63,13 +60,41 @@ export default function Page2(props) {
           BadgeFlag: Global.Order.BadgeFlag,
           Layout: Global.Order.Layout,
           OtherItems: Global.Cart
-        }),
+        }
+      }
+      else {
+        body = {
+          Email: props.orderData.email,
+          Address1: props.orderData.address1,
+          Address2: props.orderData.address2,
+          City: props.orderData.city,
+          PostCode: props.orderData.postcode,
+          Country: props.orderData.country,
+          Phone: props.orderData.phone,
+          OtherItems: Global.Cart,
+          Delivery: props.orderData.delivery,
+          OrderValue: props.orderData.total,
+        }
+      }
+
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/createOrder`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: 
+          JSON.stringify(body)
 
       });
       const ResponseToJson = await response.json()
 
       if (ResponseToJson.success) {
-        Navigate('/')
+        toast.success("Order Placed Successfully")
+        setTimeout(
+          () => {
+            Navigate('/')
+          }, 3000
+        )
         const serviceId = "service_wztqj7b";
         const templateId = "template_sszvgp2";
         await emailjs.send(serviceId, templateId,
@@ -156,7 +181,6 @@ export default function Page2(props) {
             plate_order_value: props.orderData.total,
           });
 
-        toast.success("Order Placed Successfully")
         Global.SetTotal(0)
         Global.SetCart([])
         Global.SetOrder()

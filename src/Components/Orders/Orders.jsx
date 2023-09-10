@@ -45,84 +45,91 @@ export default function Orders() {
 
     useEffect(() => {
 
-        if (Global.Order) {
-            SetCart(Global.Order?.OtherItems)
-            setSelectedState(Global.Order?.Type)
-            SetPlateChoice(Global.Order?.PlateChoice)
-            SetPlateText(Global.Order?.PlateText)
-            SetFont(Global.Order?.Font)
-            SetFrontSize(Global.Order?.FrontSize)
-            SetRearSize(Global.Order?.RearSize)
-            SetBadge(Global.Order?.Badge)
-            if (Global.Order?.Badge === "None") {
-                SetBadge("")
-            }
-            if (Global.Order?.Badge !== "" && Global.Order?.Badge !== "None") {
-                const [flag, city] = Global.Order.Badge.split('-');
-                if (flag.endsWith('P')) {
-                    SetVertical(true)
+        if (typeof Global?.Order?.Type !== 'undefined') {
+            if (Global.Order) {
+                SetCart(Global.Order?.OtherItems)
+                setSelectedState(Global.Order?.Type)
+                SetPlateChoice(Global.Order?.PlateChoice)
+                SetPlateText(Global.Order?.PlateText)
+                SetFont(Global.Order?.Font)
+                SetFrontSize(Global.Order?.FrontSize)
+                SetRearSize(Global.Order?.RearSize)
+                SetBadge(Global.Order?.Badge)
+                if (Global.Order?.Badge === "None") {
+                    SetBadge("")
                 }
-                else {
-                    SetVertical(false)
+                if (Global.Order?.Badge !== "" && Global.Order?.Badge !== "None") {
+                    const [flag, city] = Global.Order.Badge.split('-');
+                    if (flag.endsWith('P')) {
+                        SetVertical(true)
+                    }
+                    else {
+                        SetVertical(false)
+                    }
+                    if (city.length > 4) {
+                        setShortHand(true)
+                    } else {
+                        setShortHand(false)
+                    }
+                    SetBadgeCity(city);
+                    SetBadgeFlag(flag.replace("P", ""));
                 }
-                if (city.length > 4) {
-                    setShortHand(true)
-                } else {
-                    setShortHand(false)
+                if (Global.Order?.Badge === "") {
+                    SetBadge("")
+                    SetBadgeCity("");
+                    SetBadgeFlag("");
                 }
-                SetBadgeCity(city);
-                SetBadgeFlag(flag.replace("P", ""));
-            }
-            if (Global.Order?.Badge === "") {
-                SetBadge("")
-                SetBadgeCity("");
-                SetBadgeFlag("");
-            }
-            SetBadgeBackground(Global.Order?.BadgeBackground)
-            SetBorder(Global.Order?.Border)
-            SetVertical(Global.Order?.Vertical)
-            setShortHand(Global.Order?.ShortHand)
-            SetFooterText(Global.Order?.FooterText)
-            SetFrontText(Global.Order?.FrontText)
-            SetRearText(Global.Order?.RearText)
-            SetFooterColor(Global.Order?.FooterColor)
-            if (selectedState === "custom") {
-                SetLeftBadge(Global.Order?.LeftBadge[0])
-                SetLeftBadgeBackground(Global.Order.LeftBadgeBackground)
-                SetRightBadge(Global.Order?.RightBadge[0])
-                SetRightBadgeBackground(Global.Order.RightBadgeBackground)
-                SetLayout(Global.Order.Layout)
-                SetPlateType(Global.Order.PlateType)
-            }
-            if (selectedState === '4D') {
-                const styleOptions = {
-                    Option1: "PlateFront4D",
-                    Option4: "PlateFront4D4",
-                    Option5: "PlateFront4D5",
-                    Option2: "PlateFront4D7",
-                    Option3: "PlateFront4D9",
-                };
-                setAttribute(styleOptions[Global.Order.FrontSize]);
-                const plateFront4D = document.getElementById(Attribute);
-                if (plateFront4D) {
-                    plateFront4D.setAttribute("data-content", PlateText);
+                SetBadgeBackground(Global.Order?.BadgeBackground)
+                SetBorder(Global.Order?.Border)
+                SetVertical(Global.Order?.Vertical)
+                setShortHand(Global.Order?.ShortHand)
+                SetFooterText(Global.Order?.FooterText)
+                SetFrontText(Global.Order?.FrontText)
+                SetRearText(Global.Order?.RearText)
+                SetFooterColor(Global.Order?.FooterColor)
+                if (selectedState === "custom") {
+                    SetLeftBadge(Global.Order?.LeftBadge[0])
+                    SetLeftBadgeBackground(Global.Order.LeftBadgeBackground)
+                    SetRightBadge(Global.Order?.RightBadge[0])
+                    SetRightBadgeBackground(Global.Order.RightBadgeBackground)
+                    SetLayout(Global.Order.Layout)
+                    SetPlateType(Global.Order.PlateType)
                 }
-                const styleOptions2 = {
-                    Option1: "PlateFront4DR",
-                    Option4: "PlateFront4D4Copy",
-                    Option5: "PlateFront4D5Copy",
-                    Option2: "PlateFront4D7",
-                    Option3: "PlateFront4D9",
-                    Option6: "PlateFront4DR",
-                };
-                setAttribute2(styleOptions2[Global.Order.RearSize]);
-                const plateFront4D1 = document.getElementById(Attribute2);
-                if (plateFront4D1) {
-                    plateFront4D1.setAttribute("data-content", PlateText);
+                if (selectedState === '4D') {
+                    const styleOptions = {
+                        Option1: "PlateFront4D",
+                        Option4: "PlateFront4D4",
+                        Option5: "PlateFront4D5",
+                        Option2: "PlateFront4D7",
+                        Option3: "PlateFront4D9",
+                    };
+                    setAttribute(styleOptions[Global.Order.FrontSize]);
+                    const plateFront4D = document.getElementById(Attribute);
+                    if (plateFront4D) {
+                        plateFront4D.setAttribute("data-content", PlateText);
+                    }
+                    const styleOptions2 = {
+                        Option1: "PlateFront4DR",
+                        Option4: "PlateFront4D4Copy",
+                        Option5: "PlateFront4D5Copy",
+                        Option2: "PlateFront4D7",
+                        Option3: "PlateFront4D9",
+                        Option6: "PlateFront4DR",
+                    };
+                    setAttribute2(styleOptions2[Global.Order.RearSize]);
+                    const plateFront4D1 = document.getElementById(Attribute2);
+                    if (plateFront4D1) {
+                        plateFront4D1.setAttribute("data-content", PlateText);
+                    }
                 }
             }
         }
-    })
+        else {
+            if (Global.Order) {
+                SetCart(Global.Order?.OtherItems)
+            }
+        }
+    }, [Global.Order])
 
     return (
         <>
@@ -164,230 +171,233 @@ export default function Orders() {
                             <div><b>Country: </b>{Global.Order.Country}</div>
                         </div>
 
-                        <div id="Plate-Box">Plate Information</div>
-                        <div className='Account-Info'>
-                            <div><b>Plate Text: </b>{Global.Order.PlateText}</div>
-                            {(Global.Order.Type === 'standard' && Global.Order.PlateChoice === 'Front and Rear') &&
-                                <div className="Order-HisA">
-                                    <div><b>Plate Type:</b> Standard [Front and Rear]</div>
-                                    <div><b>Front Plate Size: </b>{Global.Order.FrontText}</div>
-                                    <div><b>Rear Plate Size: </b>{Global.Order.RearText}</div>
-                                    {(Global.Order.Border !== "transparent") &&
-                                        <div><b>Border:</b> {Global.Order.Border}</div>
+                        {typeof Global?.Order?.Type !== 'undefined' &&
+                            <>
+                                <div id="Plate-Box">Plate Information</div>
+                                <div className='Account-Info'>
+                                    <div><b>Plate Text: </b>{Global.Order.PlateText}</div>
+                                    {(Global.Order.Type === 'standard' && Global.Order.PlateChoice === 'Front and Rear') &&
+                                        <div className="Order-HisA">
+                                            <div><b>Plate Type:</b> Standard [Front and Rear]</div>
+                                            <div><b>Front Plate Size: </b>{Global.Order.FrontText}</div>
+                                            <div><b>Rear Plate Size: </b>{Global.Order.RearText}</div>
+                                            {(Global.Order.Border !== "transparent") &&
+                                                <div><b>Border:</b> {Global.Order.Border}</div>
+                                            }
+                                            {(Global.Order.Border === "transparent") &&
+                                                <div><b>Border:</b> None</div>
+                                            }
+                                            {Global.Order.Badge !== "" &&
+                                                <>
+                                                    <div><b>Badge:</b> {Global.Order.Badge}</div>
+                                                </>
+                                            }
+                                            {Global.Order.Badge === "" &&
+                                                <div><b>Badge:</b> No Badges</div>
+                                            }
+                                            {Global.Order.Badge !== "" && Global.Order.BadgeBackground === '#366CB7' &&
+                                                <div><b>Badge Type:</b> Normal</div>
+                                            }
+                                            {Global.Order.Badge !== "" && Global.Order.BadgeBackground !== '#366CB7' &&
+                                                <div><b>Badge Type:</b> Gel</div>
+                                            }
+                                            <div><b>Material:</b> Standard ABS</div>
+                                        </div>
                                     }
-                                    {(Global.Order.Border === "transparent") &&
-                                        <div><b>Border:</b> None</div>
+                                    {(Global.Order.Type === 'standard' && Global.Order.PlateChoice === 'Front Only') &&
+                                        <div className="Order-HisA">
+                                            <div><b>Plate Type:</b> Standard [Front Only]</div>
+                                            <div><b>Plate Number:</b> {Global.Order.PlateText}</div>
+                                            <div><b>Front Plate Size:</b> {Global.Order.FrontText}</div>
+                                            {(Global.Order.Border !== "transparent") &&
+                                                <div><b>Border:</b> {Global.Order.Border}</div>
+                                            }
+                                            {(Global.Order.Border === "transparent") &&
+                                                <div><b>Border:</b> None</div>
+                                            }
+                                            {Global.Order.Badge !== "" &&
+                                                <>
+                                                    <div><b>Badge:</b> {Global.Order.Badge}</div>
+                                                </>
+                                            }
+                                            {Global.Order.Badge === "" &&
+                                                <div><b>Badge:</b> No Badges</div>
+                                            }
+                                            {Global.Order.Badge !== "" && Global.Order.BadgeBackground === '#366CB7' &&
+                                                <div><b>Badge Type:</b> Normal</div>
+                                            }
+                                            {Global.Order.Badge !== "" && Global.Order.BadgeBackground !== '#366CB7' &&
+                                                <div><b>Badge Type:</b> Gel</div>
+                                            }
+                                            <div><b>Material:</b> Standard ABS</div>
+                                            {Global.Order.Spare &&
+                                                <div><b>Spare:</b> Spare Included</div>}
+                                            {!Global.Order.Spare &&
+                                                <div><b>Spare:</b> Spare Excluded</div>}
+                                        </div>
                                     }
-                                    {Global.Order.Badge !== "" &&
-                                        <>
-                                            <div><b>Badge:</b> {Global.Order.Badge}</div>
-                                        </>
+                                    {(Global.Order.Type === 'standard' && Global.Order.PlateChoice === 'Rear Only') &&
+                                        <div className="Order-HisA">
+                                            <div><b>Plate Type:</b> Standard [Rear Only]</div>
+                                            <div><b>Plate Number:</b> {Global.Order.PlateText}</div>
+                                            <div><b>Rear Plate Size:</b> {Global.Order.RearText}</div>
+                                            {(Global.Order.Border !== "transparent") &&
+                                                <div><b>Border:</b> {Global.Order.Border}</div>
+                                            }
+                                            {(Global.Order.Border === "transparent") &&
+                                                <div><b>Border:</b> None</div>
+                                            }
+                                            {Global.Order.Badge !== "" &&
+                                                <>
+                                                    <div><b>Badge:</b> {Global.Order.Badge}</div>
+                                                </>
+                                            }
+                                            {Global.Order.Badge === "" &&
+                                                <div><b>Badge:</b> No Badges</div>
+                                            }
+                                            {Global.Order.Badge !== "" && Global.Order.BadgeBackground === '#366CB7' &&
+                                                <div><b>Badge Type:</b> Normal</div>
+                                            }
+                                            {Global.Order.Badge !== "" && Global.Order.BadgeBackground !== '#366CB7' &&
+                                                <div><b>Badge Type:</b> Gel</div>
+                                            }
+                                            <div><b>Material:</b> Standard ABS</div>
+                                        </div>
                                     }
-                                    {Global.Order.Badge === "" &&
-                                        <div><b>Badge:</b> No Badges</div>
+                                    {(Global.Order.Type === '4D') &&
+                                        <div className="Order-HisA">
+                                            <div><b>Plate Type:</b> 4D</div>
+                                            <div><b>Plate Number:</b> {Global.Order.PlateText}</div>
+                                            <div><b>Front Plate Size:</b> {Global.Order.FrontText}</div>
+                                            <div><b>Rear Plate Size:</b> {Global.Order.RearText}</div>
+                                            {(Global.Order.Border !== "transparent") &&
+                                                <div><b>Border:</b> {Global.Order.Border}</div>
+                                            }
+                                            {(Global.Order.Border === "transparent") &&
+                                                <div><b>Border:</b> None</div>
+                                            }
+                                        </div>
                                     }
-                                    {Global.Order.Badge !== "" && Global.Order.BadgeBackground === '#366CB7' &&
-                                        <div><b>Badge Type:</b> Normal</div>
+                                    {(Global?.Order?.Type === 'custom') &&
+                                        <div className="Order-HisA">
+                                            <div><b>Plate Type:</b> Custom [{Global.Order.PlateChoice}]</div>
+                                            {(Global.Order.PlateChoice === 'Front and Rear' || Global.Order.PlateChoice === 'Front Only') &&
+                                                <div><b>FrontSize:</b> {Global.Order.FrontText} </div>
+                                            }
+                                            {(Global.Order.PlateChoice === 'Front and Rear' || Global.Order.PlateChoice === 'Rear Only') &&
+                                                <div><b>RearSize:</b> {Global.Order.RearText} </div>
+                                            }
+                                            {(Global.Order.Border !== "transparent") &&
+                                                <div><b>Border:</b> {Global.Order.Border} </div>
+                                            }
+                                            {typeof Global.Order?.LeftBadge[0]?.Image !== "undefined" &&
+                                                <div><b>Left Badge :</b> {Global.Order.LeftBadge[0].Image} [{Global.Order.LeftBadgeBackground}]</div>
+                                            }
+                                            {typeof Global.Order?.RightBadge[0]?.Image !== "undefined" &&
+                                                <div><b>Right Badge:</b> {Global.Order.RightBadge[0].Image} [{Global.Order.RightBadgeBackground}]</div>
+                                            }
+                                            {Global.Order.Badge !== "" &&
+                                                <div><b>Badge:</b> {Global.Order.Badge} £14.99</div>
+                                            }
+                                            {Global.Order.PlateType &&
+                                                <div><b>Plate Type:</b> {Global.Order.PlateType}</div>
+                                            }
+                                            {Global.Order.FooterText !== "" &&
+                                                <div><b>Footer Text:</b> {Global.Order.FooterText} [{Global.Order.FooterColor}]</div>
+                                            }
+                                            {Global.Order.Font &&
+                                                <div><b>Font Color:</b> {Global.Order.Font}</div>
+                                            }
+                                            {Global.Order.BadgeCity &&
+                                                <div><b>Badge:</b> {Global.Order.BadgeCity}</div>
+                                            }
+                                            {Global.Order.BadgeFlag &&
+                                                <div><b>Badge:</b> {Global.Order.BadgeFlag}</div>
+                                            }
+
+                                            <div><b>Material:</b> Standard ABS</div>
+                                        </div>
                                     }
-                                    {Global.Order.Badge !== "" && Global.Order.BadgeBackground !== '#366CB7' &&
-                                        <div><b>Badge Type:</b> Gel</div>
+                                    {(Global?.Order?.Type === 'Motor' && Global.Order.PlateChoice === 'Front and Rear') &&
+                                        <div className="Order-HisA">
+                                            <div><b>Plate Type:</b> Motor Plates</div>
+                                            <div><b>FrontSize:</b> {Global.Order.FrontText} £9.99</div>
+                                            <div><b>RearSize:</b> {Global.Order.RearText} £9.99</div>
+                                            {(Global.Order.Border !== "transparent") &&
+                                                <div><b>Border:</b> {Global.Order.Border} £21.99</div>
+                                            }
+                                            {Global.Order.Badge !== "" &&
+                                                <div><b>Badge:</b> {Global.Order.Badge} £29.99</div>
+                                            }
+                                            {Global.Order.Badge !== "" && Global.Order.BadgeBackground === '#366CB7' &&
+                                                <div><b>Badge Type:</b> Normal</div>
+                                            }
+                                            {Global.Order.Badge !== "" && Global.Order.BadgeBackground !== '#366CB7' &&
+                                                <div><b>Badge Type:</b> Electric</div>
+                                            }
+                                            <div><b>Material:</b> Standard ABS</div>
+                                        </div>
                                     }
-                                    <div><b>Material:</b> Standard ABS</div>
-                                </div>
-                            }
-                            {(Global.Order.Type === 'standard' && Global.Order.PlateChoice === 'Front Only') &&
-                                <div className="Order-HisA">
-                                    <div><b>Plate Type:</b> Standard [Front Only]</div>
-                                    <div><b>Plate Number:</b> {Global.Order.PlateText}</div>
-                                    <div><b>Front Plate Size:</b> {Global.Order.FrontText}</div>
-                                    {(Global.Order.Border !== "transparent") &&
-                                        <div><b>Border:</b> {Global.Order.Border}</div>
+                                    {(Global?.Order?.Type === 'Motor' && Global.Order.PlateChoice === 'Front Only') &&
+                                        <div className="Order-HisA">
+                                            <div><b>Plate Type:</b> Motor Plates [Front Only]</div>
+                                            <div><b>FrontSize:</b> {Global.Order.FrontText} £9.99</div>
+                                            {(Global.Order.Border !== "transparent") &&
+                                                <div><b>Border:</b> {Global.Order.Border} £10.99</div>
+                                            }
+                                            {Global.Order.Badge !== "" &&
+                                                <div><b>Badge:</b> {Global.Order.Badge} £14.99</div>
+                                            }
+                                            {Global.Order.Badge !== "" && Global.Order.BadgeBackground === '#366CB7' &&
+                                                <div><b>Badge Type:</b> Normal</div>
+                                            }
+                                            {Global.Order.Badge !== "" && Global.Order.BadgeBackground !== '#366CB7' &&
+                                                <div><b>Badge Type:</b> Electric</div>
+                                            }
+                                            <div><b>Material:</b> Standard ABS</div>
+                                        </div>
                                     }
-                                    {(Global.Order.Border === "transparent") &&
-                                        <div><b>Border:</b> None</div>
-                                    }
-                                    {Global.Order.Badge !== "" &&
-                                        <>
-                                            <div><b>Badge:</b> {Global.Order.Badge}</div>
-                                        </>
-                                    }
-                                    {Global.Order.Badge === "" &&
-                                        <div><b>Badge:</b> No Badges</div>
-                                    }
-                                    {Global.Order.Badge !== "" && Global.Order.BadgeBackground === '#366CB7' &&
-                                        <div><b>Badge Type:</b> Normal</div>
-                                    }
-                                    {Global.Order.Badge !== "" && Global.Order.BadgeBackground !== '#366CB7' &&
-                                        <div><b>Badge Type:</b> Gel</div>
-                                    }
-                                    <div><b>Material:</b> Standard ABS</div>
-                                    {Global.Order.Spare &&
-                                        <div><b>Spare:</b> Spare Included</div>}
-                                    {!Global.Order.Spare &&
-                                        <div><b>Spare:</b> Spare Excluded</div>}
-                                </div>
-                            }
-                            {(Global.Order.Type === 'standard' && Global.Order.PlateChoice === 'Rear Only') &&
-                                <div className="Order-HisA">
-                                    <div><b>Plate Type:</b> Standard [Rear Only]</div>
-                                    <div><b>Plate Number:</b> {Global.Order.PlateText}</div>
-                                    <div><b>Rear Plate Size:</b> {Global.Order.RearText}</div>
-                                    {(Global.Order.Border !== "transparent") &&
-                                        <div><b>Border:</b> {Global.Order.Border}</div>
-                                    }
-                                    {(Global.Order.Border === "transparent") &&
-                                        <div><b>Border:</b> None</div>
-                                    }
-                                    {Global.Order.Badge !== "" &&
-                                        <>
-                                            <div><b>Badge:</b> {Global.Order.Badge}</div>
-                                        </>
-                                    }
-                                    {Global.Order.Badge === "" &&
-                                        <div><b>Badge:</b> No Badges</div>
-                                    }
-                                    {Global.Order.Badge !== "" && Global.Order.BadgeBackground === '#366CB7' &&
-                                        <div><b>Badge Type:</b> Normal</div>
-                                    }
-                                    {Global.Order.Badge !== "" && Global.Order.BadgeBackground !== '#366CB7' &&
-                                        <div><b>Badge Type:</b> Gel</div>
-                                    }
-                                    <div><b>Material:</b> Standard ABS</div>
-                                </div>
-                            }
-                            {(Global.Order.Type === '4D') &&
-                                <div className="Order-HisA">
-                                    <div><b>Plate Type:</b> 4D</div>
-                                    <div><b>Plate Number:</b> {Global.Order.PlateText}</div>
-                                    <div><b>Front Plate Size:</b> {Global.Order.FrontText}</div>
-                                    <div><b>Rear Plate Size:</b> {Global.Order.RearText}</div>
-                                    {(Global.Order.Border !== "transparent") &&
-                                        <div><b>Border:</b> {Global.Order.Border}</div>
-                                    }
-                                    {(Global.Order.Border === "transparent") &&
-                                        <div><b>Border:</b> None</div>
-                                    }
-                                </div>
-                            }
-                            {(Global?.Order?.Type === 'custom') &&
-                                <div className="Order-HisA">
-                                    <div><b>Plate Type:</b> Custom [{Global.Order.PlateChoice}]</div>
-                                    {(Global.Order.PlateChoice === 'Front and Rear' || Global.Order.PlateChoice === 'Front Only') &&
-                                        <div><b>FrontSize:</b> {Global.Order.FrontText} </div>
-                                    }
-                                    {(Global.Order.PlateChoice === 'Front and Rear' || Global.Order.PlateChoice === 'Rear Only') &&
-                                        <div><b>RearSize:</b> {Global.Order.RearText} </div>
-                                    }
-                                    {(Global.Order.Border !== "transparent") &&
-                                        <div><b>Border:</b> {Global.Order.Border} </div>
-                                    }
-                                    {typeof Global.Order?.LeftBadge[0]?.Image !== "undefined" &&
-                                        <div><b>Left Badge :</b> {Global.Order.LeftBadge[0].Image} [{Global.Order.LeftBadgeBackground}]</div>
-                                    }
-                                    {typeof Global.Order?.RightBadge[0]?.Image !== "undefined" &&
-                                        <div><b>Right Badge:</b> {Global.Order.RightBadge[0].Image} [{Global.Order.RightBadgeBackground}]</div>
-                                    }
-                                    {Global.Order.Badge !== "" &&
-                                        <div><b>Badge:</b> {Global.Order.Badge} £14.99</div>
-                                    }
-                                    {Global.Order.PlateType &&
-                                        <div><b>Plate Type:</b> {Global.Order.PlateType}</div>
-                                    }
-                                    {Global.Order.FooterText !== "" &&
-                                        <div><b>Footer Text:</b> {Global.Order.FooterText} [{Global.Order.FooterColor}]</div>
-                                    }
-                                    {Global.Order.Font &&
-                                        <div><b>Font Color:</b> {Global.Order.Font}</div>
-                                    }
-                                    {Global.Order.BadgeCity &&
-                                        <div><b>Badge:</b> {Global.Order.BadgeCity}</div>
-                                    }
-                                    {Global.Order.BadgeFlag &&
-                                        <div><b>Badge:</b> {Global.Order.BadgeFlag}</div>
+                                    {(Global?.Order?.selectedState === 'Motor' && Global.Order.PlateChoice === 'Rear Only') &&
+                                        <div className="Order-HisA">
+                                            <div><b>Plate Type:</b> Motor Plates [Rear Only]</div>
+                                            <div><b>RearSize:</b> {Global.Order.RearText} £9.99</div>
+                                            {(Global.Order.Border !== "transparent") &&
+                                                <div><b>Border:</b> {Global.Order.Border} £10.99</div>
+                                            }
+                                            {Global.Order.Badge !== "" &&
+                                                <div><b>Badge:</b> {Global.Order.Badge} £14.99</div>
+                                            }
+                                            {Global.Order.Badge !== "" && Global.Order.BadgeBackground === '#366CB7' &&
+                                                <div><b>Badge Type:</b> Normal</div>
+                                            }
+                                            {Global.Order.Badge !== "" && Global.Order.BadgeBackground !== '#366CB7' &&
+                                                <div><b>Badge Type:</b> Electric</div>
+                                            }
+                                            <div><b>Material:</b> Standard ABS</div>
+                                        </div>
                                     }
 
-                                    <div><b>Material:</b> Standard ABS</div>
+
+
+
+
                                 </div>
-                            }
-                            {(Global?.Order?.Type === 'Motor' && Global.Order.PlateChoice === 'Front and Rear') &&
-                                <div className="Order-HisA">
-                                    <div><b>Plate Type:</b> Motor Plates</div>
-                                    <div><b>FrontSize:</b> {Global.Order.FrontText} £9.99</div>
-                                    <div><b>RearSize:</b> {Global.Order.RearText} £9.99</div>
-                                    {(Global.Order.Border !== "transparent") &&
-                                        <div><b>Border:</b> {Global.Order.Border} £21.99</div>
-                                    }
-                                    {Global.Order.Badge !== "" &&
-                                        <div><b>Badge:</b> {Global.Order.Badge} £29.99</div>
-                                    }
-                                    {Global.Order.Badge !== "" && Global.Order.BadgeBackground === '#366CB7' &&
-                                        <div><b>Badge Type:</b> Normal</div>
-                                    }
-                                    {Global.Order.Badge !== "" && Global.Order.BadgeBackground !== '#366CB7' &&
-                                        <div><b>Badge Type:</b> Electric</div>
-                                    }
-                                    <div><b>Material:</b> Standard ABS</div>
-                                </div>
-                            }
-                            {(Global?.Order?.Type === 'Motor' && Global.Order.PlateChoice === 'Front Only') &&
-                                <div className="Order-HisA">
-                                    <div><b>Plate Type:</b> Motor Plates [Front Only]</div>
-                                    <div><b>FrontSize:</b> {Global.Order.FrontText} £9.99</div>
-                                    {(Global.Order.Border !== "transparent") &&
-                                        <div><b>Border:</b> {Global.Order.Border} £10.99</div>
-                                    }
-                                    {Global.Order.Badge !== "" &&
-                                        <div><b>Badge:</b> {Global.Order.Badge} £14.99</div>
-                                    }
-                                    {Global.Order.Badge !== "" && Global.Order.BadgeBackground === '#366CB7' &&
-                                        <div><b>Badge Type:</b> Normal</div>
-                                    }
-                                    {Global.Order.Badge !== "" && Global.Order.BadgeBackground !== '#366CB7' &&
-                                        <div><b>Badge Type:</b> Electric</div>
-                                    }
-                                    <div><b>Material:</b> Standard ABS</div>
-                                </div>
-                            }
-                            {(Global?.Order?.selectedState === 'Motor' && Global.Order.PlateChoice === 'Rear Only') &&
-                                <div className="Order-HisA">
-                                    <div><b>Plate Type:</b> Motor Plates [Rear Only]</div>
-                                    <div><b>RearSize:</b> {Global.Order.RearText} £9.99</div>
-                                    {(Global.Order.Border !== "transparent") &&
-                                        <div><b>Border:</b> {Global.Order.Border} £10.99</div>
-                                    }
-                                    {Global.Order.Badge !== "" &&
-                                        <div><b>Badge:</b> {Global.Order.Badge} £14.99</div>
-                                    }
-                                    {Global.Order.Badge !== "" && Global.Order.BadgeBackground === '#366CB7' &&
-                                        <div><b>Badge Type:</b> Normal</div>
-                                    }
-                                    {Global.Order.Badge !== "" && Global.Order.BadgeBackground !== '#366CB7' &&
-                                        <div><b>Badge Type:</b> Electric</div>
-                                    }
-                                    <div><b>Material:</b> Standard ABS</div>
-                                </div>
-                            }
-
-
-
-
-
-                        </div>
-
+                                {Global.Order.Spare &&
+                                    <div id="Plate-Box1"><b>Spare Plate: </b>Included</div>
+                                }
+                                {!Global.Order.Spare &&
+                                    <div id="Plate-Box1"><b>Spare Plate: </b>Not Included</div>
+                                }
+                                {Global.Order.FittingKit &&
+                                    <div id="Plate-Box1"><b>FittingKit Plate: </b>Included</div>
+                                }
+                                {!Global.Order.FittingKit &&
+                                    <div id="Plate-Box1"><b>FittingKit Plate: </b>Not Included</div>
+                                }
+                            </>
+                        }
 
                         <div id="Plate-Box1"><b>Delivery: </b>{Global.Order.Delivery} Delivery</div>
-                        {Global.Order.Spare &&
-                            <div id="Plate-Box1"><b>Spare Plate: </b>Included</div>
-                        }
-                        {!Global.Order.Spare &&
-                            <div id="Plate-Box1"><b>Spare Plate: </b>Not Included</div>
-                        }
-                        {Global.Order.FittingKit &&
-                            <div id="Plate-Box1"><b>FittingKit Plate: </b>Included</div>
-                        }
-                        {!Global.Order.FittingKit &&
-                            <div id="Plate-Box1"><b>FittingKit Plate: </b>Not Included</div>
-                        }
                         <div id="Plate-Box2"><b>Order Value:</b> <b>£{Global.Order.OrderValue}</b></div>
                     </div>
                     <div className='PlatesAdmin'>

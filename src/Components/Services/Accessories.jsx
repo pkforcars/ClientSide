@@ -15,7 +15,8 @@ export default function Accessories() {
             id: 1,
             name: "Car Number Plate Fixing Kit",
             description: "8 Double Sided Sticky Pads, 4 x Self-Tapping Screws, 4 x Black Caps, 2 x Yellow Caps, 2 x White Caps. Essential kit required for hassle free fitting.",
-            price: 3.99,
+            //price: 3.99,
+            price: 0.1,
             image: "Acc1.png"
         },
         {
