@@ -66,6 +66,8 @@ export default function HomePage() {
             "Material": Material,
             "FrontText": FrontText,
             "RearText": RearText,
+            "FooterText": FooterText,
+            "Total": CalculatePrice(),
         };
 
         Global.SetOrder(CartItem)        
@@ -526,26 +528,6 @@ export default function HomePage() {
                                     }}
                                 >
                                     <span className="type-label">Black</span>
-                                </span>
-                            </label>
-                            <label>
-                                <input className="type-input" type="radio" name="border" onChange={HandleBorder} value="Blue" checked={Border === 'Blue'} />
-                                <span className="type-tile2"
-                                    style={{
-                                        border: "2px solid blue",
-                                    }}
-                                >
-                                    <span className="type-label">Blue</span>
-                                </span>
-                            </label>
-                            <label>
-                                <input className="type-input" type="radio" name="border" onChange={HandleBorder} value="Red" checked={Border === 'Red'} />
-                                <span className="type-tile2"
-                                    style={{
-                                        border: "2px solid red",
-                                    }}
-                                >
-                                    <span className="type-label">Red</span>
                                 </span>
                             </label>
                         </div>

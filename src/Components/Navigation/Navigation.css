@@ -4,7 +4,8 @@ body {
 
 #Navbar {
     width: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: 45% 55%;
     justify-content: space-around;
     align-items: center;
     color: black;
@@ -27,7 +28,9 @@ body {
 
 #Component-1 {
     display: flex;
+    justify-content: start;
     align-items: center;
+    margin-left: 5rem;
 }
 
 #Component-1 h3 span {
@@ -73,6 +76,7 @@ body {
 
 
 @media (max-width: 768px) {
+
     #Navbar {
         grid-template-columns: 100%;
     }
@@ -81,7 +85,7 @@ body {
         display: flex;
         justify-content: center;
         margin-left: 0%;
-
+        padding: 0;
     }
 
     #Component-2 {
@@ -186,7 +190,6 @@ body {
     color: black;
     border: 1px solid #F6C506;
     background-color: #F6C506;
-
     padding: 0.5rem;
     font-family: 'Nunito';
     font-size: 0.9rem;
@@ -331,3 +334,8 @@ body {
     }
 }
  
+@media (max-width: 1200px) {
+    .Request{
+        font-size: 0.8rem;
+    }
+}

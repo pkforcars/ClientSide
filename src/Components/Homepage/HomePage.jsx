@@ -98,7 +98,7 @@ export default function HomePage() {
         onClick={()=>navigate(
           '/customized'
         )}>
-          <h5>Custom Plates</h5>
+          <h5>Show Plates</h5>
           <img src="/PrivatePlate.png" alt="" />
         </div>
         <div className='product2'

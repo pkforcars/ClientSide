@@ -6,7 +6,6 @@ import { Drawer } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import { CloseOutlined } from '@ant-design/icons';
 import { ShoppingCartOutlined } from '@ant-design/icons';
-import { Badge } from 'antd';
 
 
 export default function Navigation() {
@@ -23,7 +22,7 @@ export default function Navigation() {
   };
 
   const handleResize = () => {
-    setIsMobile(window.innerWidth <= 428); // Adjust the breakpoint as needed
+    setIsMobile(window.innerWidth <= 600); // Adjust the breakpoint as needed
   };
 
   useEffect(() => {
@@ -90,7 +89,8 @@ export default function Navigation() {
           <div id="Component-2">
             {isMobile &&
               <div className="mobile-menu">
-                <img src="/Logo.png" />
+                <img src="/Logo.png" 
+                />
                 <div className="CartMobile">
                   <ShoppingCartOutlined className="CartIconMobile" onClick={
                     () => {
