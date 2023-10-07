@@ -1,4 +1,4 @@
-import React, { useState , useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import Navigation from '../Navigation/Navigation'
 import './Services.css'
 import { ToastContainer, toast } from 'react-toastify';
@@ -15,8 +15,7 @@ export default function Accessories() {
             id: 1,
             name: "Car Number Plate Fixing Kit",
             description: "8 Double Sided Sticky Pads, 4 x Self-Tapping Screws, 4 x Black Caps, 2 x Yellow Caps, 2 x White Caps. Essential kit required for hassle free fitting.",
-            //price: 3.99,
-            price: 0.1,
+            price: 3.99,
             image: "Acc1.png"
         },
         {
@@ -146,7 +145,7 @@ export default function Accessories() {
             name: "Armor All All-Round Wipes",
             description: "Armor All All-Round Wipes are a quick and easy way to clean your car. The wipes are specially formulated to clean, condition and protect your car.",
             price: 4.99,
-            image:"Acc19.png"
+            image: "Acc19.png"
         }
     ]
 
@@ -219,7 +218,7 @@ export default function Accessories() {
         }
     ]
 
-    
+
     const addToCart = (product) => {
         Global.AddToCart(product)
         let Total = parseFloat(Global.Total) + parseFloat(product.price)
@@ -263,7 +262,7 @@ export default function Accessories() {
                                             addToCart(product);
                                         }}
                                     >
-                                        Add to Cart £{product.price} 
+                                        Add to Cart £{product.price}
                                     </button>
                                 </div>
 
@@ -300,7 +299,7 @@ export default function Accessories() {
                                             addToCart(product);
                                         }}
                                     >
-                                        Add to Cart £{product.price} 
+                                        Add to Cart £{product.price}
                                     </button>
                                 </div>
 
@@ -339,12 +338,12 @@ export default function Accessories() {
                                         Add to Cart £{product.price}
                                     </button>
                                 </div>
-                                </div>
+                            </div>
                         </div>
                     ))}
                 </div>
             </div>
-            <ToastContainer/>
+            <ToastContainer />
 
 
             <Footer />

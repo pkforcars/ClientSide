@@ -240,7 +240,8 @@ export default function Page2(props) {
         <button className="btn-pay2" onClick={() => { Navigate('/dashboard') }} style={{ marginRight: "2px" }} >Cancel</button>
 
         <button onClick={(e) => {
-                MakePayment(e);           SetPaymentClicked(true)
+                MakePayment(e);           
+                SetPaymentClicked(true)
         }
         } className="Paynow"
           disabled={PaymentClicked}

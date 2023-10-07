@@ -8,12 +8,12 @@ export default function Footer() {
           <h3>PLATES N KEYS<span> 4 CARS</span></h3>
 
           <div className='Divider-Text5'>Looking for the best Plates on the market then you have come to the right place.
-            Bancroft Auto, a leading plate maker offering you the style and flexibility you want, at the right price.
+            Plates N Keys 4 Cars, a leading plate maker offering you the style and flexibility you want, at the right price.
           </div>
 
           <div className='Divider-Text6'>
             Secure and Online Payments Via</div>
-            <div className='Cards'>
+          <div className='Cards'>
             <img src='/Mastercard.png' alt="Mastercard" width={60} height={35}></img>
             <img src='/Visa.png' alt="Visa" width={60} height={35}></img>
           </div>

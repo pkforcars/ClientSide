@@ -7,6 +7,7 @@ import { Elements } from '@stripe/react-stripe-js'
 import Stripe from './Stripe'
 import Footer from '../Footer/Footer'
 import { DeleteOutlined } from '@ant-design/icons';
+import { ToastContainer, toast } from 'react-toastify';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_API_KEY);
 
@@ -437,6 +438,10 @@ export default function Cart2() {
                         {SubmitClicked === false &&
                             <button
                                 className="Paynow3" onClick={() => {
+                                    if (orderData.email === "" || orderData.address1 === "" || orderData.city === "" || orderData.postcode === "" || orderData.country === "" || orderData.phone === "") {                                        
+                                        toast.error("Please fill all the fields")
+                                        return
+                                    }                                  
                                     GetPaymentIntent()
                                     SetSubmitClicked(true)
                                 }
@@ -454,6 +459,7 @@ export default function Cart2() {
                     }
                 </div>
             </div >
+            <ToastContainer/>
 
             <Footer />
         </>
