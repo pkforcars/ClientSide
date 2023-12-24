@@ -95,92 +95,6 @@ export default function Page2(props) {
             Navigate('/')
           }, 3000
         )
-        const serviceId = "service_wztqj7b";
-        const templateId = "template_sszvgp2";
-        await emailjs.send(serviceId, templateId,
-          {
-            to_name: props.orderData.email,
-            plate_number: Global.Order.PlateText,
-            plate_type: Global.Order.Type,
-            plate_front: Global.Order.FrontText,
-            plate_rear: Global.Order.RearText,
-            plate_material: Global.Order.Material,
-            plate_badge: Global.Order.Badge,
-            plate_badge_background: Global.Order.BadgeBackground,
-            plate_border: Global.Order.Border,
-            plate_delivery: props.orderData.delivery,
-            plate_spare: Global.Order.Spare,
-            plate_fitting_kit: Global.Order.FittingKit,
-            plate_total: Global.Order.Total,
-            plate_font: Global.Order.Font,
-            plate_left_badge: Global.Order.LeftBadge,
-            plate_left_badge_background: Global.Order.LeftBadgeBackground,
-            plate_right_badge: Global.Order.RightBadge,
-            plate_right_badge_background: Global.Order.RightBadgeBackground,
-            plate_footer_text: Global.Order.FooterText,
-            plate_footer_color: Global.Order.FooterColor,
-            plate_plate_type: Global.Order.PlateType,
-            plate_badge_city: Global.Order.BadgeCity,
-            plate_badge_flag: Global.Order.BadgeFlag,
-            plate_layout: Global.Order.Layout,
-            plate_front_size: Global.Order.FrontSize,
-            plate_rear_size: Global.Order.RearSize,
-            plate_front_option: Global.Order.FrontOption,
-            plate_rear_option: Global.Order.RearOption,
-            plate_choice: Global.Order.PlateChoice,
-            plate_short_hand: Global.Order.ShortHand,
-            plate_other_items: Global.Cart,
-            plate_address1: props.orderData.address1,
-            plate_address2: props.orderData.address2,
-            plate_city: props.orderData.city,
-            plate_postcode: props.orderData.postcode,
-            plate_country: props.orderData.country,
-            plate_phone: props.orderData.phone,
-            plate_order_value: props.orderData.total,
-          });
-        const templateId2 = "template_octykrb"
-        await emailjs.send(serviceId, templateId2,
-          {
-            to_name: "platenkeys@gmail.com",
-            plate_number: Global.Order.PlateText,
-            plate_type: Global.Order.Type,
-            plate_front: Global.Order.FrontText,
-            plate_rear: Global.Order.RearText,
-            plate_material: Global.Order.Material,
-            plate_badge: Global.Order.Badge,
-            plate_badge_background: Global.Order.BadgeBackground,
-            plate_border: Global.Order.Border,
-            plate_delivery: props.orderData.delivery,
-            plate_spare: Global.Order.Spare,
-            plate_fitting_kit: Global.Order.FittingKit,
-            plate_total: Global.Order.Total,
-            plate_font: Global.Order.Font,
-            plate_left_badge: Global.Order.LeftBadge,
-            plate_left_badge_background: Global.Order.LeftBadgeBackground,
-            plate_right_badge: Global.Order.RightBadge,
-            plate_right_badge_background: Global.Order.RightBadgeBackground,
-            plate_footer_text: Global.Order.FooterText,
-            plate_footer_color: Global.Order.FooterColor,
-            plate_plate_type: Global.Order.PlateType,
-            plate_badge_city: Global.Order.BadgeCity,
-            plate_badge_flag: Global.Order.BadgeFlag,
-            plate_layout: Global.Order.Layout,
-            plate_front_size: Global.Order.FrontSize,
-            plate_rear_size: Global.Order.RearSize,
-            plate_front_option: Global.Order.FrontOption,
-            plate_rear_option: Global.Order.RearOption,
-            plate_choice: Global.Order.PlateChoice,
-            plate_short_hand: Global.Order.ShortHand,
-            plate_other_items: Global.Cart,
-            plate_address1: props.orderData.address1,
-            plate_address2: props.orderData.address2,
-            plate_city: props.orderData.city,
-            plate_postcode: props.orderData.postcode,
-            plate_country: props.orderData.country,
-            plate_phone: props.orderData.phone,
-            plate_order_value: props.orderData.total,
-          });
-
         Global.SetTotal(0)
         Global.SetCart([])
         Global.SetOrder()
@@ -192,6 +106,94 @@ export default function Page2(props) {
       console.error(error);
     }
   };
+
+  const SendEmail = async() =>{
+    const serviceId = "service_wztqj7b";
+    const templateId = "template_sszvgp2";
+    await emailjs.send(serviceId, templateId,
+      {
+        to_name: props.orderData.email,
+        plate_number: Global.Order.PlateText,
+        plate_type: Global.Order.Type,
+        plate_front: Global.Order.FrontText,
+        plate_rear: Global.Order.RearText,
+        plate_material: Global.Order.Material,
+        plate_badge: Global.Order.Badge,
+        plate_badge_background: Global.Order.BadgeBackground,
+        plate_border: Global.Order.Border,
+        plate_delivery: props.orderData.delivery,
+        plate_spare: Global.Order.Spare,
+        plate_fitting_kit: Global.Order.FittingKit,
+        plate_total: Global.Order.Total,
+        plate_font: Global.Order.Font,
+        plate_left_badge: Global.Order.LeftBadge,
+        plate_left_badge_background: Global.Order.LeftBadgeBackground,
+        plate_right_badge: Global.Order.RightBadge,
+        plate_right_badge_background: Global.Order.RightBadgeBackground,
+        plate_footer_text: Global.Order.FooterText,
+        plate_footer_color: Global.Order.FooterColor,
+        plate_plate_type: Global.Order.PlateType,
+        plate_badge_city: Global.Order.BadgeCity,
+        plate_badge_flag: Global.Order.BadgeFlag,
+        plate_layout: Global.Order.Layout,
+        plate_front_size: Global.Order.FrontSize,
+        plate_rear_size: Global.Order.RearSize,
+        plate_front_option: Global.Order.FrontOption,
+        plate_rear_option: Global.Order.RearOption,
+        plate_choice: Global.Order.PlateChoice,
+        plate_short_hand: Global.Order.ShortHand,
+        plate_other_items: Global.Cart,
+        plate_address1: props.orderData.address1,
+        plate_address2: props.orderData.address2,
+        plate_city: props.orderData.city,
+        plate_postcode: props.orderData.postcode,
+        plate_country: props.orderData.country,
+        plate_phone: props.orderData.phone,
+        plate_order_value: props.orderData.total,
+      });
+    const templateId2 = "template_octykrb"
+    await emailjs.send(serviceId, templateId2,
+      {
+        to_name: "platenkeys@gmail.com",
+        plate_number: Global.Order.PlateText,
+        plate_type: Global.Order.Type,
+        plate_front: Global.Order.FrontText,
+        plate_rear: Global.Order.RearText,
+        plate_material: Global.Order.Material,
+        plate_badge: Global.Order.Badge,
+        plate_badge_background: Global.Order.BadgeBackground,
+        plate_border: Global.Order.Border,
+        plate_delivery: props.orderData.delivery,
+        plate_spare: Global.Order.Spare,
+        plate_fitting_kit: Global.Order.FittingKit,
+        plate_total: Global.Order.Total,
+        plate_font: Global.Order.Font,
+        plate_left_badge: Global.Order.LeftBadge,
+        plate_left_badge_background: Global.Order.LeftBadgeBackground,
+        plate_right_badge: Global.Order.RightBadge,
+        plate_right_badge_background: Global.Order.RightBadgeBackground,
+        plate_footer_text: Global.Order.FooterText,
+        plate_footer_color: Global.Order.FooterColor,
+        plate_plate_type: Global.Order.PlateType,
+        plate_badge_city: Global.Order.BadgeCity,
+        plate_badge_flag: Global.Order.BadgeFlag,
+        plate_layout: Global.Order.Layout,
+        plate_front_size: Global.Order.FrontSize,
+        plate_rear_size: Global.Order.RearSize,
+        plate_front_option: Global.Order.FrontOption,
+        plate_rear_option: Global.Order.RearOption,
+        plate_choice: Global.Order.PlateChoice,
+        plate_short_hand: Global.Order.ShortHand,
+        plate_other_items: Global.Cart,
+        plate_address1: props.orderData.address1,
+        plate_address2: props.orderData.address2,
+        plate_city: props.orderData.city,
+        plate_postcode: props.orderData.postcode,
+        plate_country: props.orderData.country,
+        plate_phone: props.orderData.phone,
+        plate_order_value: props.orderData.total,
+      });
+  }
 
 
 
@@ -221,6 +223,7 @@ export default function Page2(props) {
     if (paymentIntent && paymentIntent.status === "succeeded") {
       toast.success('Payment Successful')
       AddOrder()
+      SendEmail()
     }
     else if (error) {
       SetPaymentClicked(false)
